@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_flutter/app/core/constants/texts.dart';
 import 'modules/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,11 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Portfolio',
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-      //   useMaterial3: true,
-      // ),
+      title: AppTexts.appName,
       theme: ThemeData.dark(),
       home: const HomePage(),
     );
