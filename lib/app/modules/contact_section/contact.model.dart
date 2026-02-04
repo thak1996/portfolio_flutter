@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+class ContactModel {
+  final String title;
+  final String description;
+  final List<ContactInfoItem> infoItems;
+  final ContactFormLabels formLabels;
+
+  ContactModel({
+    required this.title,
+    required this.description,
+    required this.infoItems,
+    required this.formLabels,
+  });
+}
+
+class ContactInfoItem {
+  final String title;
+  final String value;
+  final IconData icon;
+
+  ContactInfoItem({
+    required this.title,
+    required this.value,
+    required this.icon,
+  });
+}
+
+class ContactFormLabels {
+  final String nameLabel;
+  final String emailLabel;
+  final String subjectLabel;
+  final String messageLabel;
+  final String submitButtonText;
+
+  ContactFormLabels({
+    this.nameLabel = "Your Name",
+    this.emailLabel = "Your Email",
+    this.subjectLabel = "Subject",
+    this.messageLabel = "Message",
+    this.submitButtonText = "Send Message",
+  });
+}
