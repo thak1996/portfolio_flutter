@@ -1,66 +1,56 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/colors.dart';
-import '../../core/constants/size.dart';
-import '../widgets/drawer_mobile.dart';
-import '../widgets/header_desktop.dart';
-import '../widgets/header_mobile.dart';
-import '../widgets/main_desktop.dart';
-import '../widgets/main_mobile.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class DashboardCategorias extends StatelessWidget {
+  const DashboardCategorias({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenHeight = screenSize.height - kToolbarHeight;
-    final screenWidth = screenSize.width;
-    return LayoutBuilder(
-      builder: (context, constraints) => Scaffold(
-        key: scaffoldKey,
-        backgroundColor: AppColors.scaffoldBg,
-        endDrawer:
-            constraints.maxWidth >= kMinWidthDesktop ? null : DrawerMobile(),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            // Main
-            constraints.maxWidth >= kMinWidthDesktop
-                ? HeaderDesktop()
-                : HeaderMobile(
-                    onLogoTap: () {},
-                    onMenuTap: () => scaffoldKey.currentState?.openEndDrawer(),
-                  ),
-            constraints.maxWidth >= kMinWidthDesktop
-                ? MainDesktop()
-                : MainMobile(),
-
-            // Skills
-            Container(
-              height: screenSize.height,
-              width: double.maxFinite,
-              color: Colors.red,
-            ),
-            // Projects
-            Container(
-              height: screenSize.height,
-              width: double.maxFinite,
-              color: Colors.green,
-            ),
-            // Contact
-            SizedBox(
-              height: screenSize.height,
-              width: double.maxFinite,
-            ),
-          ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: MaxWidthBox(
+          maxWidth: 1200,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Text('Dashboard Categorias'),
+              ),
+              ResponsiveRowColumn(
+                layout: ResponsiveBreakpoints.of(context).isMobile
+                    ? ResponsiveRowColumnType.COLUMN
+                    : ResponsiveRowColumnType.ROW,
+                rowMainAxisAlignment: MainAxisAlignment.center,
+                columnSpacing: 20,
+                rowSpacing: 20,
+                children: [
+                  ResponsiveRowColumnItem(
+                      child: _cardCategoria("Mudanças Local", Colors.blue)),
+                  ResponsiveRowColumnItem(
+                      child: _cardCategoria("Interestadual", Colors.green)),
+                  ResponsiveRowColumnItem(
+                      child: _cardCategoria("Guarda Móveis", Colors.orange)),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _cardCategoria(String titulo, Color cor) {
+    return Container(
+      width: 300,
+      height: 150,
+      decoration: BoxDecoration(
+        color: cor.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: cor),
+      ),
+      child: Center(
+          child: Text(titulo,
+              style: TextStyle(color: cor, fontWeight: FontWeight.bold))),
     );
   }
 }
