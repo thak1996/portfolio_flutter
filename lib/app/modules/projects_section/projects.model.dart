@@ -15,7 +15,7 @@ class ProjectItemModel {
   final String description;
   final String? imageUrl;
   final String urlProject;
-  final String categoryLabel;
+  final String? categoryLabel;
   final List<String> technologies;
   final VoidCallback? onTap;
 
@@ -24,7 +24,7 @@ class ProjectItemModel {
     required this.description,
     this.imageUrl,
     required this.urlProject,
-    required this.categoryLabel,
+    this.categoryLabel,
     required this.technologies,
     this.onTap,
   });

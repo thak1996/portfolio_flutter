@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../core/data/portfolio.data.dart';
 import '../core/model/section.model.dart';
+import '../core/styles/colors.dart';
 import 'widgets/appbar.widget.dart';
 import 'widgets/section.widget.dart';
 
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A), 
+      backgroundColor: AppColors.bgSlateDeep,
       appBar: AppBarWidget(onSectionClick: (id) => _scrollToSection(id)),
       body: MouseRegion(
         onHover: (event) => _mousePos.value = event.localPosition,
@@ -38,8 +39,8 @@ class _HomePageState extends State<HomePage> {
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          const Color(0xFF137FEC).withValues(alpha: 0.12),
-                          const Color(0xFF137FEC).withValues(alpha: 0.04),
+                          AppColors.primary.withValues(alpha: 0.12),
+                          AppColors.primary.withValues(alpha: 0.04),
                           Colors.transparent,
                         ],
                       ),
@@ -48,7 +49,6 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-
             LayoutBuilder(
               builder: (context, constraints) {
                 final double viewportHeight = constraints.maxHeight;

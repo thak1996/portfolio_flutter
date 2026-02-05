@@ -32,7 +32,7 @@ class _EducationCardState extends State<EducationCard> {
         width: 320,
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A).withValues(alpha: 0.4),
+          color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isActive

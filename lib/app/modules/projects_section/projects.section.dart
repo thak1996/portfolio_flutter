@@ -60,7 +60,7 @@ class _ProjectCardState extends State<_ProjectCard> {
         duration: const Duration(milliseconds: 300),
         width: 360,
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
+          color: AppColors.bgSlateDeep,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isHovered

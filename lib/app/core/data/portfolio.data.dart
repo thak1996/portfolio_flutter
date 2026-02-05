@@ -191,25 +191,23 @@ final List<SectionModel> portfolioSections = [
             title: "FDS Logística Website",
             description:
                 "Sistema de gerenciamento de mudanças e logística com painel administrativo.",
-            categoryLabel: "Case Study",
             technologies: ["PHP Laravel", "VPS", "Domínios", "UI/UX"],
             urlProject: 'https://www.fdslogistica.com.br/',
           ),
           ProjectItemModel(
-            title: "FinTech Wallet Application",
+            title: "Brincar e Conectar App",
             description:
-                "Encrypted mobile wallet architecture focused on seamless user experience and secure transactions.",
-            categoryLabel: "Mobile First",
-            technologies: ["Python", "UI/UX", "PostgreSQL"],
-            urlProject: '#',
+                "Aplicação mobile para instituições e orfanatos. Foi criado como estudo da faculdade, que pode ser aprimorado a ideia.",
+            technologies: ["Flutter", "UI/UX", "Dart", "Bloc"],
+            urlProject:
+                'https://github.com/thak1996/brincar_e_conectar_flutter',
           ),
           ProjectItemModel(
-            title: "Cloud Infrastructure Manager",
+            title: "RH Manager (skeleton)",
             description:
-                "Automated provisioning tool for multi-cloud environments with integrated monitoring and alerting.",
-            categoryLabel: "Automation",
-            technologies: ["Go", "Terraform", "AWS"],
-            urlProject: '#',
+                "Gerenciador de RH (skeleton) construído com Laravel 10. Projeto configurado para desenvolvimento via Laravel Sail (Docker), MySQL e Vite para empacotamento de assets.",
+            technologies: ["UI/UX", "PHP Laravel", "MySQL", "Docker"],
+            urlProject: '',
           ),
         ],
       ),
