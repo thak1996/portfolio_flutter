@@ -12,10 +12,10 @@ class EducationCard extends StatefulWidget {
 }
 
 class _EducationCardState extends State<EducationCard> {
+  bool isHovered = false;
+
   @override
   Widget build(BuildContext context) {
-    bool isHovered = false;
-
     final bool isActive = widget.edu.currentEducation || isHovered;
 
     final Color highlightColor = isActive //
@@ -23,6 +23,7 @@ class _EducationCardState extends State<EducationCard> {
         : const Color(0xFF64748B);
 
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: AnimatedContainer(

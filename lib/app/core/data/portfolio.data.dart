@@ -146,7 +146,7 @@ final List<SectionModel> portfolioSections = [
     id: SectionType.study,
     title: "Educação",
     backgroundColor: AppColors.bgDeep,
-    heightFactor: 0,
+    heightFactor: 1,
     data: StudyData(
       content: StudyModel(
         history: [
@@ -180,12 +180,12 @@ final List<SectionModel> portfolioSections = [
   // --- Section Projects ---
   SectionModel(
     id: SectionType.projects,
-    title: "Projects",
+    title: "Projetos",
     backgroundColor: AppColors.bgSlateDeep,
-    heightFactor: 1.3,
+    heightFactor: 1,
     data: ProjectsData(
       content: ProjectsModel(
-        sectionLabel: "Portfolio",
+        sectionTitle: "Projetos",
         projects: [
           ProjectItemModel(
             title: "Enterprise Analytics Dashboard",
@@ -195,6 +195,7 @@ final List<SectionModel> portfolioSections = [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuAubGE6_OUsXl_7f41x9QfSD1IZIi4WnjSnvwy_Bu1fT8DS__meTEvCT-k1aARkC4mYwTxO8UVcX4EGnkdxB8-cdDLaPBcP5YTZ4tfDiohvojysxD6z_Umz8un0i5EMTjdnFBhyqjxfVaW5lAaCMavDesGkiuxo9H2knvUHJSl7UIAiNZ74CRvFUw0I42PgLqo1X4buY9wC4AsnNh_xEyUnQFOkmPXZn3otLVZ-iQR0y1CLUJ4hzo6wHaFY1QtHX5MU8l-lPrn4Fh_y",
             categoryLabel: "Case Study",
             technologies: ["React", "D3.js", "Tailwind"],
+            urlProject: '#',
           ),
           ProjectItemModel(
             title: "FinTech Wallet Application",
@@ -204,6 +205,7 @@ final List<SectionModel> portfolioSections = [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuAQHoSKTA6goMhrhSFE5lCLHTsnpPfkKbR-922h0RQScVbyKTNTz-Cas88BQeuyWx5E9Xy_hiB4vICjOLN2xfW4dKemdem5LlOuUl8t3hJQw6Ah_46CKytHRbT1cC1Lhaxd_Ol7JXK3XL62i9UblwsE6LcS4DacZueaMyydxtHf8MPCSe-wZZySE6qP26uCAjAUwlNGRxfrdbDBOPyrSffymMy_ZwehDpBVGDccE2pQ_N8284BOcOxFn7HaF9ZGvHJfeY6qJqJ8S-TX",
             categoryLabel: "Mobile First",
             technologies: ["Python", "UI/UX", "PostgreSQL"],
+            urlProject: '#',
           ),
           ProjectItemModel(
             title: "Cloud Infrastructure Manager",
@@ -213,6 +215,7 @@ final List<SectionModel> portfolioSections = [
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuBcmq2IbjDtRuFwtlnL97GI4TSur1O1w86Yoi_7Pqv0P8VeOMavt5OLTbJ9AH47AhUwnUuNGiaEr838zvyRwsx0uHMWPqlApmtoela3YeeDXHSTnQuiZNLxCkyTd3F1qDO8vZstnw1xQxDdTeHTmrvta2bjDfN19MwVekhlanWsAMGPUuNrW6_ad2dHq7TN1zOrFoKJcv5ERchC1KgEoGbuNReb3Dxat03_yCn2b3Q_lMs9fYimmHCmUs2QJL6_8Iy8oSDDGRixCNvf",
             categoryLabel: "Automation",
             technologies: ["Go", "Terraform", "AWS"],
+            urlProject: '#',
           ),
         ],
       ),
@@ -220,9 +223,9 @@ final List<SectionModel> portfolioSections = [
   ),
   SectionModel(
     id: SectionType.contact,
-    title: "Contact",
+    title: "Contato",
     backgroundColor: AppColors.bgDeep,
-    heightFactor: 0,
+    heightFactor: 0.8,
     data: ContactData(
       content: ContactModel(
         title: "Get In Touch",

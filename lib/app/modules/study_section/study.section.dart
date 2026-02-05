@@ -14,8 +14,8 @@ class StudySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Formação Acadêmica",
+          Text(
+            content.sectionTitle,
             style: TextStyle(
               color: Colors.white,
               fontSize: 36,

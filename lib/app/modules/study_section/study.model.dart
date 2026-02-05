@@ -4,6 +4,7 @@ class StudyModel {
   StudyModel({required this.history});
 
   final List<EducationItemModel> history;
+  final String sectionTitle = "Formação Acadêmica";
 }
 
 class EducationItemModel {
