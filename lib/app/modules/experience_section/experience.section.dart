@@ -10,20 +10,10 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 40),
+      padding: const EdgeInsets.only(top: 60, bottom: 60),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "MINHA TRAJETÓRIA",
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2.0,
-            ),
-          ),
-          const SizedBox(height: 8),
           const Text(
             "Experiência Profissional",
             style: TextStyle(

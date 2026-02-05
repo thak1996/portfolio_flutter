@@ -22,16 +22,19 @@ class SectionWidget extends StatelessWidget {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1200),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: switch (model.data) {
-              HeroData d => HeroSection(content: d.content, onAction: onAction),
-              ExperienceData d => ExperienceSection(content: d.content),
-              StudyData d => StudySection(content: d.content),
-              ProjectsData d => ProjectsSection(content: d.content),
-              ContactData d => ContactSection(content: d.content),
-              FooterData d => FooterSection(content: d.content),
-            },
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: switch (model.data) {
+                HeroData d => HeroSection(content: d.content, onAction: onAction),
+                ExperienceData d => ExperienceSection(content: d.content),
+                StudyData d => StudySection(content: d.content),
+                ProjectsData d => ProjectsSection(content: d.content),
+                ContactData d => ContactSection(content: d.content),
+                FooterData d => FooterSection(content: d.content),
+              },
+            ),
           ),
         ),
       ),
