@@ -36,7 +36,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Portfolio",
+                      "Franklyn Viana dos Santos",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -47,23 +47,23 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         ...portfolioSections
                             .where((s) => s.title.isNotEmpty)
-                            .map((section) => TextButton(
-                                  onPressed: () => onSectionClick(section.id),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                    ),
-                                    child: Text(
-                                      section.title,
-                                      style: const TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 14,
-                                      ),
+                            .map(
+                              (section) => TextButton(
+                                onPressed: () => onSectionClick(section.id),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  child: Text(
+                                    section.title,
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14,
                                     ),
                                   ),
-                                )),
-                        const SizedBox(width: 20),
-                        _buildHireMeButton(),
+                                ),
+                              ),
+                            ),
                       ],
                     ),
                   ],
@@ -71,24 +71,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHireMeButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF137FEC),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-      child: const Text(
-        "Hire Me",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
         ),
       ),
     );

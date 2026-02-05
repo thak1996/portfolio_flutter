@@ -17,7 +17,7 @@ class SectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: model.backgroundColor,
+      color: model.backgroundColor.withValues(alpha: 0.6),
       width: double.infinity,
       child: Center(
         child: ConstrainedBox(
@@ -27,7 +27,8 @@ class SectionWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: switch (model.data) {
-                HeroData d => HeroSection(content: d.content, onAction: onAction),
+                HeroData d =>
+                  HeroSection(content: d.content, onAction: onAction),
                 ExperienceData d => ExperienceSection(content: d.content),
                 StudyData d => StudySection(content: d.content),
                 ProjectsData d => ProjectsSection(content: d.content),

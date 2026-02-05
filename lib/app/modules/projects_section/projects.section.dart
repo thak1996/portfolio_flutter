@@ -79,21 +79,6 @@ class _ProjectCardState extends State<_ProjectCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(20)),
-              child: Image.network(
-                widget.project.imageUrl,
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
-                  height: 200,
-                  color: AppColors.primary.withValues(alpha: 0.1),
-                  child: Icon(Icons.image, color: AppColors.primary),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -108,8 +93,6 @@ class _ProjectCardState extends State<_ProjectCard> {
                     ),
                   ),
                   const SizedBox(height: 12),
-
-                  // --- DESCRIÇÃO ---
                   Text(
                     widget.project.description,
                     maxLines: 2,
@@ -121,34 +104,34 @@ class _ProjectCardState extends State<_ProjectCard> {
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: widget.project.technologies
-                        .map((tech) => Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF1E293B),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Text(
-                                tech.toUpperCase(),
-                                style: const TextStyle(
-                                  color: Color(0xFF94A3B8),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
+                  Align(
+                    alignment: Alignment.center,
+                    child: Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: widget.project.technologies
+                          .map((tech) => Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
                                 ),
-                              ),
-                            ))
-                        .toList(),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF1E293B),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  tech.toUpperCase(),
+                                  style: const TextStyle(
+                                    color: Color(0xFF94A3B8),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                    ),
                   ),
                   const SizedBox(height: 32),
-
-                  // --- BOTÃO VIEW PROJECT ---
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -166,7 +149,7 @@ class _ProjectCardState extends State<_ProjectCard> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "View Project",
+                            "Ver Projeto",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 8),

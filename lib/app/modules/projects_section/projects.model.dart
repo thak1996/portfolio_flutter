@@ -13,7 +13,7 @@ class ProjectsModel {
 class ProjectItemModel {
   final String title;
   final String description;
-  final String imageUrl;
+  final String? imageUrl;
   final String urlProject;
   final String categoryLabel;
   final List<String> technologies;
@@ -22,7 +22,7 @@ class ProjectItemModel {
   ProjectItemModel({
     required this.title,
     required this.description,
-    required this.imageUrl,
+    this.imageUrl,
     required this.urlProject,
     required this.categoryLabel,
     required this.technologies,
