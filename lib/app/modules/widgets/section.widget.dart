@@ -9,9 +9,10 @@ import '../projects_section/projects.section.dart';
 import '../study_section/study.section.dart';
 
 class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.model});
+  const SectionWidget({super.key, required this.model, required this.onAction});
 
   final SectionModel model;
+  final Function(SectionType) onAction;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class SectionWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: switch (model.data) {
-              HeroData d => HeroSection(content: d.content),
+              HeroData d => HeroSection(content: d.content, onAction: onAction),
               ExperienceData d => ExperienceSection(content: d.content),
               StudyData d => StudySection(content: d.content),
               ProjectsData d => ProjectsSection(content: d.content),

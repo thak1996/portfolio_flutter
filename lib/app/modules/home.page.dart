@@ -64,7 +64,10 @@ class _HomePageState extends State<HomePage> {
                   height: section.heightFactor > 0
                       ? viewportHeight * section.heightFactor
                       : null,
-                  child: SectionWidget(model: section),
+                  child: SectionWidget(
+                    model: section,
+                    onAction: (id) => _scrollToSection(id),
+                  ),
                 );
               }).toList(),
             ),

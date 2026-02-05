@@ -12,20 +12,19 @@ import '../styles/colors.dart';
 final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.hero,
-    title: "About",
+    title: "Sobre",
     backgroundColor: AppColors.bgDeep,
     heightFactor: 1.0,
     data: HeroData(
       content: HeroModel(
-        tagline: "Building Digital Excellence with ",
-        taglineHighlight: "Precision.",
+        tagline: "Criando Soluções Digitais com ",
+        taglineHighlight: "Precisão.",
         description:
-            "Senior Software Engineer specialized in crafting high-performance web applications and scalable architecture. Let's build something exceptional together.",
-        profileImageUrl:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDeS4LCrgfuuwhhf5RP-ysNZS0CXwq7qFJEZHBxZer_6WSYyAg7XL21dn9NwNC4vv9c1-_2tcbQ45YrMTpSK_pF2zF_wzhP9TieyK8wXb9DRmizzhPCV3bqSlgk19nVan1BHCUARzJnR9LDnb38JbqB2baqC5IyFgIjyBaKALyErZB9b2FWwpAfy2pC_Fg5woQ2pHbCmDTsGgXQ2TKxjFC62ys6pnPAwV4xMZticknRPQCWfdc4gWvTIQOjq9XEN3qHDmUC8drQM-N9",
+            "Desenvolvedor Mobile com foco em Flutter, atuando na construção de aplicações Android e iOS com uso de Dart, Firebase e arquitetura limpa.",
+        profileImageUrl: "https://i.imgur.com/te69F3I.png",
         actions: [
-          HeroCTA("View Work", isPrimary: true),
-          HeroCTA("Contact Me", isPrimary: false),
+          HeroCTA("Ver Projetos", isPrimary: true),
+          HeroCTA("Contato", isPrimary: false),
         ],
         socials: [
           SocialIcon(Icons.code, "#"),
@@ -37,32 +36,105 @@ final List<SectionModel> portfolioSections = [
   ),
   SectionModel(
     id: SectionType.experience,
-    title: "Experience",
+    title: "Experiência",
     backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: ExperienceData(
       content: ExperienceModel(
-        sectionLabel: "My Career Path",
         jobs: [
           ExperienceItemModel(
-            role: "Senior Software Engineer",
-            company: "TechCorp",
-            period: "Jan 2021 - Present",
-            location: "San Francisco, CA",
-            icon: Icons.work,
+            role: "Desenvolvedor Full Stack",
+            stack: "Modernização e Infraestrutura",
+            company: "FDS Logística e Terceirização",
+            currentCompany: true,
+            period: "jul de 2025 - até o momento",
+            location: "Remoto",
+            icon: Icons.badge,
             points: [
-              "Led a cross-functional team of 5 engineers to deliver a high-performance cloud platform servicing 200k+ MAU.",
-              "Reduced application latency by 40% through code optimization and strategic implementation of Redis caching layers."
+              "Reformulação completa de interface (UI/UX) visando a modernização e responsividade de site legado.",
+              "Implementação e migração de sistema de gerenciamento utilizando PHP Laravel e Filament PHP.",
+              "Configuração e deploy de ambiente de produção em servidor VPS, garantindo maior performance e autonomia.",
+              "Gestão de infraestrutura de rede, incluindo transferência de domínios e configuração de zonas DNS.",
+              "Administração e migração de serviços de e-mail corporativo e suporte técnico à transição de plataforma.",
+            ],
+            skills: [
+              "PHP Laravel",
+              "Filament PHP",
+              "Administração de Servidores (VPS)",
+              "DNS & Domínios",
+              "UI/UX Design",
             ],
           ),
           ExperienceItemModel(
-            role: "Full Stack Developer",
-            company: "InnovateSoft",
-            period: "June 2018 - Dec 2020",
-            location: "Remote",
-            icon: Icons.corporate_fare,
+            role: "Desenvolvedor de Software",
+            stack: "Automação & Integração",
+            company: "Autônomo",
+            period: "set de 2025 - dez de 2025",
+            location: "Remoto",
+            icon: Icons.laptop_mac,
             points: [
-              "Maintained and optimized legacy React components, improving lighthouse accessibility scores from 65 to 98."
+              "Desenvolvimento de integrações para captura e processamento de formulários web.",
+              "Criação de automações personalizadas utilizando Google Apps Script para otimização de fluxos.",
+              "Implementação de integração entre sistemas via Google Sheets para gestão e exportação de dados.",
+              "Estruturação de pipeline de dados para envio automatizado de leads para a plataforma do cliente.",
+              "Melhoria na eficiência operacional através da sincronização de dados em tempo real.",
+            ],
+            skills: [
+              "Google Apps Script",
+              "WebHooks",
+              "Google Sheets",
+              "Integrações de APIs",
+              "JavaScript",
+              "Json",
+              "Automação de Processos",
+            ],
+          ),
+          ExperienceItemModel(
+            role: "Desenvolvedor Mobile Flutter",
+            stack: "Projeto Pontual",
+            company: "Autônomo",
+            period: "Mai de 2025",
+            location: "Remoto",
+            icon: Icons.laptop_mac,
+            points: [
+              "Desenvolvimento de aplicativo mobile utilizando Flutter e Dart.",
+              "Implementação de Clean Architecture visando escalabilidade e organização do código.",
+              "Gerenciamento de estado com Cubit.",
+              "Integração com Firebase (Authentication e Firestore).",
+              "Sincronização de dados entre Firebase (cloud) e ObjectBox (armazenamento local).",
+              "Criação de interfaces responsivas para Android e iOS.",
+            ],
+            skills: [
+              "Clean Architecture",
+              "ObjectBox",
+              "Firebase",
+              "Android & IOS",
+              "Dart",
+              "Flutter",
+              "Cubit"
+            ],
+          ),
+          ExperienceItemModel(
+            role: "Desenvolvedor de Software",
+            stack: "Flutter & Backend",
+            company: "Eagless",
+            period: "Nov de 2023 - Nov de 2024",
+            location: "Remoto",
+            icon: Icons.home_work,
+            points: [
+              "Desenvolvimento de aplicações mobile e web utilizando Flutter.",
+              "Criação de APIs REST com PHP Laravel para integração com apps mobile.",
+              "Integração eficiente entre frontend e backend.",
+              "Desenvolvimento de painéis administrativos para gestão de dados.",
+              "Otimização de aplicações com foco em performance e usabilidade.",
+            ],
+            skills: [
+              "Git/GitFlow",
+              "APIs REST",
+              "Flutter",
+              "Dart",
+              "PHP Laravel",
+              "MySQL"
             ],
           ),
         ],

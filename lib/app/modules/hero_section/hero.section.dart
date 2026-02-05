@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
 import 'package:portfolio_flutter/app/modules/widgets/primary_button.widget.dart';
+import '../../core/model/section.model.dart';
 import 'hero.model.dart';
 
 class HeroSection extends StatelessWidget {
-  final HeroModel content;
+  const HeroSection({
+    super.key,
+    required this.content,
+    required this.onAction,
+  });
 
-  const HeroSection({super.key, required this.content});
+  final HeroModel content;
+  final Function(SectionType) onAction;
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +58,13 @@ class HeroSection extends StatelessWidget {
                   PrimaryButton(
                     label: content.actions[0].label,
                     isPrimary: content.actions[0].isPrimary,
+                    onPressed: () => onAction(SectionType.projects),
                   ),
                   const SizedBox(width: 15),
                   PrimaryButton(
                     label: content.actions[1].label,
                     isPrimary: content.actions[1].isPrimary,
+                    onPressed: () => onAction(SectionType.contact),
                   ),
                 ],
               ),
@@ -86,7 +94,6 @@ class HeroSection extends StatelessWidget {
             ],
           ),
         ),
-        // Lado Direito: Imagem com Glow Azul
         Expanded(
           flex: 2,
           child: Stack(
