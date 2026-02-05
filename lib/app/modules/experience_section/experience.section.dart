@@ -3,14 +3,19 @@ import '../../core/styles/colors.dart';
 import 'experience.model.dart';
 
 class ExperienceSection extends StatelessWidget {
-  const ExperienceSection({super.key, required this.content});
+  const ExperienceSection({
+    super.key,
+    required this.content,
+    required this.padding,
+  });
 
   final ExperienceModel content;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, bottom: 60),
+      padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

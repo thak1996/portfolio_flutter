@@ -3,6 +3,7 @@ import '../../modules/experience_section/experience.model.dart';
 import '../../modules/footer_section/footer.model.dart';
 import '../../modules/hero_section/hero.model.dart';
 import '../../modules/projects_section/projects.model.dart';
+import '../../modules/skills_section/skill.model.dart';
 import '../../modules/study_section/study.model.dart';
 
 sealed class SectionSealed {}
@@ -29,6 +30,12 @@ class StudyData extends SectionSealed {
   StudyData({required this.content});
 
   final StudyModel content;
+}
+
+class SkillsData extends SectionSealed {
+  SkillsData({required this.content});
+
+  final SkillsModel content;
 }
 
 class ContactData extends SectionSealed {

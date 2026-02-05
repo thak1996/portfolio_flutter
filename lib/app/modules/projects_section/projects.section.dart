@@ -4,14 +4,19 @@ import '../../core/styles/colors.dart';
 import 'projects.model.dart';
 
 class ProjectsSection extends StatelessWidget {
-  const ProjectsSection({super.key, required this.content});
+  const ProjectsSection({
+    super.key,
+    required this.content,
+    required this.padding,
+  });
 
   final ProjectsModel content;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 80),
+      padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

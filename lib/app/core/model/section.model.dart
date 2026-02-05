@@ -4,6 +4,7 @@ import 'section.sealed.dart';
 enum SectionType {
   hero,
   experience,
+  skills,
   study,
   projects,
   contact,

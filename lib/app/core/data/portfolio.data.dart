@@ -4,6 +4,7 @@ import '../../modules/experience_section/experience.model.dart';
 import '../../modules/footer_section/footer.model.dart';
 import '../../modules/hero_section/hero.model.dart';
 import '../../modules/projects_section/projects.model.dart';
+import '../../modules/skills_section/skill.model.dart';
 import '../../modules/study_section/study.model.dart';
 import '../model/section.model.dart';
 import '../model/section.sealed.dart';
@@ -177,7 +178,61 @@ final List<SectionModel> portfolioSections = [
     ),
   ),
 
-  // --- Section Projects ---
+  SectionModel(
+    id: SectionType.skills,
+    title: "Habilidades",
+    backgroundColor: AppColors.bgDeep,
+    heightFactor: 0,
+    data: SkillsData(
+      content: SkillsModel(
+        programmingLanguages: [
+          HardSkillModel(name: "Flutter & Dart", level: 0.85),
+          HardSkillModel(name: "PHP (Laravel)", level: 0.75),
+          HardSkillModel(name: "JavaScript", level: 0.65),
+          HardSkillModel(name: "SQL (MySQL)", level: 0.70),
+          HardSkillModel(name: "Google Apps Script", level: 0.75),
+        ],
+        tools: [
+          "Git / GitFlow",
+          "Docker (Sail)",
+          "VPS & Linux (SSH)",
+          "Filament PHP",
+          "Firebase (Auth/Firestore)",
+          "Figma (UI/UX)",
+          "ObjectBox",
+          "Postman",
+        ],
+        softSkills: [
+          SoftSkillModel(
+            title: "Arquitetura Limpa",
+            description:
+                "Foco em código desacoplado, testável e escalável utilizando Clean Architecture.",
+            icon: Icons.architecture,
+          ),
+          SoftSkillModel(
+            title: "Resolução de Problemas",
+            description:
+                "Habilidade em analisar problemas técnicos e implementar automações eficientes.",
+            icon: Icons.psychology,
+          ),
+          SoftSkillModel(
+            title: "Mentalidade Full Stack",
+            description:
+                "Visão holística do projeto, desde a infraestrutura VPS até a interface mobile.",
+            icon: Icons.layers_outlined,
+          ),
+        ],
+        strategicAreas: [
+          "Integração de APIs REST",
+          "Gerenciamento de Estado (Cubit/Bloc)",
+          "CI/CD & Deploy Automatizado",
+          "Otimização de Performance",
+          "Gestão de Infraestrutura de Rede",
+        ],
+      ),
+    ),
+  ),
+
   SectionModel(
     id: SectionType.projects,
     title: "Projetos",
@@ -207,16 +262,17 @@ final List<SectionModel> portfolioSections = [
             description:
                 "Gerenciador de RH (skeleton) construído com Laravel 10. Projeto configurado para desenvolvimento via Laravel Sail (Docker), MySQL e Vite para empacotamento de assets.",
             technologies: ["UI/UX", "PHP Laravel", "MySQL", "Docker"],
-            urlProject: '',
+            urlProject: 'https://github.com/thak1996/rh-manager',
           ),
         ],
       ),
     ),
   ),
+
   SectionModel(
     id: SectionType.contact,
     title: "Contato",
-    backgroundColor: AppColors.bgDeep,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0.8,
     data: ContactData(
       content: ContactModel(
@@ -248,10 +304,11 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
+
   SectionModel(
     id: SectionType.footer,
     title: "",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: FooterData(
       content: FooterModel(
@@ -264,14 +321,20 @@ final List<SectionModel> portfolioSections = [
           SocialLinkModel(icon: Icons.alternate_email, url: "#"),
         ],
         columns: [
-          FooterColumn(title: "Quick Links", links: [
-            FooterLink(label: "About", url: "#"),
-            FooterLink(label: "Experience", url: "#experience"),
-          ]),
-          FooterColumn(title: "Socials", links: [
-            FooterLink(label: "LinkedIn", url: "#"),
-            FooterLink(label: "GitHub", url: "#"),
-          ]),
+          FooterColumn(
+            title: "Quick Links",
+            links: [
+              FooterLink(label: "About", url: "#"),
+              FooterLink(label: "Experience", url: "#experience"),
+            ],
+          ),
+          FooterColumn(
+            title: "Socials",
+            links: [
+              FooterLink(label: "LinkedIn", url: "#"),
+              FooterLink(label: "GitHub", url: "#"),
+            ],
+          ),
         ],
       ),
     ),

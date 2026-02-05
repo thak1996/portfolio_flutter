@@ -3,14 +3,19 @@ import 'study.model.dart';
 import 'widgets/education_card.widget.dart';
 
 class StudySection extends StatelessWidget {
-  const StudySection({super.key, required this.content});
+  const StudySection({
+    super.key,
+    required this.content,
+    required this.padding,
+  });
 
   final StudyModel content;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, bottom: 60),
+      padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
