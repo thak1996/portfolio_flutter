@@ -7,12 +7,13 @@ import '../../modules/projects_section/projects.model.dart';
 import '../../modules/study_section/study.model.dart';
 import '../model/section.model.dart';
 import '../model/section.sealed.dart';
+import '../styles/colors.dart';
 
 final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.hero,
     title: "About",
-    backgroundColor: const Color(0xFFF6F7F8),
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 1.0,
     data: HeroData(
       content: HeroModel(
@@ -33,13 +34,11 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
-  // --- SEÇÃO EXPERIENCE ---
   SectionModel(
     id: SectionType.experience,
     title: "Experience",
-    backgroundColor: const Color(0xFFF1F5F9), // slate-50
-    heightFactor: 1.5, // Seção mais longa para a timeline
+    backgroundColor: AppColors.bgSlateDeep,
+    heightFactor: 1.5,
     data: ExperienceData(
       content: ExperienceModel(
         sectionLabel: "My Career Path",
@@ -70,11 +69,10 @@ final List<SectionModel> portfolioSections = [
     ),
   ),
 
-  // --- SEÇÃO STUDY (EDUCATION) ---
   SectionModel(
     id: SectionType.study,
     title: "Education",
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 1.2,
     data: StudyData(
       content: StudyModel(
@@ -106,11 +104,11 @@ final List<SectionModel> portfolioSections = [
     ),
   ),
 
-  // --- SEÇÃO PROJECTS ---
+  // --- Section Projects ---
   SectionModel(
     id: SectionType.projects,
     title: "Projects",
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 1.3,
     data: ProjectsData(
       content: ProjectsModel(
@@ -147,11 +145,10 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.contact,
     title: "Contact",
-    backgroundColor: const Color(0xFFF1F5F9),
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: ContactData(
       content: ContactModel(
@@ -160,17 +157,20 @@ final List<SectionModel> portfolioSections = [
             "I'm currently available for freelance work or full-time roles. If you have a project that needs some creative hacking, feel free to reach out.",
         infoItems: [
           ContactInfoItem(
-              title: "Email Me",
-              value: "hello@portfolio.com",
-              icon: Icons.mail),
+            title: "Email Me",
+            value: "hello@portfolio.com",
+            icon: Icons.mail,
+          ),
           ContactInfoItem(
-              title: "Location",
-              value: "San Francisco, California, US",
-              icon: Icons.location_on),
+            title: "Location",
+            value: "San Francisco, California, US",
+            icon: Icons.location_on,
+          ),
           ContactInfoItem(
-              title: "Working Hours",
-              value: "Mon - Fri: 9:00 AM - 6:00 PM",
-              icon: Icons.schedule),
+            title: "Working Hours",
+            value: "Mon - Fri: 9:00 AM - 6:00 PM",
+            icon: Icons.schedule,
+          ),
         ],
         formLabels: ContactFormLabels(
           nameLabel: "Your Name",
@@ -180,11 +180,10 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.footer,
     title: "",
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: FooterData(
       content: FooterModel(

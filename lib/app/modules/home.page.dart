@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../core/data/portfolio.data.dart';
 import '../core/model/section.model.dart';
+import 'widgets/appbar.widget.dart';
 import 'widgets/section.widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,8 +19,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final sectionIdName =
-          GoRouterState.of(context).uri.queryParameters['section'];
+      final sectionIdName = GoRouterState.of(context) //
+          .uri
+          .queryParameters['section'];
       if (sectionIdName != null) {
         try {
           final id = SectionType.values.byName(sectionIdName);
@@ -48,48 +50,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text("FDS Dev",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white.withValues(alpha: 0.8),
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          ...portfolioSections.map((section) => TextButton(
-                onPressed: () {
-                  context.go('/?section=${section.id.name}');
-                  _scrollToSection(section.id);
-                },
-                child: Text(
-                  section.title.toUpperCase(),
-                  style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w600),
-                ),
-              )),
-          const SizedBox(width: 20),
-        ],
-      ),
+      appBar: AppBarWidget(onSectionClick: (id) => _scrollToSection(id)),
       body: LayoutBuilder(
         builder: (context, constraints) {
           final double viewportHeight = constraints.maxHeight;
-
           return SingleChildScrollView(
             controller: _scrollController,
             child: Column(
-              children: [
-                // const SizedBox(height: kToolbarHeight + 20),
-                ...portfolioSections.map((section) {
-                  return SizedBox(
-                    key: section.key,
-                    width: double.infinity,
-                    height: section.heightFactor > 0
-                        ? viewportHeight * section.heightFactor
-                        : null,
-                    child: SectionBuilder(model: section),
-                  );
-                })
-              ],
+              children: portfolioSections.map((section) {
+                return SizedBox(
+                  key: section.key,
+                  width: double.infinity,
+                  height: section.heightFactor > 0
+                      ? viewportHeight * section.heightFactor
+                      : null,
+                  child: SectionWidget(model: section),
+                );
+              }).toList(),
             ),
           );
         },

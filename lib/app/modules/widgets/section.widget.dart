@@ -7,21 +7,33 @@ import '../footer_section/footer.section.dart';
 import '../hero_section/hero.section.dart';
 import '../projects_section/projects.section.dart';
 import '../study_section/study.section.dart';
-  
-class SectionBuilder extends StatelessWidget {
-  const SectionBuilder({super.key, required this.model});
+
+class SectionWidget extends StatelessWidget {
+  const SectionWidget({super.key, required this.model});
 
   final SectionModel model;
 
   @override
   Widget build(BuildContext context) {
-    return switch (model.data) {
-      HeroData d => HeroSection(content: d.content),
-      ExperienceData d => ExperienceSection(content: d.content),
-      StudyData d => StudySection(content: d.content),
-      ProjectsData d => ProjectsSection(content: d.content),
-      ContactData d => ContactSection(content: d.content),
-      FooterData d => FooterSection(content: d.content),
-    };
+    return Container(
+      color: model.backgroundColor,
+      width: double.infinity,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: switch (model.data) {
+              HeroData d => HeroSection(content: d.content),
+              ExperienceData d => ExperienceSection(content: d.content),
+              StudyData d => StudySection(content: d.content),
+              ProjectsData d => ProjectsSection(content: d.content),
+              ContactData d => ContactSection(content: d.content),
+              FooterData d => FooterSection(content: d.content),
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
