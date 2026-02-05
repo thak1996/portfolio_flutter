@@ -17,7 +17,8 @@ final List<SectionModel> portfolioSections = [
     heightFactor: 1.0,
     data: HeroData(
       content: HeroModel(
-        tagline: "Building Digital Excellence with Precision.",
+        tagline: "Building Digital Excellence with ",
+        taglineHighlight: "Precision.",
         description:
             "Senior Software Engineer specialized in crafting high-performance web applications and scalable architecture. Let's build something exceptional together.",
         profileImageUrl:
@@ -38,7 +39,7 @@ final List<SectionModel> portfolioSections = [
     id: SectionType.experience,
     title: "Experience",
     backgroundColor: AppColors.bgSlateDeep,
-    heightFactor: 1.5,
+    heightFactor: 0,
     data: ExperienceData(
       content: ExperienceModel(
         sectionLabel: "My Career Path",

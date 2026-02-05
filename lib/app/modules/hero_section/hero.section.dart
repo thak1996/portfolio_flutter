@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-
+import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
+import 'package:portfolio_flutter/app/modules/widgets/primary_button.widget.dart';
 import 'hero.model.dart';
 
 class HeroSection extends StatelessWidget {
@@ -12,7 +12,6 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Lado Esquerdo: Textos
         Expanded(
           flex: 3,
           child: Column(
@@ -28,14 +27,13 @@ class HeroSection extends StatelessWidget {
                     height: 1.1,
                   ),
                   children: [
-                    const TextSpan(
-                      text: "Building Digital\nExcellence with ",
+                    TextSpan(
+                      text: content.tagline,
                     ),
                     TextSpan(
-                      text: "Precision",
-                      style: TextStyle(color: const Color(0xFF137FEC)),
+                      text: content.taglineHighlight,
+                      style: const TextStyle(color: Color(0xFF137FEC)),
                     ),
-                    const TextSpan(text: "."),
                   ],
                 ),
               ),
@@ -51,13 +49,13 @@ class HeroSection extends StatelessWidget {
               const SizedBox(height: 40),
               Row(
                 children: [
-                  _heroButton(
-                    content.actions[0].label,
+                  PrimaryButton(
+                    label: content.actions[0].label,
                     isPrimary: content.actions[0].isPrimary,
                   ),
                   const SizedBox(width: 15),
-                  _heroButton(
-                    content.actions[1].label,
+                  PrimaryButton(
+                    label: content.actions[1].label,
                     isPrimary: content.actions[1].isPrimary,
                   ),
                 ],
@@ -74,7 +72,7 @@ class HeroSection extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
-                            onPressed: () => _openUrl(social.url),
+                            onPressed: () => openUrl(social.url),
                             icon: Icon(
                               social.icon,
                               color: Colors.white70,
@@ -101,7 +99,7 @@ class HeroSection extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF137FEC).withOpacity(0.3),
+                      color: const Color(0xFF137FEC).withValues(alpha: 0.3),
                       blurRadius: 100,
                       spreadRadius: 50,
                     )
@@ -122,29 +120,5 @@ class HeroSection extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Widget _heroButton(String label, {required bool isPrimary}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      decoration: BoxDecoration(
-        color: isPrimary ? const Color(0xFF137FEC) : Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
-        border: isPrimary ? null : Border.all(color: Colors.white24),
-      ),
-      child: Text(label,
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold)),
-    );
-  }
-
-  Future<void> _openUrl(String url) async {
-    final trimmed = url.trim();
-    if (trimmed.isEmpty || trimmed == '#') {
-      return;
-    }
-
-    final uri = Uri.parse(trimmed);
-    await launchUrl(uri, mode: LaunchMode.platformDefault);
   }
 }

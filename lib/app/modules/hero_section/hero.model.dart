@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class HeroModel {
   HeroModel({
     required this.tagline,
+    required this.taglineHighlight,
     required this.description,
     required this.profileImageUrl,
     required this.actions,
@@ -14,6 +15,7 @@ class HeroModel {
   final String profileImageUrl;
   final List<SocialIcon> socials;
   final String tagline;
+  final String taglineHighlight;
 }
 
 class HeroCTA {
