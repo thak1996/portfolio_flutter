@@ -90,7 +90,9 @@ class _ProjectCardState extends State<_ProjectCard> {
       defaultValue: 340.0,
       conditionalValues: [
         Condition.smallerThan(
-            name: MOBILE, value: MediaQuery.of(context).size.width - 40),
+          name: MOBILE,
+          value: MediaQuery.of(context).size.width - 40,
+        ),
         const Condition.largerThan(name: MOBILE, value: 360.0),
         const Condition.largerThan(name: TABLET, value: 380.0),
       ],
