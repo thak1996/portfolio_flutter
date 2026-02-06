@@ -33,31 +33,38 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Icon(Icons.blur_on, color: AppColors.primary, size: 28),
-                        ResponsiveVisibility(
-                          visible: false,
-                          visibleConditions: [
-                            const Condition<bool>.largerThan(
-                              name: MOBILE,
-                              value: true,
-                            )
-                          ],
-                          replacement: const SizedBox.shrink(),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 12),
-                            child: Text(
-                              "Franklyn Viana dos Santos",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                    InkWell(
+                      onTap: () => onSectionClick(SectionType.hero),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.blur_on,
+                            color: AppColors.primary,
+                            size: 28,
+                          ),
+                          ResponsiveVisibility(
+                            visible: false,
+                            visibleConditions: [
+                              const Condition<bool>.largerThan(
+                                name: MOBILE,
+                                value: true,
+                              )
+                            ],
+                            replacement: const SizedBox.shrink(),
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 12),
+                              child: Text(
+                                "Franklyn Viana dos Santos",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
