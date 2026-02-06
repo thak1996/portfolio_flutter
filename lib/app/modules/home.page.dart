@@ -56,6 +56,31 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: AppColors.bgSlateDeep,
       appBar: AppBarWidget(onSectionClick: (id) => _scrollToSection(id)),
+      endDrawer: Drawer(
+        backgroundColor: AppColors.bgDeep,
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              ...portfolioSections.where((s) => s.title.isNotEmpty).map(
+                    (section) => ListTile(
+                      title: Text(
+                        section.title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                        _scrollToSection(section.id);
+                      },
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ),
       body: MouseRegion(
         onHover: (event) => _mousePos.value = event.localPosition,
         child: Stack(
