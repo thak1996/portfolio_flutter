@@ -55,7 +55,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.experience,
     title: "Experiência",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: ExperienceData(
       content: ExperienceModel(
@@ -162,7 +162,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.study,
     title: "Educação",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: StudyData(
       content: StudyModel(
@@ -196,7 +196,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.skills,
     title: "Habilidades",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: SkillsData(
       content: SkillsModel(
@@ -250,7 +250,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.projects,
     title: "Projetos",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: ProjectsData(
       content: ProjectsModel(
@@ -285,7 +285,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.contact,
     title: "Contato",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: ContactData(
       content: ContactModel(
@@ -320,7 +320,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.footer,
     title: "",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: FooterData(
       content: FooterModel(

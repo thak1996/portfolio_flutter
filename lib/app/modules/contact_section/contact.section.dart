@@ -208,7 +208,7 @@ class _ContactSectionState extends State<ContactSection> {
                           child: PrimaryButton(
                             label: widget.content.formLabels.submitButtonText,
                             isPrimary: true,
-                            stateController: controller.isLoading,
+                            isLoading: controller.isLoading,
                             onPressed: () => _handleSend(controller),
                           ),
                         ),
@@ -223,8 +223,6 @@ class _ContactSectionState extends State<ContactSection> {
       ),
     );
   }
-
-  // O método _buildInput foi removido pois agora usamos o CustomTextField
 
   Widget _buildInfoTile(ContactInfoItem item) {
     return Padding(
@@ -267,21 +265,17 @@ class _ContactSectionState extends State<ContactSection> {
 
   void _handleSend(ContactController controller) async {
     if (_formKey.currentState!.validate()) {
-      // O _phoneCtrl.text virá com a máscara (ex: (11) 99999-9999).
-      // Se precisar enviar apenas números para a API, use: _phoneMask.getUnmaskedText()
-
       final ok = await controller.send(
         _nameCtrl.text,
         _emailCtrl.text,
         _subjectCtrl.text,
         _messageCtrl.text,
-      ); // Adicione o parâmetro telefone no método send do controller se necessário
+      );
 
       if (mounted) {
         _showFeedback(ok);
         if (ok) {
           _formKey.currentState!.reset();
-          // Controllers precisam ser limpos manualmente às vezes
           _nameCtrl.clear();
           _emailCtrl.clear();
           _subjectCtrl.clear();

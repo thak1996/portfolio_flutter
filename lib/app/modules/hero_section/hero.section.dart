@@ -30,7 +30,6 @@ class HeroSection extends StatelessWidget {
       columnMainAxisSize: MainAxisSize.min,
       columnSpacing: 40,
       children: [
-        // --- TEXTO E CONTEÚDO ---
         ResponsiveRowColumnItem(
           rowFlex: 3,
           child: Column(
@@ -67,8 +66,6 @@ class HeroSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-
-              // BOTÕES
               Row(
                 mainAxisAlignment: isMobile
                     ? MainAxisAlignment.center
@@ -88,8 +85,6 @@ class HeroSection extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 30),
-
-              // SOCIAIS
               Row(
                 mainAxisAlignment: isMobile
                     ? MainAxisAlignment.center
@@ -116,14 +111,11 @@ class HeroSection extends StatelessWidget {
 
         if (!isMobile)
           const ResponsiveRowColumnItem(child: SizedBox(width: 60)),
-
-        // --- IMAGEM DE PERFIL ---
         ResponsiveRowColumnItem(
           rowFlex: 2,
           child: Stack(
             alignment: Alignment.center,
             children: [
-              // GLOW DE FUNDO
               Container(
                 width: isMobile ? 200 : 300,
                 height: isMobile ? 200 : 300,
@@ -138,7 +130,6 @@ class HeroSection extends StatelessWidget {
                   ],
                 ),
               ),
-              // IMAGEM
               ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: Image.network(
