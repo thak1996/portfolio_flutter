@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
 import 'package:portfolio_flutter/app/modules/widgets/primary_button.widget.dart';
 import '../../core/model/section.model.dart';
@@ -89,29 +90,18 @@ class HeroSection extends StatelessWidget {
                 mainAxisAlignment: isMobile
                     ? MainAxisAlignment.center
                     : MainAxisAlignment.start,
-                children: content.socials
-                    .map((social) => Padding(
-                          padding: const EdgeInsets.only(right: 15),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white10,
-                              shape: BoxShape.circle,
-                            ),
-                            child: IconButton(
-                              onPressed: () => openUrl(social.url),
-                              icon: Icon(social.icon, color: Colors.white70),
-                            ),
-                          ),
-                        ))
-                    .toList(),
+                children: content.socials.asMap().entries.map((entry) {
+                  return _SocialIcon(
+                    index: entry.key,
+                    social: entry.value,
+                  );
+                }).toList(),
               ),
             ],
           ),
         ),
         if (!isMobile)
-          const ResponsiveRowColumnItem(
-            child: SizedBox(width: 60),
-          ),
+          const ResponsiveRowColumnItem(child: SizedBox(width: 60)),
         ResponsiveRowColumnItem(
           rowFlex: 2,
           child: Stack(
@@ -145,5 +135,69 @@ class HeroSection extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class _SocialIcon extends StatefulWidget {
+  final int index;
+  final dynamic social;
+
+  const _SocialIcon({required this.index, required this.social});
+
+  @override
+  State<_SocialIcon> createState() => _SocialIconState();
+}
+
+class _SocialIconState extends State<_SocialIcon> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color activeColor =
+        _isHovered ? AppColors.primary : const Color(0xFF475569);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => openUrl(widget.social.url),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E293B),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: _isHovered ? AppColors.primary : Colors.transparent,
+                width: 1,
+              ),
+              boxShadow: [
+                if (_isHovered)
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.2),
+                    blurRadius: 10,
+                  )
+              ],
+            ),
+            child: Icon(
+              widget.social.icon,
+              color: activeColor,
+              size: 20,
+            ),
+          ),
+        ),
+      ),
+    )
+        .animate()
+        .fadeIn(delay: (widget.index * 150).ms, duration: 400.ms) //
+        .scale(
+          delay: (widget.index * 150).ms,
+          begin: const Offset(0.7, 0.7),
+          end: const Offset(1, 1),
+          curve: Curves.bounceIn,
+        );
   }
 }
