@@ -36,7 +36,7 @@ final List<SectionModel> portfolioSections = [
     id: SectionType.hero,
     title: "Sobre",
     backgroundColor: AppColors.bgDeep,
-    heightFactor: 1.0,
+    heightFactor: 1,
     data: HeroData(
       content: HeroModel(
         tagline: "Criando Soluções Digitais com ",
