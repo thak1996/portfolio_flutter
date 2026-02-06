@@ -108,9 +108,10 @@ class HeroSection extends StatelessWidget {
             ],
           ),
         ),
-
         if (!isMobile)
-          const ResponsiveRowColumnItem(child: SizedBox(width: 60)),
+          const ResponsiveRowColumnItem(
+            child: SizedBox(width: 60),
+          ),
         ResponsiveRowColumnItem(
           rowFlex: 2,
           child: Stack(
