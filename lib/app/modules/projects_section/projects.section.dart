@@ -99,26 +99,33 @@ class _ProjectCardState extends State<_ProjectCard> {
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
+      cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
         width: cardWidth,
         height: cardHeight,
+        transform: isHovered
+            ? Matrix4.translationValues(0, -10, 0)
+            : Matrix4.identity(),
         decoration: BoxDecoration(
-          color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(20),
+          color: isHovered
+              ? AppColors.bgSlateDeep.withValues(alpha: 0.6)
+              : AppColors.bgSlateDeep.withValues(alpha: 0.4),
+          borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: isHovered
-                ? AppColors.primary.withValues(alpha: 0.5)
+                ? AppColors.primary.withValues(alpha: 0.8)
                 : const Color(0xFF1E293B),
-            width: 1.5,
+            width: isHovered ? 2 : 1.5,
           ),
           boxShadow: [
             if (isHovered)
               BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.1),
-                blurRadius: 25,
+                color: AppColors.primary.withValues(alpha: 0.25),
+                blurRadius: 30,
                 spreadRadius: -5,
-                offset: const Offset(0, 10),
+                offset: const Offset(0, 15),
               )
           ],
         ),
@@ -127,18 +134,37 @@ class _ProjectCardState extends State<_ProjectCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.folder_open_outlined,
-                color: AppColors.primary,
-                size: 28,
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: isHovered
+                      ? AppColors.primary.withValues(alpha: 0.15)
+                      : const Color(0xFF1E293B),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    if (isHovered)
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.2),
+                        blurRadius: 10,
+                      )
+                  ],
+                ),
+                child: Icon(
+                  Icons.folder_open_outlined,
+                  color: isHovered ? Colors.white : AppColors.primary,
+                  size: 28,
+                ),
               ),
               const SizedBox(height: 16),
               Text(
                 widget.project.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: isHovered
+                      ? Colors.white
+                      : Colors.white.withValues(alpha: 0.9),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -148,13 +174,15 @@ class _ProjectCardState extends State<_ProjectCard> {
                 widget.project.description,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Color(0xFF94A3B8),
+                style: TextStyle(
+                  color: isHovered
+                      ? const Color(0xFFCBD5E1)
+                      : const Color(0xFF94A3B8),
                   fontSize: 13,
                   height: 1.5,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               Wrap(
                 spacing: 6,
                 runSpacing: 6,
@@ -169,27 +197,28 @@ class _ProjectCardState extends State<_ProjectCard> {
                 child: ElevatedButton(
                   onPressed: () => openUrl(widget.project.urlProject),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isHovered //
-                        ? AppColors.primary
-                        : const Color(0xFF1E293B),
+                    backgroundColor:
+                        isHovered ? AppColors.primary : const Color(0xFF1E293B),
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Ver Detalhes",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 13),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.arrow_right_alt, size: 18),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.arrow_right_alt,
+                        size: 18,
+                        color: isHovered ? Colors.white : AppColors.primary,
+                      ),
                     ],
                   ),
                 ),
@@ -202,17 +231,25 @@ class _ProjectCardState extends State<_ProjectCard> {
   }
 
   Widget _buildTechTag(String tech) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0xFF0F172A),
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: const Color(0xFF1E293B)),
+        color: isHovered
+            ? AppColors.primary.withValues(alpha: 0.1)
+            : const Color(0xFF0F172A),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+            color: isHovered
+                ? AppColors.primary.withValues(alpha: 0.3)
+                : const Color(0xFF1E293B)),
       ),
       child: Text(
         tech.toUpperCase(),
         style: TextStyle(
-          color: AppColors.primary.withValues(alpha: 0.8),
+          color: isHovered
+              ? Colors.white
+              : AppColors.primary.withValues(alpha: 0.8),
           fontSize: 9,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.5,
