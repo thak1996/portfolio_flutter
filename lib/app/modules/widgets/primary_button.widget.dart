@@ -6,12 +6,14 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.isPrimary,
+    this.stateController,
     this.onPressed,
   });
 
   final String label;
   final bool isPrimary;
   final VoidCallback? onPressed;
+  final bool? stateController;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,19 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: isPrimary ? null : Border.all(color: Colors.white24),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: stateController == true
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primary,
+                ),
+              )
+            : Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
       ),
     );
   }

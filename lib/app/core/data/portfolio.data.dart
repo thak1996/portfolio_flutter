@@ -162,7 +162,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.study,
     title: "Educação",
-    backgroundColor: AppColors.bgDeep,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: StudyData(
       content: StudyModel(
@@ -250,7 +250,7 @@ final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.projects,
     title: "Projetos",
-    backgroundColor: AppColors.bgDeep,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: ProjectsData(
       content: ProjectsModel(

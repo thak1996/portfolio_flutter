@@ -29,6 +29,7 @@ class ContactInfoItem {
 class ContactFormLabels {
   final String nameLabel;
   final String emailLabel;
+  final String phoneLabel;
   final String subjectLabel;
   final String messageLabel;
   final String submitButtonText;
@@ -36,6 +37,7 @@ class ContactFormLabels {
   ContactFormLabels({
     this.nameLabel = "Nome Completo",
     this.emailLabel = "Email",
+    this.phoneLabel = "Telefone",
     this.subjectLabel = "Assunto",
     this.messageLabel = "Mensagem",
     this.submitButtonText = "Enviar Mensagem",

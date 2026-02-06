@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_flutter/app/modules/widgets/text_field.widget.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../core/styles/colors.dart';
+import '../../core/utils/app_validators.dart';
 import '../widgets/primary_button.widget.dart';
 import 'contact.model.dart';
 import 'contact.controller.dart';
@@ -22,10 +25,19 @@ class ContactSection extends StatefulWidget {
 
 class _ContactSectionState extends State<ContactSection> {
   final _formKey = GlobalKey<FormState>();
+
+  // Controllers
   final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _subjectCtrl = TextEditingController();
   final _messageCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
+
+  final _phoneMask = MaskTextInputFormatter(
+    mask: '(##) # ####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   @override
   void dispose() {
@@ -33,6 +45,7 @@ class _ContactSectionState extends State<ContactSection> {
     _emailCtrl.dispose();
     _subjectCtrl.dispose();
     _messageCtrl.dispose();
+    _phoneCtrl.dispose();
     super.dispose();
   }
 
@@ -129,52 +142,75 @@ class _ContactSectionState extends State<ContactSection> {
                           children: [
                             ResponsiveRowColumnItem(
                               rowFlex: 1,
-                              child: _buildInput(
-                                widget.content.formLabels.nameLabel,
-                                _nameCtrl,
-                                "João Silva",
+                              child: TextFieldWidget(
+                                label: widget.content.formLabels.nameLabel,
+                                controller: _nameCtrl,
+                                hint: "João Silva",
+                                validator: AppValidators.validateRequired,
                               ),
                             ),
                             ResponsiveRowColumnItem(
                               rowFlex: 1,
-                              child: _buildInput(
-                                widget.content.formLabels.emailLabel,
-                                _emailCtrl,
-                                "joao@exemplo.com",
-                                isEmail: true,
+                              child: TextFieldWidget(
+                                label: widget.content.formLabels.emailLabel,
+                                controller: _emailCtrl,
+                                hint: "joao@exemplo.com",
+                                keyboardType: TextInputType.emailAddress,
+                                validator: AppValidators.validateEmail,
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 24),
-                        _buildInput(
-                          widget.content.formLabels.subjectLabel,
-                          _subjectCtrl,
-                          "Consulta de Projeto",
+                        ResponsiveRowColumn(
+                          layout: breakpoint.isMobile
+                              ? ResponsiveRowColumnType.COLUMN
+                              : ResponsiveRowColumnType.ROW,
+                          rowSpacing: 16,
+                          columnSpacing: 24,
+                          children: [
+                            ResponsiveRowColumnItem(
+                              rowFlex: 1,
+                              child: TextFieldWidget(
+                                label: widget.content.formLabels.subjectLabel,
+                                controller: _subjectCtrl,
+                                hint: "Consulta de Projeto",
+                                validator: AppValidators.validateRequired,
+                              ),
+                            ),
+                            ResponsiveRowColumnItem(
+                              rowFlex: 1,
+                              child: TextFieldWidget(
+                                label: widget.content.formLabels.phoneLabel,
+                                controller: _phoneCtrl,
+                                hint: "(11) 99999-9999",
+                                keyboardType: TextInputType.phone,
+                                inputFormatters: [
+                                  _phoneMask
+                                ], // Aplica a máscara
+                                validator: AppValidators.validatePhone,
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 24),
-                        _buildInput(
-                          "Mensagem",
-                          _messageCtrl,
-                          "Conte-me sobre o seu projeto...",
+                        TextFieldWidget(
+                          label: "Mensagem",
+                          controller: _messageCtrl,
+                          hint: "Conte-me sobre o seu projeto...",
                           maxLines: 5,
+                          validator: AppValidators.validateRequired,
                         ),
                         const SizedBox(height: 32),
                         SizedBox(
                           width: double.infinity,
                           height: 56,
-                          child: controller.isLoading
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.primary,
-                                  ),
-                                )
-                              : PrimaryButton(
-                                  label: widget
-                                      .content.formLabels.submitButtonText,
-                                  isPrimary: true,
-                                  onPressed: () => _handleSend(controller),
-                                ),
+                          child: PrimaryButton(
+                            label: widget.content.formLabels.submitButtonText,
+                            isPrimary: true,
+                            stateController: controller.isLoading,
+                            onPressed: () => _handleSend(controller),
+                          ),
                         ),
                       ],
                     ),
@@ -188,103 +224,70 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildInput(
-    String label,
-    TextEditingController ctrl,
-    String hint, {
-    int maxLines = 1,
-    bool isEmail = false,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
+  // O método _buildInput foi removido pois agora usamos o CustomTextField
+
+  Widget _buildInfoTile(ContactInfoItem item) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E293B),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(item.icon, color: AppColors.primary, size: 24),
           ),
-        ),
-        const SizedBox(height: 10),
-        TextFormField(
-          controller: ctrl,
-          maxLines: maxLines,
-          style: const TextStyle(color: Colors.white),
-          validator: (value) {
-            if (value == null || value.isEmpty) return "Campo obrigatório";
-            if (isEmail && !value.contains("@")) return "E-mail inválido";
-            return null;
-          },
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: const TextStyle(color: Color(0xFF475569)),
-            filled: true,
-            fillColor: const Color(0xFF0F172A).withValues(alpha: 0.5),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFF1E293B)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFF1E293B)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: AppColors.primary, width: 2),
-            ),
-            errorStyle: const TextStyle(color: Colors.redAccent),
+          const SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item.title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              Text(
+                item.value,
+                style: const TextStyle(
+                  color: Color(0xFF94A3B8),
+                  fontSize: 14,
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Widget _buildInfoTile(ContactInfoItem item) => Padding(
-        padding: const EdgeInsets.only(bottom: 24),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E293B),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(item.icon, color: AppColors.primary, size: 24),
-            ),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.title,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-                Text(
-                  item.value,
-                  style:
-                      const TextStyle(color: Color(0xFF94A3B8), fontSize: 14),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-
   void _handleSend(ContactController controller) async {
     if (_formKey.currentState!.validate()) {
+      // O _phoneCtrl.text virá com a máscara (ex: (11) 99999-9999).
+      // Se precisar enviar apenas números para a API, use: _phoneMask.getUnmaskedText()
+
       final ok = await controller.send(
         _nameCtrl.text,
         _emailCtrl.text,
         _subjectCtrl.text,
         _messageCtrl.text,
-      );
+      ); // Adicione o parâmetro telefone no método send do controller se necessário
+
       if (mounted) {
         _showFeedback(ok);
-        if (ok) _formKey.currentState!.reset();
+        if (ok) {
+          _formKey.currentState!.reset();
+          // Controllers precisam ser limpos manualmente às vezes
+          _nameCtrl.clear();
+          _emailCtrl.clear();
+          _subjectCtrl.clear();
+          _messageCtrl.clear();
+          _phoneCtrl.clear();
+        }
       }
     }
   }
@@ -292,9 +295,11 @@ class _ContactSectionState extends State<ContactSection> {
   void _showFeedback(bool success) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(success
-            ? "Mensagem enviada! Entrarei em contato em breve. 🚀"
-            : "Ocorreu um erro ao enviar. Tente novamente."),
+        content: Text(
+          success
+              ? "Mensagem enviada! Entrarei em contato em breve. 🚀"
+              : "Ocorreu um erro ao enviar. Tente novamente.",
+        ),
         backgroundColor: success ? Colors.green.shade800 : Colors.red.shade800,
         behavior: SnackBarBehavior.floating,
         width: 400,

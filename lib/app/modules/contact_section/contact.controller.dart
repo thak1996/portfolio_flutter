@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../core/service/contact.service.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,8 @@ class ContactController extends ChangeNotifier {
   ) async {
     _isLoading = true;
     notifyListeners();
+
+    log("Sending contact form: name=$name, email=$email, subject=$subject, message=$message");
 
     final success = await _service.postWebhook({
       "name": name,
