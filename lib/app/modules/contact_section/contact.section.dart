@@ -24,6 +24,7 @@ class ContactSection extends StatefulWidget {
 }
 
 class _ContactSectionState extends State<ContactSection> {
+  bool _isHovered = false;
   final _formKey = GlobalKey<FormState>();
 
   // Controllers
@@ -53,6 +54,12 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     final controller = context.watch<ContactController>();
     final breakpoint = ResponsiveBreakpoints.of(context);
+
+    bool isActive = _isHovered;
+
+    final Color activeColor = isActive //
+        ? AppColors.primary
+        : Color(0xFF1E293B);
 
     final double horizontalPadding = ResponsiveValue<double>(
       context,
@@ -113,8 +120,9 @@ class _ContactSectionState extends State<ContactSection> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    ...widget.content.infoItems
-                        .map((item) => _buildInfoTile(item)),
+                    ...widget.content.infoItems.map(
+                      (item) => _buildInfoTile(item),
+                    ),
                   ],
                 ),
               ),
@@ -122,97 +130,102 @@ class _ContactSectionState extends State<ContactSection> {
                 const ResponsiveRowColumnItem(child: SizedBox(width: 80)),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
-                child: Container(
-                  padding: EdgeInsets.all(breakpoint.isMobile ? 20 : 32),
-                  decoration: BoxDecoration(
-                    color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: const Color(0xFF1E293B)),
-                  ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        ResponsiveRowColumn(
-                          layout: breakpoint.isMobile
-                              ? ResponsiveRowColumnType.COLUMN
-                              : ResponsiveRowColumnType.ROW,
-                          rowSpacing: 16,
-                          columnSpacing: 24,
-                          children: [
-                            ResponsiveRowColumnItem(
-                              rowFlex: 1,
-                              child: TextFieldWidget(
-                                label: widget.content.formLabels.nameLabel,
-                                controller: _nameCtrl,
-                                hint: "João Silva",
-                                validator: AppValidators.validateRequired,
+                child: MouseRegion(
+                  onEnter: (_) => setState(() => _isHovered = true),
+                  onExit: (_) => setState(() => _isHovered = false),
+                  cursor: SystemMouseCursors.basic,
+                  child: Container(
+                    padding: EdgeInsets.all(breakpoint.isMobile ? 20 : 32),
+                    decoration: BoxDecoration(
+                      color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: activeColor, width: 1),
+                    ),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          ResponsiveRowColumn(
+                            layout: breakpoint.isMobile
+                                ? ResponsiveRowColumnType.COLUMN
+                                : ResponsiveRowColumnType.ROW,
+                            rowSpacing: 16,
+                            columnSpacing: 24,
+                            children: [
+                              ResponsiveRowColumnItem(
+                                rowFlex: 1,
+                                child: TextFieldWidget(
+                                  label: widget.content.formLabels.nameLabel,
+                                  controller: _nameCtrl,
+                                  hint: "João Silva",
+                                  validator: AppValidators.validateRequired,
+                                ),
                               ),
-                            ),
-                            ResponsiveRowColumnItem(
-                              rowFlex: 1,
-                              child: TextFieldWidget(
-                                label: widget.content.formLabels.emailLabel,
-                                controller: _emailCtrl,
-                                hint: "joao@exemplo.com",
-                                keyboardType: TextInputType.emailAddress,
-                                validator: AppValidators.validateEmail,
+                              ResponsiveRowColumnItem(
+                                rowFlex: 1,
+                                child: TextFieldWidget(
+                                  label: widget.content.formLabels.emailLabel,
+                                  controller: _emailCtrl,
+                                  hint: "joao@exemplo.com",
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: AppValidators.validateEmail,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        ResponsiveRowColumn(
-                          layout: breakpoint.isMobile
-                              ? ResponsiveRowColumnType.COLUMN
-                              : ResponsiveRowColumnType.ROW,
-                          rowSpacing: 16,
-                          columnSpacing: 24,
-                          children: [
-                            ResponsiveRowColumnItem(
-                              rowFlex: 1,
-                              child: TextFieldWidget(
-                                label: widget.content.formLabels.subjectLabel,
-                                controller: _subjectCtrl,
-                                hint: "Consulta de Projeto",
-                                validator: AppValidators.validateRequired,
-                              ),
-                            ),
-                            ResponsiveRowColumnItem(
-                              rowFlex: 1,
-                              child: TextFieldWidget(
-                                label: widget.content.formLabels.phoneLabel,
-                                controller: _phoneCtrl,
-                                hint: "(11) 99999-9999",
-                                keyboardType: TextInputType.phone,
-                                inputFormatters: [
-                                  _phoneMask
-                                ], // Aplica a máscara
-                                validator: AppValidators.validatePhone,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                        TextFieldWidget(
-                          label: "Mensagem",
-                          controller: _messageCtrl,
-                          hint: "Conte-me sobre o seu projeto...",
-                          maxLines: 5,
-                          validator: AppValidators.validateRequired,
-                        ),
-                        const SizedBox(height: 32),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: PrimaryButton(
-                            label: widget.content.formLabels.submitButtonText,
-                            isPrimary: true,
-                            isLoading: controller.isLoading,
-                            onPressed: () => _handleSend(controller),
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 24),
+                          ResponsiveRowColumn(
+                            layout: breakpoint.isMobile
+                                ? ResponsiveRowColumnType.COLUMN
+                                : ResponsiveRowColumnType.ROW,
+                            rowSpacing: 16,
+                            columnSpacing: 24,
+                            children: [
+                              ResponsiveRowColumnItem(
+                                rowFlex: 1,
+                                child: TextFieldWidget(
+                                  label: widget.content.formLabels.subjectLabel,
+                                  controller: _subjectCtrl,
+                                  hint: "Consulta de Projeto",
+                                  validator: AppValidators.validateRequired,
+                                ),
+                              ),
+                              ResponsiveRowColumnItem(
+                                rowFlex: 1,
+                                child: TextFieldWidget(
+                                  label: widget.content.formLabels.phoneLabel,
+                                  controller: _phoneCtrl,
+                                  hint: "(11) 99999-9999",
+                                  keyboardType: TextInputType.phone,
+                                  inputFormatters: [
+                                    _phoneMask
+                                  ], // Aplica a máscara
+                                  validator: AppValidators.validatePhone,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+                          TextFieldWidget(
+                            label: "Mensagem",
+                            controller: _messageCtrl,
+                            hint: "Conte-me sobre o seu projeto...",
+                            maxLines: 5,
+                            validator: AppValidators.validateRequired,
+                          ),
+                          const SizedBox(height: 32),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 56,
+                            child: PrimaryButton(
+                              label: widget.content.formLabels.submitButtonText,
+                              isPrimary: true,
+                              isLoading: controller.isLoading,
+                              onPressed: () => _handleSend(controller),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
