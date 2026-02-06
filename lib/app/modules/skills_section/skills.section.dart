@@ -48,7 +48,7 @@ class SkillsSection extends StatelessWidget {
             layout: breakpoint.smallerThan(DESKTOP)
                 ? ResponsiveRowColumnType.COLUMN
                 : ResponsiveRowColumnType.ROW,
-            rowSpacing: 80,
+            rowSpacing: 50,
             columnSpacing: 60,
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -99,14 +99,30 @@ class SkillsSection extends StatelessWidget {
       children: [
         _buildCategoryHeader(Icons.psychology_outlined, "Soft Skills"),
         const SizedBox(height: 32),
-        Wrap(
-          spacing: 20,
-          runSpacing: 20,
-          alignment:
-              breakpoint.isMobile ? WrapAlignment.center : WrapAlignment.start,
-          children: content.softSkills
-              .map((soft) => _SoftSkillCard(soft: soft, breakpoint: breakpoint))
-              .toList(),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            int crossAxisCount = breakpoint.isMobile ? 1 : 2;
+            double spacing = 20;
+            double availableWidth =
+                constraints.maxWidth - (spacing * (crossAxisCount - 1));
+            double cardWidth = availableWidth / crossAxisCount;
+            double fixedCardHeight = 220.0;
+            double childAspectRatio = cardWidth / fixedCardHeight;
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
+                childAspectRatio: childAspectRatio,
+              ),
+              itemCount: content.softSkills.length,
+              itemBuilder: (context, index) {
+                return _SoftSkillCard(soft: content.softSkills[index]);
+              },
+            );
+          },
         ),
         const SizedBox(height: 48),
         _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
@@ -170,9 +186,8 @@ class SkillsSection extends StatelessWidget {
 
 class _SoftSkillCard extends StatefulWidget {
   final SoftSkillModel soft;
-  final ResponsiveBreakpointsData breakpoint;
 
-  const _SoftSkillCard({required this.soft, required this.breakpoint});
+  const _SoftSkillCard({required this.soft});
 
   @override
   State<_SoftSkillCard> createState() => _SoftSkillCardState();
@@ -188,7 +203,6 @@ class _SoftSkillCardState extends State<_SoftSkillCard> {
       onExit: (_) => setState(() => _isHovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: widget.breakpoint.isMobile ? double.infinity : 235,
         padding: const EdgeInsets.all(24),
         transform: _isHovered
             ? Matrix4.translationValues(0, -8, 0)
@@ -233,6 +247,8 @@ class _SoftSkillCardState extends State<_SoftSkillCard> {
             const SizedBox(height: 16),
             Text(
               widget.soft.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -240,12 +256,16 @@ class _SoftSkillCardState extends State<_SoftSkillCard> {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              widget.soft.description,
-              style: TextStyle(
-                color: _isHovered ? Colors.white70 : const Color(0xFF94A3B8),
-                fontSize: 12,
-                height: 1.5,
+            Expanded(
+              child: Text(
+                widget.soft.description,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
+                style: TextStyle(
+                  color: _isHovered ? Colors.white70 : const Color(0xFF94A3B8),
+                  fontSize: 12,
+                  height: 1.5,
+                ),
               ),
             ),
           ],

@@ -6,7 +6,7 @@ import '../../core/styles/colors.dart';
 import '../../core/utils/url_launcher.helper.dart';
 import 'footer.model.dart';
 
-class FooterSection extends StatelessWidget {
+class FooterSection extends StatefulWidget {
   const FooterSection({
     super.key,
     required this.content,
@@ -17,54 +17,79 @@ class FooterSection extends StatelessWidget {
   final Function(SectionType) onAction;
 
   @override
+  State<FooterSection> createState() => _FooterSectionState();
+}
+
+class _FooterSectionState extends State<FooterSection> {
+  bool _isGlobalHovered = false;
+
+  @override
   Widget build(BuildContext context) {
     final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-      decoration: BoxDecoration(
-        color: AppColors.backgroundDark.withValues(alpha: 0.8),
-        border: Border.all(color: const Color(0xFF1E293B), width: 1),
-      ),
-      child: ResponsiveRowColumn(
-        layout: isMobile
-            ? ResponsiveRowColumnType.COLUMN
-            : ResponsiveRowColumnType.ROW,
-        rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-        columnMainAxisAlignment: MainAxisAlignment.center,
-        columnMainAxisSize: MainAxisSize.min,
-        columnSpacing: 32,
-        children: [
-          ResponsiveRowColumnItem(
-            child: _FooterBrand(
-              name: content.brandName,
-              onTap: () => onAction(SectionType.hero),
-            ),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isGlobalHovered = true),
+      onExit: (_) => setState(() => _isGlobalHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        decoration: BoxDecoration(
+          color: AppColors.backgroundDark.withValues(alpha: 0.8),
+          border: Border.all(
+            color: _isGlobalHovered
+                ? AppColors.primary.withValues(alpha: 0.8)
+                : const Color(0xFF1E293B),
+            width: _isGlobalHovered ? 2 : 1,
           ),
-          ResponsiveRowColumnItem(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: content.socials.asMap().entries.map((entry) {
-                return _FooterSocialIcon(
-                  index: entry.key,
-                  social: entry.value,
-                );
-              }).toList(),
-            ),
-          ),
-          ResponsiveRowColumnItem(
-            child: Text(
-              content.copyright,
-              textAlign: isMobile ? TextAlign.center : TextAlign.end,
-              style: const TextStyle(
-                color: Color(0xFF475569),
-                fontSize: 12,
-                letterSpacing: 0.5,
+          boxShadow: [
+            if (_isGlobalHovered)
+              BoxShadow(
+                color: AppColors.primary.withValues(alpha: 0.1),
+                blurRadius: 20,
+                offset: const Offset(0, -4),
+              ),
+          ],
+        ),
+        child: ResponsiveRowColumn(
+          layout: isMobile
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+          columnMainAxisAlignment: MainAxisAlignment.center,
+          columnMainAxisSize: MainAxisSize.min,
+          columnSpacing: 32,
+          children: [
+            ResponsiveRowColumnItem(
+              child: _FooterBrand(
+                name: widget.content.brandName,
+                onTap: () => widget.onAction(SectionType.hero),
               ),
             ),
-          ),
-        ],
+            ResponsiveRowColumnItem(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: widget.content.socials.asMap().entries.map((entry) {
+                  return _FooterSocialIcon(
+                    index: entry.key,
+                    social: entry.value,
+                  );
+                }).toList(),
+              ),
+            ),
+            ResponsiveRowColumnItem(
+              child: Text(
+                widget.content.copyright,
+                textAlign: isMobile ? TextAlign.center : TextAlign.end,
+                style: const TextStyle(
+                  color: Color(0xFF475569),
+                  fontSize: 12,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -132,9 +157,8 @@ class _FooterSocialIconState extends State<_FooterSocialIcon> {
 
   @override
   Widget build(BuildContext context) {
-    final Color activeColor = _isHovered //
-        ? AppColors.primary
-        : AppColors.hoverColor;
+    final Color activeColor =
+        _isHovered ? AppColors.primary : const Color(0xFF475569);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -148,10 +172,10 @@ class _FooterSocialIconState extends State<_FooterSocialIcon> {
             duration: const Duration(milliseconds: 300),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AppColors.borderColor,
+              color: const Color(0xFF0F172A),
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: _isHovered ? AppColors.primary : AppColors.borderColor,
+                color: _isHovered ? AppColors.primary : const Color(0xFF1E293B),
                 width: 1,
               ),
               boxShadow: [
