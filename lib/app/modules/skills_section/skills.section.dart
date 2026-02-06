@@ -44,19 +44,23 @@ class SkillsSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 48),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              spacing: 80,
-              runSpacing: 60,
-              alignment: breakpoint.isMobile
-                  ? WrapAlignment.center
-                  : WrapAlignment.start,
-              children: [
-                _buildHardSkillsColumn(breakpoint),
-                _buildSoftSkillsColumn(breakpoint),
-              ],
-            ),
+          ResponsiveRowColumn(
+            layout: breakpoint.smallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
+            rowSpacing: 80,
+            columnSpacing: 60,
+            rowCrossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                child: _buildHardSkillsColumn(breakpoint),
+              ),
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                child: _buildSoftSkillsColumn(breakpoint),
+              ),
+            ],
           ),
         ],
       ),
@@ -64,74 +68,56 @@ class SkillsSection extends StatelessWidget {
   }
 
   Widget _buildHardSkillsColumn(ResponsiveBreakpointsData breakpoint) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 500),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildCategoryHeader(Icons.code, "Hard Skills"),
-          const SizedBox(height: 32),
-          _buildSubCategoryDivider("LINGUAGENS E FRAMEWORKS"),
-          ...content.programmingLanguages
-              .map((skill) => _buildProgressBar(skill)),
-          const SizedBox(height: 32),
-          _buildSubCategoryDivider("FERRAMENTAS & TECNOLOGIAS"),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              alignment: breakpoint.isMobile
-                  ? WrapAlignment.center
-                  : WrapAlignment.start,
-              children: content.tools
-                  .map((tool) => _buildTag(tool, isOutline: false))
-                  .toList(),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildCategoryHeader(Icons.code, "Hard Skills"),
+        const SizedBox(height: 32),
+        _buildSubCategoryDivider("LINGUAGENS E FRAMEWORKS"),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: content.programmingLanguages
+              .map((skill) => _SkillTag(label: skill.name))
+              .toList(),
+        ),
+        const SizedBox(height: 40),
+        _buildSubCategoryDivider("FERRAMENTAS & TECNOLOGIAS"),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children:
+              content.tools.map((tool) => _SkillTag(label: tool)).toList(),
+        ),
+      ],
     );
   }
 
   Widget _buildSoftSkillsColumn(ResponsiveBreakpointsData breakpoint) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 500),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildCategoryHeader(Icons.psychology_outlined, "Soft Skills"),
-          const SizedBox(height: 32),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              alignment: breakpoint.isMobile
-                  ? WrapAlignment.center
-                  : WrapAlignment.start,
-              children: content.softSkills
-                  .map((soft) => _buildSoftSkillCard(soft, breakpoint))
-                  .toList(),
-            ),
-          ),
-          const SizedBox(height: 48),
-          _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              alignment: breakpoint.isMobile
-                  ? WrapAlignment.center
-                  : WrapAlignment.start,
-              children: content.strategicAreas
-                  .map((area) => _buildTag(area, isOutline: true))
-                  .toList(),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildCategoryHeader(Icons.psychology_outlined, "Soft Skills"),
+        const SizedBox(height: 32),
+        Wrap(
+          spacing: 20,
+          runSpacing: 20,
+          alignment:
+              breakpoint.isMobile ? WrapAlignment.center : WrapAlignment.start,
+          children: content.softSkills
+              .map((soft) => _SoftSkillCard(soft: soft, breakpoint: breakpoint))
+              .toList(),
+        ),
+        const SizedBox(height: 48),
+        _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: content.strategicAreas
+              .map((area) => _SkillTag(label: area))
+              .toList(),
+        ),
+      ],
     );
   }
 
@@ -162,125 +148,135 @@ class SkillsSection extends StatelessWidget {
 
   Widget _buildSubCategoryDivider(String label) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Row(
         children: [
-          Container(width: 20, height: 1, color: Colors.white24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Text(
-              label,
-              style: const TextStyle(
-                color: Colors.white38,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
-              ),
-            ),
-          ),
-          Expanded(child: Container(height: 1, color: Colors.white24)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProgressBar(HardSkillModel skill) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                skill.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "${(skill.level * 100).toInt()}%",
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: skill.level,
-              minHeight: 8,
-              backgroundColor: const Color(0xFF1E293B),
-              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSoftSkillCard(
-    SoftSkillModel soft,
-    ResponsiveBreakpointsData breakpoint,
-  ) {
-    return Container(
-      width: breakpoint.isMobile ? double.infinity : 235,
-      constraints: BoxConstraints(maxWidth: breakpoint.isMobile ? 400 : 235),
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: const Color(0xFF0F172A).withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF1E293B)),
-      ),
-      child: Column(
-        crossAxisAlignment: breakpoint.isMobile
-            ? CrossAxisAlignment.center
-            : CrossAxisAlignment.start,
-        children: [
-          Icon(soft.icon, color: AppColors.primary, size: 28),
-          const SizedBox(height: 16),
           Text(
-            soft.title,
-            textAlign: breakpoint.isMobile ? TextAlign.center : TextAlign.start,
+            label,
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.white38,
+              fontSize: 11,
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              letterSpacing: 1.5,
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            soft.description,
-            textAlign: breakpoint.isMobile ? TextAlign.center : TextAlign.start,
-            style: const TextStyle(
-              color: Color(0xFF94A3B8),
-              fontSize: 13,
-              height: 1.5,
-            ),
-          ),
+          const SizedBox(width: 12),
+          Expanded(child: Container(height: 1, color: Colors.white10)),
         ],
       ),
     );
   }
+}
 
-  Widget _buildTag(String label, {required bool isOutline}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: isOutline ? Colors.transparent : const Color(0xFF1E293B),
-        borderRadius: BorderRadius.circular(8),
-        border: isOutline ? Border.all(color: Colors.white10) : null,
+class _SoftSkillCard extends StatefulWidget {
+  final SoftSkillModel soft;
+  final ResponsiveBreakpointsData breakpoint;
+
+  const _SoftSkillCard({required this.soft, required this.breakpoint});
+
+  @override
+  State<_SoftSkillCard> createState() => _SoftSkillCardState();
+}
+
+class _SoftSkillCardState extends State<_SoftSkillCard> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: widget.breakpoint.isMobile ? double.infinity : 235,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: _isHovered
+              ? const Color(0xFF1E293B).withValues(alpha: 0.6)
+              : const Color(0xFF0F172A).withValues(alpha: 0.4),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: _isHovered ? AppColors.primary : const Color(0xFF1E293B),
+            width: 1,
+          ),
+          boxShadow: [
+            if (_isHovered)
+              BoxShadow(
+                color: AppColors.primary.withValues(alpha: 0.05),
+                blurRadius: 20,
+                spreadRadius: 5,
+              ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              widget.soft.icon,
+              color: _isHovered ? Colors.white : AppColors.primary,
+              size: 24,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              widget.soft.title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.soft.description,
+              style: TextStyle(
+                color: _isHovered ? Colors.white70 : const Color(0xFF94A3B8),
+                fontSize: 12,
+                height: 1.5,
+              ),
+            ),
+          ],
+        ),
       ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: isOutline ? Colors.white38 : Colors.white70,
-          fontSize: 13,
-          fontWeight: FontWeight.w500,
+    );
+  }
+}
+
+class _SkillTag extends StatefulWidget {
+  final String label;
+  const _SkillTag({required this.label});
+
+  @override
+  State<_SkillTag> createState() => _SkillTagState();
+}
+
+class _SkillTagState extends State<_SkillTag> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: _isHovered
+              ? AppColors.primary.withValues(alpha: 0.1)
+              : const Color(0xFF1E293B),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: _isHovered ? AppColors.primary : const Color(0xFF334155),
+            width: 1,
+          ),
+        ),
+        child: Text(
+          widget.label,
+          style: TextStyle(
+            color: _isHovered ? Colors.white : Colors.white70,
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
