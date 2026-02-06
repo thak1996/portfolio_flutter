@@ -19,9 +19,8 @@ class _EducationCardState extends State<EducationCard> {
   Widget build(BuildContext context) {
     final bool isActive = widget.edu.currentEducation || isHovered;
 
-    final Color highlightColor = isActive //
-        ? AppColors.primary
-        : const Color(0xFF64748B);
+    final Color highlightColor =
+        isActive ? AppColors.primary : const Color(0xFF64748B);
 
     final cardWidth = ResponsiveValue<double>(
       context,
@@ -54,15 +53,29 @@ class _EducationCardState extends State<EducationCard> {
         width: cardWidth,
         height: cardHeight,
         padding: const EdgeInsets.all(32),
+        transform: isHovered
+            ? Matrix4.translationValues(0, -10, 0)
+            : Matrix4.identity(),
         decoration: BoxDecoration(
-          color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(16),
+          color: isHovered
+              ? AppColors.bgSlateDeep.withValues(alpha: 0.6)
+              : AppColors.bgSlateDeep.withValues(alpha: 0.4),
+          borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: isActive
-                ? highlightColor.withValues(alpha: 0.5)
+                ? highlightColor.withValues(alpha: 0.8)
                 : const Color(0xFF1E293B),
-            width: 1.5,
+            width: isHovered ? 2 : 1.5,
           ),
+          boxShadow: [
+            if (isHovered)
+              BoxShadow(
+                color: AppColors.primary.withValues(alpha: 0.25),
+                blurRadius: 30,
+                spreadRadius: -5,
+                offset: const Offset(0, 15),
+              ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,22 +83,30 @@ class _EducationCardState extends State<EducationCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: highlightColor.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
+                    color: highlightColor.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [
+                      if (isHovered)
+                        BoxShadow(
+                          color: highlightColor.withValues(alpha: 0.2),
+                          blurRadius: 10,
+                        )
+                    ],
                   ),
                   child: Icon(widget.edu.icon, color: highlightColor, size: 28),
                 ),
                 Text(
                   widget.edu.year.toUpperCase(),
                   style: TextStyle(
-                    color: isActive
-                        ? AppColors.primary.withValues(alpha: 0.8)
-                        : const Color(0xFF64748B),
+                    color:
+                        isActive ? AppColors.primary : const Color(0xFF64748B),
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ],
@@ -96,7 +117,7 @@ class _EducationCardState extends State<EducationCard> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: isActive ? Colors.white : Colors.white70,
+                color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 height: 1.3,
@@ -109,7 +130,7 @@ class _EducationCardState extends State<EducationCard> {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: isActive
-                    ? const Color(0xFFCBD5E1)
+                    ? const Color(0xFFE2E8F0)
                     : const Color(0xFF94A3B8),
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -121,7 +142,7 @@ class _EducationCardState extends State<EducationCard> {
                 Icon(
                   Icons.location_on_outlined,
                   size: 16,
-                  color: highlightColor.withValues(alpha: 0.7),
+                  color: highlightColor.withValues(alpha: 0.8),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -130,7 +151,7 @@ class _EducationCardState extends State<EducationCard> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: highlightColor.withValues(alpha: 0.7),
+                      color: highlightColor.withValues(alpha: 0.8),
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.0,
