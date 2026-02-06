@@ -55,20 +55,11 @@ class _ContactSectionState extends State<ContactSection> {
         bottom: widget.padding.bottom,
         left: horizontalPadding,
         right: horizontalPadding,
+        top: 36,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "ENTRE EM CONTATO",
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2.0,
-            ),
-          ),
-          const SizedBox(height: 8),
           Text(
             widget.content.title,
             style: TextStyle(

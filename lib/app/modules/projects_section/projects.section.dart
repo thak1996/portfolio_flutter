@@ -37,16 +37,6 @@ class ProjectsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "PROJETOS",
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2.0,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
             content.sectionTitle,
             style: TextStyle(
               color: Colors.white,

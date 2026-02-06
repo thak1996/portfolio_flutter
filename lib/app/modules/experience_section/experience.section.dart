@@ -35,16 +35,6 @@ class ExperienceSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "EXPERIÊNCIA",
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2.0,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
             "Trajetória Profissional",
             style: TextStyle(
               color: Colors.white,
@@ -82,8 +72,9 @@ class _ExperienceTimelineItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color activeColor =
-        job.currentCompany ? AppColors.primary : const Color(0xFF64748B);
+    final Color activeColor = job.currentCompany //
+        ? AppColors.primary
+        : const Color(0xFF64748B);
 
     return IntrinsicHeight(
       child: Row(
@@ -121,31 +112,49 @@ class _ExperienceTimelineItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "${job.role} | ${job.stack}",
-                    style: TextStyle(
-                      color: job.currentCompany ? Colors.white : Colors.white70,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: activeColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      job.period.toUpperCase(),
-                      style: TextStyle(
-                        color: activeColor,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
+                  ResponsiveRowColumn(
+                    layout: breakpoint.isMobile
+                        ? ResponsiveRowColumnType.COLUMN
+                        : ResponsiveRowColumnType.ROW,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rowCrossAxisAlignment: CrossAxisAlignment.center,
+                    columnCrossAxisAlignment: CrossAxisAlignment.start,
+                    columnSpacing: 8,
+                    children: [
+                      ResponsiveRowColumnItem(
+                        child: Text(
+                          "${job.role} | ${job.stack}",
+                          style: TextStyle(
+                            color: job.currentCompany
+                                ? Colors.white
+                                : Colors.white70,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
+                      ResponsiveRowColumnItem(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: activeColor.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            job.period.toUpperCase(),
+                            style: TextStyle(
+                              color: activeColor,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 12),
                   Text(
@@ -164,9 +173,11 @@ class _ExperienceTimelineItem extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 4),
-                              child: Icon(Icons.check_circle_outline,
-                                  color: activeColor.withValues(alpha: 0.5),
-                                  size: 16),
+                              child: Icon(
+                                Icons.check_circle_outline,
+                                color: activeColor.withValues(alpha: 0.5),
+                                size: 16,
+                              ),
                             ),
                             const SizedBox(width: 12),
                             Expanded(
@@ -191,7 +202,9 @@ class _ExperienceTimelineItem extends StatelessWidget {
                     children: job.skills
                         .map((skill) => Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
                               decoration: BoxDecoration(
                                 color: const Color(0xFF1E293B),
                                 borderRadius: BorderRadius.circular(6),

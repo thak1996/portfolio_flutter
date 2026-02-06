@@ -1,10 +1,11 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ContactService {
   Future<bool> postWebhook(Map<String, dynamic> data) async {
     final response = await http.post(
-      Uri.parse('SUA_URL_WEBHOOK'),
+      Uri.parse(dotenv.env['WEB_HOOK'] ?? ''),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(data),
     );

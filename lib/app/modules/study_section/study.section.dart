@@ -21,8 +21,7 @@ class StudySection extends StatelessWidget {
       context,
       defaultValue: 20.0,
       conditionalValues: [
-        const Condition.largerThan(name: MOBILE, value: 40.0),
-        const Condition.largerThan(name: TABLET, value: 0.0),
+        const Condition<double>.largerThan(name: TABLET, value: 0.0),
       ],
     ).value;
 
@@ -49,9 +48,7 @@ class StudySection extends StatelessWidget {
             child: Wrap(
               spacing: 24,
               runSpacing: 24,
-              alignment: breakpoint.isMobile
-                  ? WrapAlignment.center
-                  : WrapAlignment.start,
+              alignment: WrapAlignment.center,
               children: content.history.map((edu) {
                 return ConstrainedBox(
                   constraints: BoxConstraints(

@@ -36,16 +36,6 @@ class SkillsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "EXPERTISE",
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2.0,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
             "Habilidades",
             style: TextStyle(
               color: Colors.white,
