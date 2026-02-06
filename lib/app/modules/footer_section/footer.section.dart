@@ -22,11 +22,9 @@ class FooterSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.backgroundDark,
-        border: Border(
-          top: BorderSide(color: Color(0xFF1E293B), width: 1),
-        ),
+        border: Border.all(color: Color(0xFF1E293B), width: 1),
       ),
       child: ResponsiveRowColumn(
         layout: isMobile
