@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import '../../core/styles/colors.dart';
 import 'skill.model.dart';
 
@@ -14,37 +15,65 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: padding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Habilidades",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-              ),
+    final breakpoint = ResponsiveBreakpoints.of(context);
+
+    final double horizontalPadding = ResponsiveValue<double>(
+      context,
+      defaultValue: 20.0,
+      conditionalValues: [
+        const Condition.largerThan(name: MOBILE, value: 40.0),
+        const Condition.largerThan(name: TABLET, value: 0.0),
+      ],
+    ).value;
+
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: padding.bottom,
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "EXPERTISE",
+            style: TextStyle(
+              color: AppColors.primary,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              letterSpacing: 2.0,
             ),
-            const SizedBox(height: 48),
-            Wrap(
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "Habilidades",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: breakpoint.isMobile ? 32 : 42,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 48),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
               spacing: 80,
-              runSpacing: 40,
+              runSpacing: 60,
+              alignment: breakpoint.isMobile
+                  ? WrapAlignment.center
+                  : WrapAlignment.start,
               children: [
-                _buildHardSkillsColumn(),
-                _buildSoftSkillsColumn(),
+                _buildHardSkillsColumn(breakpoint),
+                _buildSoftSkillsColumn(breakpoint),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildHardSkillsColumn() {
+  Widget _buildHardSkillsColumn(ResponsiveBreakpointsData breakpoint) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 500),
       child: Column(
@@ -57,19 +86,25 @@ class SkillsSection extends StatelessWidget {
               .map((skill) => _buildProgressBar(skill)),
           const SizedBox(height: 32),
           _buildSubCategoryDivider("FERRAMENTAS & TECNOLOGIAS"),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: content.tools
-                .map((tool) => _buildTag(tool, isOutline: false))
-                .toList(),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              alignment: breakpoint.isMobile
+                  ? WrapAlignment.center
+                  : WrapAlignment.start,
+              children: content.tools
+                  .map((tool) => _buildTag(tool, isOutline: false))
+                  .toList(),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSoftSkillsColumn() {
+  Widget _buildSoftSkillsColumn(ResponsiveBreakpointsData breakpoint) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 500),
       child: Column(
@@ -77,21 +112,33 @@ class SkillsSection extends StatelessWidget {
         children: [
           _buildCategoryHeader(Icons.psychology_outlined, "Soft Skills"),
           const SizedBox(height: 32),
-          Wrap(
-            spacing: 20,
-            runSpacing: 20,
-            children: content.softSkills
-                .map((soft) => _buildSoftSkillCard(soft))
-                .toList(),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              alignment: breakpoint.isMobile
+                  ? WrapAlignment.center
+                  : WrapAlignment.start,
+              children: content.softSkills
+                  .map((soft) => _buildSoftSkillCard(soft, breakpoint))
+                  .toList(),
+            ),
           ),
           const SizedBox(height: 48),
           _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: content.strategicAreas
-                .map((area) => _buildTag(area, isOutline: true))
-                .toList(),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              alignment: breakpoint.isMobile
+                  ? WrapAlignment.center
+                  : WrapAlignment.start,
+              children: content.strategicAreas
+                  .map((area) => _buildTag(area, isOutline: true))
+                  .toList(),
+            ),
           ),
         ],
       ),
@@ -100,6 +147,7 @@ class SkillsSection extends StatelessWidget {
 
   Widget _buildCategoryHeader(IconData icon, String title) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           padding: const EdgeInsets.all(8),
@@ -140,12 +188,7 @@ class SkillsSection extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              height: 1,
-              color: Colors.white24,
-            ),
-          ),
+          Expanded(child: Container(height: 1, color: Colors.white24)),
         ],
       ),
     );
@@ -190,9 +233,13 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSoftSkillCard(SoftSkillModel soft) {
+  Widget _buildSoftSkillCard(
+    SoftSkillModel soft,
+    ResponsiveBreakpointsData breakpoint,
+  ) {
     return Container(
-      width: 235,
+      width: breakpoint.isMobile ? double.infinity : 235,
+      constraints: BoxConstraints(maxWidth: breakpoint.isMobile ? 400 : 235),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: const Color(0xFF0F172A).withValues(alpha: 0.4),
@@ -200,12 +247,15 @@ class SkillsSection extends StatelessWidget {
         border: Border.all(color: const Color(0xFF1E293B)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: breakpoint.isMobile
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         children: [
           Icon(soft.icon, color: AppColors.primary, size: 28),
           const SizedBox(height: 16),
           Text(
             soft.title,
+            textAlign: breakpoint.isMobile ? TextAlign.center : TextAlign.start,
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -215,6 +265,7 @@ class SkillsSection extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             soft.description,
+            textAlign: breakpoint.isMobile ? TextAlign.center : TextAlign.start,
             style: const TextStyle(
               color: Color(0xFF94A3B8),
               fontSize: 13,
