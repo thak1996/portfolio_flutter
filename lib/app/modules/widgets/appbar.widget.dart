@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           decoration: BoxDecoration(
             color: AppColors.bgDeep.withValues(alpha: 0.8),
             border: Border(
-              bottom: BorderSide(color: AppColors.borderDark, width: 1),
+              bottom: BorderSide(color: AppColors.borderColor, width: 1),
             ),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),

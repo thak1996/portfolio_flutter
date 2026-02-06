@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_flutter/app/core/model/section.model.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:portfolio_flutter/app/core/model/section.model.dart';
 import '../../core/styles/colors.dart';
 import '../../core/utils/url_launcher.helper.dart';
 import 'footer.model.dart';
 
-class FooterSection extends StatefulWidget {
+class FooterSection extends StatelessWidget {
   const FooterSection({
     super.key,
     required this.content,
@@ -16,115 +17,165 @@ class FooterSection extends StatefulWidget {
   final Function(SectionType) onAction;
 
   @override
-  State<FooterSection> createState() => _FooterSectionState();
+  Widget build(BuildContext context) {
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+      decoration: BoxDecoration(
+        color: AppColors.backgroundDark.withValues(alpha: 0.8),
+        border: Border.all(color: const Color(0xFF1E293B), width: 1),
+      ),
+      child: ResponsiveRowColumn(
+        layout: isMobile
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
+        rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+        columnMainAxisAlignment: MainAxisAlignment.center,
+        columnMainAxisSize: MainAxisSize.min,
+        columnSpacing: 32,
+        children: [
+          ResponsiveRowColumnItem(
+            child: _FooterBrand(
+              name: content.brandName,
+              onTap: () => onAction(SectionType.hero),
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: content.socials.asMap().entries.map((entry) {
+                return _FooterSocialIcon(
+                  index: entry.key,
+                  social: entry.value,
+                );
+              }).toList(),
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            child: Text(
+              content.copyright,
+              textAlign: isMobile ? TextAlign.center : TextAlign.end,
+              style: const TextStyle(
+                color: Color(0xFF475569),
+                fontSize: 12,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-class _FooterSectionState extends State<FooterSection> {
+class _FooterBrand extends StatefulWidget {
+  final String name;
+  final VoidCallback onTap;
+
+  const _FooterBrand({required this.name, required this.onTap});
+
+  @override
+  State<_FooterBrand> createState() => _FooterBrandState();
+}
+
+class _FooterBrandState extends State<_FooterBrand> {
   bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
-
-    final bool isActive = _isHovered;
-
-    final Color activeColor = isActive //
-        ? AppColors.primary
-        : Color(0xFF475569);
-
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      cursor: SystemMouseCursors.basic,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        decoration: BoxDecoration(
-          color: AppColors.backgroundDark,
-          border: Border.all(color: Color(0xFF1E293B), width: 1),
-        ),
-        child: ResponsiveRowColumn(
-          layout: isMobile
-              ? ResponsiveRowColumnType.COLUMN
-              : ResponsiveRowColumnType.ROW,
-          rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-          columnMainAxisAlignment: MainAxisAlignment.center,
-          columnMainAxisSize: MainAxisSize.min,
-          columnSpacing: 20,
-          children: [
-            ResponsiveRowColumnItem(
-              child: InkWell(
-                hoverColor: Colors.transparent,
-                onTap: () => widget.onAction(SectionType.hero),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.blur_on, color: AppColors.primary, size: 28),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: Text(
-                        widget.content.brandName,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 300),
+          style: TextStyle(
+            color: _isHovered ? AppColors.primary : Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.blur_on,
+                color: _isHovered ? AppColors.primary : Colors.white70,
+                size: 24,
               ),
-            ),
-            ResponsiveRowColumnItem(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: widget.content.socials.map((social) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: InkWell(
-                      onTap: () => openUrl(social.url),
-                      borderRadius: BorderRadius.circular(8),
-                      customBorder: Border.all(
-                        color: activeColor,
-                        width: 1,
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E293B),
-                          borderRadius: BorderRadius.circular(8),
-                          border: isActive
-                              ? Border.all(
-                                  color: activeColor,
-                                  width: 1,
-                                )
-                              : Border.all(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                        ),
-                        child: Icon(
-                          social.icon,
-                          color: activeColor,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            ResponsiveRowColumnItem(
-              child: Text(
-                widget.content.copyright,
-                textAlign: isMobile ? TextAlign.center : TextAlign.end,
-                style: TextStyle(color: Color(0xFF475569), fontSize: 12),
-              ),
-            ),
-          ],
+              const SizedBox(width: 12),
+              Text(widget.name),
+            ],
+          ),
         ),
       ),
     );
+  }
+}
+
+class _FooterSocialIcon extends StatefulWidget {
+  final int index;
+  final dynamic social;
+
+  const _FooterSocialIcon({required this.index, required this.social});
+
+  @override
+  State<_FooterSocialIcon> createState() => _FooterSocialIconState();
+}
+
+class _FooterSocialIconState extends State<_FooterSocialIcon> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color activeColor = _isHovered //
+        ? AppColors.primary
+        : AppColors.hoverColor;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => openUrl(widget.social.url),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: AppColors.borderColor,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: _isHovered ? AppColors.primary : AppColors.borderColor,
+                width: 1,
+              ),
+              boxShadow: [
+                if (_isHovered)
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.2),
+                    blurRadius: 12,
+                    spreadRadius: 1,
+                  )
+              ],
+            ),
+            child: Icon(
+              widget.social.icon,
+              color: activeColor,
+              size: 20,
+            ),
+          ),
+        ),
+      ),
+    ).animate().fadeIn(delay: (widget.index * 100).ms, duration: 400.ms).scale(
+          delay: (widget.index * 100).ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1, 1),
+          curve: Curves.easeOutBack,
+        );
   }
 }
