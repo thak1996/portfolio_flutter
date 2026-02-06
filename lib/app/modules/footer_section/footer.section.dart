@@ -33,7 +33,7 @@ class _FooterSectionState extends State<FooterSection> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
           color: AppColors.backgroundDark.withValues(alpha: 0.8),
           border: Border.all(
@@ -45,9 +45,9 @@ class _FooterSectionState extends State<FooterSection> {
           boxShadow: [
             if (_isGlobalHovered)
               BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.1),
-                blurRadius: 20,
-                offset: const Offset(0, -4),
+                color: AppColors.primary.withValues(alpha: 0.08),
+                blurRadius: 15,
+                offset: const Offset(0, -2),
               ),
           ],
         ),
@@ -58,7 +58,7 @@ class _FooterSectionState extends State<FooterSection> {
           rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
           columnMainAxisAlignment: MainAxisAlignment.center,
           columnMainAxisSize: MainAxisSize.min,
-          columnSpacing: 32,
+          columnSpacing: 20,
           children: [
             ResponsiveRowColumnItem(
               child: _FooterBrand(
@@ -83,8 +83,8 @@ class _FooterSectionState extends State<FooterSection> {
                 textAlign: isMobile ? TextAlign.center : TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xFF475569),
-                  fontSize: 12,
-                  letterSpacing: 0.5,
+                  fontSize: 11,
+                  letterSpacing: 0.3,
                 ),
               ),
             ),
@@ -120,7 +120,7 @@ class _FooterBrandState extends State<_FooterBrand> {
           duration: const Duration(milliseconds: 300),
           style: TextStyle(
             color: _isHovered ? AppColors.primary : Colors.white,
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
           ),
@@ -130,9 +130,9 @@ class _FooterBrandState extends State<_FooterBrand> {
               Icon(
                 Icons.blur_on,
                 color: _isHovered ? AppColors.primary : Colors.white70,
-                size: 24,
+                size: 20,
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 10),
               Text(widget.name),
             ],
           ),
@@ -161,7 +161,7 @@ class _FooterSocialIconState extends State<_FooterSocialIcon> {
         _isHovered ? AppColors.primary : const Color(0xFF475569);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: MouseRegion(
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
@@ -170,10 +170,10 @@ class _FooterSocialIconState extends State<_FooterSocialIcon> {
           onTap: () => openUrl(widget.social.url),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: const Color(0xFF0F172A),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: _isHovered ? AppColors.primary : const Color(0xFF1E293B),
                 width: 1,
@@ -182,22 +182,21 @@ class _FooterSocialIconState extends State<_FooterSocialIcon> {
                 if (_isHovered)
                   BoxShadow(
                     color: AppColors.primary.withValues(alpha: 0.2),
-                    blurRadius: 12,
-                    spreadRadius: 1,
+                    blurRadius: 10,
                   )
               ],
             ),
             child: Icon(
               widget.social.icon,
               color: activeColor,
-              size: 20,
+              size: 18,
             ),
           ),
         ),
       ),
-    ).animate().fadeIn(delay: (widget.index * 100).ms, duration: 400.ms).scale(
-          delay: (widget.index * 100).ms,
-          begin: const Offset(0.8, 0.8),
+    ).animate().fadeIn(delay: (widget.index * 80).ms, duration: 400.ms).scale(
+          delay: (widget.index * 80).ms,
+          begin: const Offset(0.9, 0.9),
           end: const Offset(1, 1),
           curve: Curves.easeOutBack,
         );

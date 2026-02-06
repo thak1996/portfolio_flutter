@@ -208,7 +208,7 @@ class _ContactSectionState extends State<ContactSection> {
                                 child: TextFieldWidget(
                                   label: widget.content.formLabels.phoneLabel,
                                   controller: _phoneCtrl,
-                                  hint: "(11) 99999-9999",
+                                  hint: "(11) 9 9999-9999",
                                   keyboardType: TextInputType.phone,
                                   inputFormatters: [_phoneMask],
                                   validator: AppValidators.validatePhone,

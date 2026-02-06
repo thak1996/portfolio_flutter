@@ -7,7 +7,6 @@ import 'dart:convert';
 class ContactService {
   Future<bool> postWebhook(Map<String, dynamic> data) async {
     try {
-      // Tenta pegar a URL do env, se falhar usa a sua URL como fallback
       final String url = dotenv.env['WEB_HOOK'] ??
           'https://n8n.franklyndev.com.br/webhook/contato';
 
