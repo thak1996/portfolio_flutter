@@ -28,59 +28,72 @@ class FooterSection extends StatelessWidget {
           top: BorderSide(color: Color(0xFF1E293B), width: 1),
         ),
       ),
-      child: Flex(
-        direction: isMobile ? Axis.vertical : Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: ResponsiveRowColumn(
+        layout: isMobile
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
+        rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+        columnMainAxisAlignment: MainAxisAlignment.center,
+        columnMainAxisSize: MainAxisSize.min,
+        columnSpacing: 20,
         children: [
-          InkWell(
-            onTap: () => onAction(SectionType.hero),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.blur_on, color: AppColors.primary, size: 28),
-                const SizedBox(width: 12),
-                Text(
-                  content.brandName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
+          ResponsiveRowColumnItem(
+            child: InkWell(
+              onTap: () => onAction(SectionType.hero),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.blur_on, color: AppColors.primary, size: 28),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Text(
+                      content.brandName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          if (isMobile) const SizedBox(height: 24),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: content.socials.map((social) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: InkWell(
-                  onTap: () => openUrl(social.url),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      social.icon,
-                      color: const Color(0xFF64748B),
-                      size: 20,
+          ResponsiveRowColumnItem(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: content.socials.map((social) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: InkWell(
+                    onTap: () => openUrl(social.url),
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1E293B),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Icon(
+                        social.icon,
+                        color: const Color(0xFF64748B),
+                        size: 18,
+                      ),
                     ),
                   ),
-                ),
-              );
-            }).toList(),
+                );
+              }).toList(),
+            ),
           ),
-          if (isMobile) const SizedBox(height: 24),
-          Text(
-            content.copyright,
-            style: const TextStyle(
-              color: Color(0xFF475569),
-              fontSize: 14,
+          ResponsiveRowColumnItem(
+            child: Text(
+              content.copyright,
+              textAlign: isMobile ? TextAlign.center : TextAlign.end,
+              style: const TextStyle(
+                color: Color(0xFF475569),
+                fontSize: 12,
+              ),
             ),
           ),
         ],
