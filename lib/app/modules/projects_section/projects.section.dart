@@ -217,8 +217,10 @@ class _ProjectCardState extends State<_ProjectCard> {
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Ver Detalhes",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(
+                            "Ver Detalhes",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(width: 8),
                           Icon(Icons.arrow_right_alt, size: 20),
                         ],
