@@ -62,11 +62,14 @@ class _SectionWidgetState extends State<SectionWidget> {
   }
 
   EdgeInsets _getResponsivePadding(BuildContext context) {
-    final double horizontal =
-        ResponsiveValue<double>(context, defaultValue: 0, conditionalValues: [
-      const Condition.largerThan(name: MOBILE, value: 10.0),
-      const Condition.largerThan(name: TABLET, value: 20.0),
-    ]).value;
+    final double horizontal = ResponsiveValue<double>(
+      context,
+      defaultValue: 0,
+      conditionalValues: [
+        const Condition.largerThan(name: MOBILE, value: 10.0),
+        const Condition.largerThan(name: TABLET, value: 20.0),
+      ],
+    ).value;
     return EdgeInsets.symmetric(vertical: 20, horizontal: horizontal);
   }
 

@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
     final isDesktop = breakpoint.isDesktop;
 
     return Scaffold(
-      backgroundColor: AppColors.bgSlateDeep,
+      backgroundColor: AppColors.bgDeep,
       appBar: AppBarWidget(onSectionClick: (id) => _scrollToSection(id)),
       endDrawer: Drawer(
         backgroundColor: AppColors.bgDeep,
