@@ -189,32 +189,46 @@ class _SoftSkillCardState extends State<_SoftSkillCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         width: widget.breakpoint.isMobile ? double.infinity : 235,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(24),
+        transform: _isHovered
+            ? Matrix4.translationValues(0, -8, 0)
+            : Matrix4.identity(),
         decoration: BoxDecoration(
           color: _isHovered
               ? const Color(0xFF1E293B).withValues(alpha: 0.6)
               : const Color(0xFF0F172A).withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _isHovered ? AppColors.primary : const Color(0xFF1E293B),
-            width: 1,
+            width: 1.5,
           ),
           boxShadow: [
             if (_isHovered)
               BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.05),
-                blurRadius: 20,
-                spreadRadius: 5,
+                color: AppColors.primary.withValues(alpha: 0.15),
+                blurRadius: 30,
+                spreadRadius: -5,
+                offset: const Offset(0, 15),
               ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              widget.soft.icon,
-              color: _isHovered ? Colors.white : AppColors.primary,
-              size: 24,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: _isHovered
+                    ? AppColors.primary.withValues(alpha: 0.2)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                widget.soft.icon,
+                color: _isHovered ? Colors.white : AppColors.primary,
+                size: 26,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
@@ -222,7 +236,7 @@ class _SoftSkillCardState extends State<_SoftSkillCard> {
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 17,
               ),
             ),
             const SizedBox(height: 8),
@@ -260,15 +274,28 @@ class _SkillTagState extends State<_SkillTag> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        transform: _isHovered
+            ? Matrix4.translationValues(0, -1, 0)
+            : Matrix4.identity(),
         decoration: BoxDecoration(
           color: _isHovered
-              ? AppColors.primary.withValues(alpha: 0.1)
+              ? AppColors.primary.withValues(alpha: 0.08)
               : const Color(0xFF1E293B),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: _isHovered ? AppColors.primary : const Color(0xFF334155),
+            color: _isHovered
+                ? AppColors.primary.withValues(alpha: 0.6)
+                : const Color(0xFF334155),
             width: 1,
           ),
+          boxShadow: [
+            if (_isHovered)
+              BoxShadow(
+                color: AppColors.primary.withValues(alpha: 0.05),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+          ],
         ),
         child: Text(
           widget.label,
