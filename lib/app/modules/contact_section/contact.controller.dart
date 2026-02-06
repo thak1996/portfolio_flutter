@@ -19,11 +19,12 @@ class ContactController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    log("Sending contact form: name=$name, email=$email, subject=$subject, message=$message");
+    log("Sending contact form: name=$name, email=$email, phone=$phone, subject=$subject, message=$message");
 
     final success = await _service.postWebhook({
       "name": name,
       "email": email,
+      "phone": phone,
       "subject": subject,
       "message": message,
     });
