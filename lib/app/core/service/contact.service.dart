@@ -5,7 +5,8 @@ import 'dart:convert';
 class ContactService {
   Future<bool> postWebhook(Map<String, dynamic> data) async {
     final response = await http.post(
-      Uri.parse(dotenv.env['WEB_HOOK'] ?? ''),
+      Uri.parse(dotenv.env['WEB_HOOK'] ??
+          'https://n8n.franklyndev.com.br/webhook-test/contato'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(data),
     );

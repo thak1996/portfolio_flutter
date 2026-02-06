@@ -253,6 +253,7 @@ class _ContactSectionState extends State<ContactSection> {
       final ok = await controller.send(
         _nameCtrl.text,
         _emailCtrl.text,
+        _phoneCtrl.text,
         _subjectCtrl.text,
         _messageCtrl.text,
       );

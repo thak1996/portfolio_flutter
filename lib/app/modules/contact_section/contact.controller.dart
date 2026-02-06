@@ -12,6 +12,7 @@ class ContactController extends ChangeNotifier {
   Future<bool> send(
     String name,
     String email,
+    String phone,
     String subject,
     String message,
   ) async {
