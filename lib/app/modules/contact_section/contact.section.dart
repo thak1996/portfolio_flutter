@@ -24,10 +24,9 @@ class ContactSection extends StatefulWidget {
 }
 
 class _ContactSectionState extends State<ContactSection> {
-  bool _isHovered = false;
+  bool _isFormHovered = false;
   final _formKey = GlobalKey<FormState>();
 
-  // Controllers
   final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _subjectCtrl = TextEditingController();
@@ -54,12 +53,6 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     final controller = context.watch<ContactController>();
     final breakpoint = ResponsiveBreakpoints.of(context);
-
-    bool isActive = _isHovered;
-
-    final Color activeColor = isActive //
-        ? AppColors.primary
-        : Color(0xFF1E293B);
 
     final double horizontalPadding = ResponsiveValue<double>(
       context,
@@ -121,7 +114,7 @@ class _ContactSectionState extends State<ContactSection> {
                     ),
                     const SizedBox(height: 40),
                     ...widget.content.infoItems.map(
-                      (item) => _buildInfoTile(item),
+                      (item) => _ContactInfoTile(item: item),
                     ),
                   ],
                 ),
@@ -131,15 +124,35 @@ class _ContactSectionState extends State<ContactSection> {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 child: MouseRegion(
-                  onEnter: (_) => setState(() => _isHovered = true),
-                  onExit: (_) => setState(() => _isHovered = false),
-                  cursor: SystemMouseCursors.basic,
-                  child: Container(
+                  onEnter: (_) => setState(() => _isFormHovered = true),
+                  onExit: (_) => setState(() => _isFormHovered = false),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    transform: _isFormHovered
+                        ? Matrix4.translationValues(0, -10, 0)
+                        : Matrix4.identity(),
                     padding: EdgeInsets.all(breakpoint.isMobile ? 20 : 32),
                     decoration: BoxDecoration(
-                      color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
+                      color: _isFormHovered
+                          ? AppColors.bgSlateDeep.withValues(alpha: 0.6)
+                          : AppColors.bgSlateDeep.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: activeColor, width: 1),
+                      border: Border.all(
+                        color: _isFormHovered
+                            ? AppColors.primary.withValues(alpha: 0.8)
+                            : const Color(0xFF1E293B),
+                        width: _isFormHovered ? 2 : 1,
+                      ),
+                      boxShadow: [
+                        if (_isFormHovered)
+                          BoxShadow(
+                            color: AppColors.primary.withValues(alpha: 0.25),
+                            blurRadius: 30,
+                            spreadRadius: -5,
+                            offset: const Offset(0, 15),
+                          ),
+                      ],
                     ),
                     child: Form(
                       key: _formKey,
@@ -197,9 +210,7 @@ class _ContactSectionState extends State<ContactSection> {
                                   controller: _phoneCtrl,
                                   hint: "(11) 99999-9999",
                                   keyboardType: TextInputType.phone,
-                                  inputFormatters: [
-                                    _phoneMask
-                                  ], // Aplica a máscara
+                                  inputFormatters: [_phoneMask],
                                   validator: AppValidators.validatePhone,
                                 ),
                               ),
@@ -228,45 +239,6 @@ class _ContactSectionState extends State<ContactSection> {
                       ),
                     ),
                   ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoTile(ContactInfoItem item) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: const Color(0xFF1E293B),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(item.icon, color: AppColors.primary, size: 24),
-          ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                item.value,
-                style: const TextStyle(
-                  color: Color(0xFF94A3B8),
-                  fontSize: 14,
                 ),
               ),
             ],
@@ -310,6 +282,88 @@ class _ContactSectionState extends State<ContactSection> {
         backgroundColor: success ? Colors.green.shade800 : Colors.red.shade800,
         behavior: SnackBarBehavior.floating,
         width: 400,
+      ),
+    );
+  }
+}
+
+class _ContactInfoTile extends StatefulWidget {
+  final ContactInfoItem item;
+  const _ContactInfoTile({required this.item});
+
+  @override
+  State<_ContactInfoTile> createState() => _ContactInfoTileState();
+}
+
+class _ContactInfoTileState extends State<_ContactInfoTile> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 32),
+        child: Row(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: _isHovered
+                    ? AppColors.primary.withValues(alpha: 0.15)
+                    : const Color(0xFF1E293B),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: _isHovered ? AppColors.primary : Colors.transparent,
+                  width: 1,
+                ),
+                boxShadow: [
+                  if (_isHovered)
+                    BoxShadow(
+                      color: AppColors.primary.withValues(alpha: 0.3),
+                      blurRadius: 15,
+                      spreadRadius: 2,
+                    ),
+                ],
+              ),
+              child: Icon(
+                widget.item.icon,
+                color: _isHovered ? Colors.white : AppColors.primary,
+                size: 24,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.item.title,
+                    style: TextStyle(
+                      color: _isHovered ? Colors.white : Colors.white70,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    widget.item.value,
+                    style: TextStyle(
+                      color: _isHovered
+                          ? AppColors.primary.withValues(alpha: 0.8)
+                          : const Color(0xFF94A3B8),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
