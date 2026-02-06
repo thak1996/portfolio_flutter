@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
 import '../../core/styles/colors.dart';
 import 'projects.model.dart';
@@ -15,16 +16,41 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final breakpoint = ResponsiveBreakpoints.of(context);
+
+    final double horizontalPadding = ResponsiveValue<double>(
+      context,
+      defaultValue: 20.0,
+      conditionalValues: [
+        const Condition.largerThan(name: MOBILE, value: 40.0),
+        const Condition.largerThan(name: TABLET, value: 0.0),
+      ],
+    ).value;
+
     return Padding(
-      padding: padding,
+      padding: EdgeInsets.only(
+        bottom: padding.bottom,
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
+            "PROJETOS",
+            style: TextStyle(
+              color: AppColors.primary,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              letterSpacing: 2.0,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
             content.sectionTitle,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 36,
+              fontSize: breakpoint.isMobile ? 32 : 42,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -34,6 +60,7 @@ class ProjectsSection extends StatelessWidget {
             child: Wrap(
               spacing: 24,
               runSpacing: 32,
+              alignment: WrapAlignment.center,
               children: content.projects.map((project) {
                 return _ProjectCard(project: project);
               }).toList(),
@@ -58,25 +85,38 @@ class _ProjectCardState extends State<_ProjectCard> {
 
   @override
   Widget build(BuildContext context) {
+    final cardWidth = ResponsiveValue<double>(
+      context,
+      defaultValue: 340.0,
+      conditionalValues: [
+        Condition.smallerThan(
+            name: MOBILE, value: MediaQuery.of(context).size.width - 40),
+        const Condition.largerThan(name: MOBILE, value: 360.0),
+        const Condition.largerThan(name: TABLET, value: 380.0),
+      ],
+    ).value;
+
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: 360,
+        width: cardWidth,
         decoration: BoxDecoration(
-          color: AppColors.bgSlateDeep,
+          color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isHovered
-                ? AppColors.primary.withValues(alpha: 0.3)
+                ? AppColors.primary.withValues(alpha: 0.5)
                 : const Color(0xFF1E293B),
+            width: 1.5,
           ),
           boxShadow: [
             if (isHovered)
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                blurRadius: 20,
+                color: AppColors.primary.withValues(alpha: 0.1),
+                blurRadius: 25,
+                spreadRadius: -5,
                 offset: const Offset(0, 10),
               )
           ],
@@ -89,6 +129,25 @@ class _ProjectCardState extends State<_ProjectCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.folder_open_outlined,
+                        color: AppColors.primary,
+                        size: 28,
+                      ),
+                      if (isHovered)
+                        Icon(
+                          Icons.open_in_new,
+                          color: AppColors.primary.withValues(
+                            alpha: 0.5,
+                          ),
+                          size: 18,
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
                   Text(
                     widget.project.title,
                     style: const TextStyle(
@@ -100,65 +159,66 @@ class _ProjectCardState extends State<_ProjectCard> {
                   const SizedBox(height: 12),
                   Text(
                     widget.project.description,
-                    maxLines: 2,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Color(0xFF94A3B8),
                       fontSize: 14,
-                      height: 1.5,
+                      height: 1.6,
                     ),
                   ),
                   const SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: widget.project.technologies
-                          .map((tech) => Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 4,
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: widget.project.technologies
+                        .map((tech) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF0F172A),
+                                borderRadius: BorderRadius.circular(6),
+                                border:
+                                    Border.all(color: const Color(0xFF1E293B)),
+                              ),
+                              child: Text(
+                                tech.toUpperCase(),
+                                style: TextStyle(
+                                  color:
+                                      AppColors.primary.withValues(alpha: 0.8),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.5,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF1E293B),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Text(
-                                  tech.toUpperCase(),
-                                  style: const TextStyle(
-                                    color: Color(0xFF94A3B8),
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ))
-                          .toList(),
-                    ),
+                              ),
+                            ))
+                        .toList(),
                   ),
                   const SizedBox(height: 32),
                   SizedBox(
                     width: double.infinity,
+                    height: 48,
                     child: ElevatedButton(
                       onPressed: () => openUrl(widget.project.urlProject),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
+                        backgroundColor: isHovered
+                            ? AppColors.primary
+                            : const Color(0xFF1E293B),
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                         elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Ver Projeto",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                          Text("Ver Detalhes",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                           SizedBox(width: 8),
-                          Icon(Icons.arrow_forward, size: 18),
+                          Icon(Icons.arrow_right_alt, size: 20),
                         ],
                       ),
                     ),
