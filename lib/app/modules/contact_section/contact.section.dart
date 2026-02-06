@@ -28,30 +28,66 @@ class _ContactSectionState extends State<ContactSection> {
   final _messageCtrl = TextEditingController();
 
   @override
+  void dispose() {
+    _nameCtrl.dispose();
+    _emailCtrl.dispose();
+    _subjectCtrl.dispose();
+    _messageCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final controller = context.watch<ContactController>();
-    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
+    final breakpoint = ResponsiveBreakpoints.of(context);
+
+    final double horizontalPadding = ResponsiveValue<double>(
+      context,
+      defaultValue: 20.0,
+      conditionalValues: [
+        const Condition.largerThan(name: MOBILE, value: 40.0),
+        const Condition.largerThan(name: TABLET, value: 0.0),
+      ],
+    ).value;
 
     return Padding(
-      padding: EdgeInsetsGeometry.only(bottom: widget.padding.bottom),
+      padding: EdgeInsets.only(
+        bottom: widget.padding.bottom,
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
+            "ENTRE EM CONTATO",
+            style: TextStyle(
+              color: AppColors.primary,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              letterSpacing: 2.0,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
             widget.content.title,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 42,
+              fontSize: breakpoint.isMobile ? 32 : 42,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 48),
-          Flex(
-            direction: isMobile ? Axis.vertical : Axis.horizontal,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ResponsiveRowColumn(
+            layout: breakpoint.smallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
+            rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+            rowCrossAxisAlignment: CrossAxisAlignment.start,
+            columnSpacing: 48,
             children: [
-              Expanded(
-                flex: isMobile ? 0 : 1,
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -59,7 +95,7 @@ class _ContactSectionState extends State<ContactSection> {
                       "Vamos discutir seu próximo projeto",
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.9),
-                        fontSize: 24,
+                        fontSize: breakpoint.isMobile ? 20 : 24,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -73,20 +109,19 @@ class _ContactSectionState extends State<ContactSection> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    ...widget.content.infoItems.map(
-                      (item) => _buildInfoTile(item),
-                    ),
+                    ...widget.content.infoItems
+                        .map((item) => _buildInfoTile(item)),
                   ],
                 ),
               ),
-              if (!isMobile) const SizedBox(width: 80),
-              if (isMobile) const SizedBox(height: 48),
-              Expanded(
-                flex: isMobile ? 0 : 1,
+              if (breakpoint.isDesktop)
+                const ResponsiveRowColumnItem(child: SizedBox(width: 80)),
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
                 child: Container(
-                  padding: const EdgeInsets.all(32),
+                  padding: EdgeInsets.all(breakpoint.isMobile ? 20 : 32),
                   decoration: BoxDecoration(
-                    color: AppColors.bgSlateDeep,
+                    color: AppColors.bgSlateDeep.withValues(alpha: 0.4),
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(color: const Color(0xFF1E293B)),
                   ),
@@ -94,21 +129,28 @@ class _ContactSectionState extends State<ContactSection> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        Row(
+                        ResponsiveRowColumn(
+                          layout: breakpoint.isMobile
+                              ? ResponsiveRowColumnType.COLUMN
+                              : ResponsiveRowColumnType.ROW,
+                          rowSpacing: 16,
+                          columnSpacing: 24,
                           children: [
-                            Expanded(
+                            ResponsiveRowColumnItem(
+                              rowFlex: 1,
                               child: _buildInput(
                                 widget.content.formLabels.nameLabel,
                                 _nameCtrl,
                                 "João Silva",
                               ),
                             ),
-                            const SizedBox(width: 16),
-                            Expanded(
+                            ResponsiveRowColumnItem(
+                              rowFlex: 1,
                               child: _buildInput(
                                 widget.content.formLabels.emailLabel,
                                 _emailCtrl,
                                 "joao@exemplo.com",
+                                isEmail: true,
                               ),
                             ),
                           ],
@@ -160,6 +202,7 @@ class _ContactSectionState extends State<ContactSection> {
     TextEditingController ctrl,
     String hint, {
     int maxLines = 1,
+    bool isEmail = false,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,15 +220,29 @@ class _ContactSectionState extends State<ContactSection> {
           controller: ctrl,
           maxLines: maxLines,
           style: const TextStyle(color: Colors.white),
+          validator: (value) {
+            if (value == null || value.isEmpty) return "Campo obrigatório";
+            if (isEmail && !value.contains("@")) return "E-mail inválido";
+            return null;
+          },
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: const TextStyle(color: Color(0xFF475569)),
             filled: true,
-            fillColor: const Color(0xFF1E293B).withValues(alpha: 0.5),
+            fillColor: const Color(0xFF0F172A).withValues(alpha: 0.5),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
+              borderSide: const BorderSide(color: Color(0xFF1E293B)),
             ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFF1E293B)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: AppColors.primary, width: 2),
+            ),
+            errorStyle: const TextStyle(color: Colors.redAccent),
           ),
         ),
       ],
@@ -211,17 +268,14 @@ class _ContactSectionState extends State<ContactSection> {
                 Text(
                   item.title,
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
                 Text(
                   item.value,
-                  style: const TextStyle(
-                    color: Color(0xFF94A3B8),
-                    fontSize: 14,
-                  ),
+                  style:
+                      const TextStyle(color: Color(0xFF94A3B8), fontSize: 14),
                 ),
               ],
             ),
@@ -238,13 +292,22 @@ class _ContactSectionState extends State<ContactSection> {
         _messageCtrl.text,
       );
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(ok ? "Enviado!" : "Erro!"),
-            backgroundColor: ok ? Colors.green : Colors.red,
-          ),
-        );
+        _showFeedback(ok);
+        if (ok) _formKey.currentState!.reset();
       }
     }
+  }
+
+  void _showFeedback(bool success) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(success
+            ? "Mensagem enviada! Entrarei em contato em breve. 🚀"
+            : "Ocorreu um erro ao enviar. Tente novamente."),
+        backgroundColor: success ? Colors.green.shade800 : Colors.red.shade800,
+        behavior: SnackBarBehavior.floating,
+        width: 400,
+      ),
+    );
   }
 }
