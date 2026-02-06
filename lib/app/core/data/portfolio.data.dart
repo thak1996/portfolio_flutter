@@ -259,7 +259,7 @@ final List<SectionModel> portfolioSections = [
           ProjectItemModel(
             title: "FDS Logística Website",
             description:
-                "Sistema de gerenciamento de mudanças e logística com painel administrativo.",
+                "Sistema de gerenciamento de mudanças e logística com painel administrativo. Construído paineis de dívidas entre outros.",
             technologies: ["PHP Laravel", "VPS", "Domínios", "UI/UX"],
             urlProject: 'https://www.fdslogistica.com.br/',
           ),
