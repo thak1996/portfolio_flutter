@@ -34,10 +34,10 @@ class ContactFormLabels {
   final String submitButtonText;
 
   ContactFormLabels({
-    this.nameLabel = "Your Name",
-    this.emailLabel = "Your Email",
-    this.subjectLabel = "Subject",
-    this.messageLabel = "Message",
-    this.submitButtonText = "Send Message",
+    this.nameLabel = "Nome Completo",
+    this.emailLabel = "Email",
+    this.subjectLabel = "Assunto",
+    this.messageLabel = "Mensagem",
+    this.submitButtonText = "Enviar Mensagem",
   });
 }

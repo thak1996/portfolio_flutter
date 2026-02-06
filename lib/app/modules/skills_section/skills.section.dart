@@ -52,11 +52,11 @@ class SkillsSection extends StatelessWidget {
         children: [
           _buildCategoryHeader(Icons.code, "Hard Skills"),
           const SizedBox(height: 32),
-          _buildSubCategoryDivider("Linguagens de Programação"),
+          _buildSubCategoryDivider("LINGUAGENS E FRAMEWORKS"),
           ...content.programmingLanguages
               .map((skill) => _buildProgressBar(skill)),
           const SizedBox(height: 32),
-          _buildSubCategoryDivider("Ferramentas & Tecnologias"),
+          _buildSubCategoryDivider("FERRAMENTAS & TECNOLOGIAS"),
           Wrap(
             spacing: 12,
             runSpacing: 12,
@@ -85,7 +85,7 @@ class SkillsSection extends StatelessWidget {
                 .toList(),
           ),
           const SizedBox(height: 48),
-          _buildSubCategoryDivider("STRATEGIC AREAS"),
+          _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
           Wrap(
             spacing: 10,
             runSpacing: 10,

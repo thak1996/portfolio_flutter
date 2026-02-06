@@ -40,7 +40,7 @@ class SectionWidget extends StatelessWidget {
                 StudyData d => StudySection(content: d.content, padding: padding),
                 ProjectsData d => ProjectsSection(content: d.content, padding: padding),
                 ContactData d => ContactSection(content: d.content, padding: padding),
-                FooterData d => FooterSection(content: d.content),
+                FooterData d => FooterSection(content: d.content, onAction: onAction),
               },
             ),
           ),

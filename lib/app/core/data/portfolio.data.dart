@@ -10,6 +10,27 @@ import '../model/section.model.dart';
 import '../model/section.sealed.dart';
 import '../styles/colors.dart';
 
+const String _email = "dev@franklyndev.com.br";
+const String _location = "São Paulo, SP - Brasil";
+const String _githubUrl = "https://github.com/thak1996";
+const String _linkedinUrl = "https://www.linkedin.com/in/franklyn-v-santos/";
+const String _profilePic = "https://i.imgur.com/te69F3I.png";
+
+const String _mailtoUrl =
+    "mailto:$_email?subject=Proposta%20de%20Projeto&body=Olá,%20gostaria%20de%20conversar%20sobre%20um%20projeto";
+
+final List<SocialIcon> _heroSocials = [
+  SocialIcon(Icons.code, _githubUrl),
+  SocialIcon(Icons.link, _linkedinUrl),
+  SocialIcon(Icons.alternate_email, _mailtoUrl),
+];
+
+final List<SocialLinkModel> _footerSocials = [
+  SocialLinkModel(icon: Icons.code, url: _githubUrl),
+  SocialLinkModel(icon: Icons.link, url: _linkedinUrl),
+  SocialLinkModel(icon: Icons.alternate_email, url: _mailtoUrl),
+];
+
 final List<SectionModel> portfolioSections = [
   SectionModel(
     id: SectionType.hero,
@@ -22,16 +43,12 @@ final List<SectionModel> portfolioSections = [
         taglineHighlight: "Precisão.",
         description:
             "Desenvolvedor Mobile com foco em Flutter, atuando na construção de aplicações Android e iOS com uso de Dart, Firebase e arquitetura limpa.",
-        profileImageUrl: "https://i.imgur.com/te69F3I.png",
+        profileImageUrl: _profilePic,
         actions: [
           HeroCTA("Ver Projetos", isPrimary: true),
           HeroCTA("Contato", isPrimary: false),
         ],
-        socials: [
-          SocialIcon(Icons.code, "#"),
-          SocialIcon(Icons.alternate_email, "#"),
-          SocialIcon(Icons.share, "#"),
-        ],
+        socials: _heroSocials,
       ),
     ),
   ),
@@ -142,7 +159,6 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.study,
     title: "Educação",
@@ -177,11 +193,10 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.skills,
     title: "Habilidades",
-    backgroundColor: AppColors.bgDeep,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: SkillsData(
       content: SkillsModel(
@@ -232,11 +247,10 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.projects,
     title: "Projetos",
-    backgroundColor: AppColors.bgSlateDeep,
+    backgroundColor: AppColors.bgDeep,
     heightFactor: 0,
     data: ProjectsData(
       content: ProjectsModel(
@@ -258,7 +272,7 @@ final List<SectionModel> portfolioSections = [
                 'https://github.com/thak1996/brincar_e_conectar_flutter',
           ),
           ProjectItemModel(
-            title: "RH Manager (skeleton)",
+            title: "RH Manager",
             description:
                 "Gerenciador de RH (skeleton) construído com Laravel 10. Projeto configurado para desenvolvimento via Laravel Sail (Docker), MySQL e Vite para empacotamento de assets.",
             technologies: ["UI/UX", "PHP Laravel", "MySQL", "Docker"],
@@ -268,74 +282,52 @@ final List<SectionModel> portfolioSections = [
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.contact,
     title: "Contato",
     backgroundColor: AppColors.bgSlateDeep,
-    heightFactor: 0.8,
+    heightFactor: 0,
     data: ContactData(
       content: ContactModel(
-        title: "Get In Touch",
+        title: "Entre em Contato",
         description:
-            "I'm currently available for freelance work or full-time roles. If you have a project that needs some creative hacking, feel free to reach out.",
+            "Estou disponível para trabalhos freelancer ou posições de tempo integral. Se você tem um projeto que precisa de criatividade técnica, sinta-se livre para entrar em contato.",
         infoItems: [
           ContactInfoItem(
-            title: "Email Me",
-            value: "hello@portfolio.com",
+            title: "Envie um Email",
+            value: _email,
             icon: Icons.mail,
           ),
           ContactInfoItem(
-            title: "Location",
-            value: "San Francisco, California, US",
+            title: "Localização",
+            value: _location,
             icon: Icons.location_on,
           ),
           ContactInfoItem(
-            title: "Working Hours",
-            value: "Mon - Fri: 9:00 AM - 6:00 PM",
+            title: "Horário de Funcionamento",
+            value: "Seg - Sex: 9:00 - 18:00",
             icon: Icons.schedule,
           ),
         ],
         formLabels: ContactFormLabels(
-          nameLabel: "Your Name",
-          emailLabel: "Your Email",
-          submitButtonText: "Send Message",
+          nameLabel: "Seu Nome",
+          emailLabel: "Seu Email",
+          submitButtonText: "Enviar Mensagem",
         ),
       ),
     ),
   ),
-
   SectionModel(
     id: SectionType.footer,
     title: "",
-    backgroundColor: AppColors.bgDeep,
+    backgroundColor: AppColors.bgSlateDeep,
     heightFactor: 0,
     data: FooterData(
       content: FooterModel(
-        bio:
-            "Crafting high-quality software with a focus on performance, accessibility, and scalability.",
-        copyright: "© 2024 Software Engineer Portfolio. All rights reserved.",
-        socials: [
-          SocialLinkModel(icon: Icons.share, url: "#"),
-          SocialLinkModel(icon: Icons.code, url: "#"),
-          SocialLinkModel(icon: Icons.alternate_email, url: "#"),
-        ],
-        columns: [
-          FooterColumn(
-            title: "Quick Links",
-            links: [
-              FooterLink(label: "About", url: "#"),
-              FooterLink(label: "Experience", url: "#experience"),
-            ],
-          ),
-          FooterColumn(
-            title: "Socials",
-            links: [
-              FooterLink(label: "LinkedIn", url: "#"),
-              FooterLink(label: "GitHub", url: "#"),
-            ],
-          ),
-        ],
+        brandName: "Franklyn Viana dos Santos",
+        copyright:
+            "© ${DateTime.now().year} Software Engineer. All rights reserved.",
+        socials: _footerSocials,
       ),
     ),
   ),
