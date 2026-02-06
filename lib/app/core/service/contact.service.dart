@@ -13,7 +13,10 @@ class ContactService {
       final response = await http
           .post(
             Uri.parse(url),
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
             body: jsonEncode(data),
           )
           .timeout(const Duration(seconds: 10));
