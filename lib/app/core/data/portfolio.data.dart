@@ -272,6 +272,7 @@ List<SectionModel> getPortfolioSections(
               title: l10n.contactInfoEmailTitle,
               value: _email,
               icon: Icons.mail,
+              url: emailUri.toString(),
             ),
             ContactInfoItem(
               title: l10n.contactInfoLocationTitle,

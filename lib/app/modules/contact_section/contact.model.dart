@@ -20,11 +20,13 @@ class ContactInfoItem {
   final String title;
   final String value;
   final IconData icon;
+  final String? url;
 
   ContactInfoItem({
     required this.title,
     required this.value,
     required this.icon,
+    this.url,
   });
 }
 

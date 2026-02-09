@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
 import 'package:portfolio_flutter/app/modules/widgets/text_field.widget.dart';
 import 'package:portfolio_flutter/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -173,7 +174,8 @@ class _ContactSectionState extends State<ContactSection> {
                                   label: widget.content.formLabels.nameLabel,
                                   controller: _nameCtrl,
                                   hint: widget.content.formLabels.nameHint,
-                                  validator: (v) => AppValidators.validateRequired(v, l10n),
+                                  validator: (v) =>
+                                      AppValidators.validateRequired(v, l10n),
                                 ),
                               ),
                               ResponsiveRowColumnItem(
@@ -183,7 +185,8 @@ class _ContactSectionState extends State<ContactSection> {
                                   controller: _emailCtrl,
                                   hint: widget.content.formLabels.emailHint,
                                   keyboardType: TextInputType.emailAddress,
-                                  validator: (v) => AppValidators.validateEmail(v, l10n),
+                                  validator: (v) =>
+                                      AppValidators.validateEmail(v, l10n),
                                 ),
                               ),
                             ],
@@ -308,69 +311,81 @@ class _ContactInfoTileState extends State<_ContactInfoTile> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isClickable = widget.item.url != null && widget.item.url != '#';
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.basic,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 32),
-        child: Row(
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: _isHovered
-                    ? AppColors.primary.withValues(alpha: 0.15)
-                    : const Color(0xFF1E293B),
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(
-                  color: _isHovered ? AppColors.primary : Colors.transparent,
-                  width: 1,
+        child: GestureDetector(
+          onTap: () => isClickable ? openUrl(widget.item.url!) : null,
+          child: MouseRegion(
+            cursor: isClickable
+                ? SystemMouseCursors.click
+                : SystemMouseCursors.basic,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: _isHovered
+                        ? AppColors.primary.withValues(alpha: 0.15)
+                        : const Color(0xFF1E293B),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color:
+                          _isHovered ? AppColors.primary : Colors.transparent,
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      if (_isHovered)
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.3),
+                          blurRadius: 15,
+                          spreadRadius: 2,
+                        ),
+                    ],
+                  ),
+                  child: Icon(
+                    widget.item.icon,
+                    color: _isHovered ? Colors.white : AppColors.primary,
+                    size: 24,
+                  ),
                 ),
-                boxShadow: [
-                  if (_isHovered)
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                      blurRadius: 15,
-                      spreadRadius: 2,
-                    ),
-                ],
-              ),
-              child: Icon(
-                widget.item.icon,
-                color: _isHovered ? Colors.white : AppColors.primary,
-                size: 24,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.item.title,
-                    style: TextStyle(
-                      color: _isHovered ? Colors.white : Colors.white70,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.item.title,
+                        style: TextStyle(
+                          color: _isHovered ? Colors.white : Colors.white70,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        widget.item.value,
+                        style: TextStyle(
+                          color: _isHovered
+                              ? AppColors.primary.withValues(alpha: 0.8)
+                              : const Color(0xFF94A3B8),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    widget.item.value,
-                    style: TextStyle(
-                      color: _isHovered
-                          ? AppColors.primary.withValues(alpha: 0.8)
-                          : const Color(0xFF94A3B8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
