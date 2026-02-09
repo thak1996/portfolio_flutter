@@ -106,6 +106,13 @@
   "contactInfoLocationValue": "São Paulo, SP - Brazil",
   "contactInfoHoursTitle": "Business Hours",
   "contactInfoHoursValue": "Mon - Fri: 9:00 AM - 6:00 PM",
+  "contactFormSuccess": "Message sent successfully!",
+  "contactFormError": "An error occurred while sending. Please try again.",
+  "contactEmailSubject": "Project Proposal",
+  "contactEmailBody": "Hi, I'd like to talk about a project",
+  "errorRequired": "Required field",
+  "errorInvalidEmail": "Enter a valid email",
+  "errorInvalidPhone": "Invalid phone number",
 
   "footerCopyright": "© {year} Software Engineer. All rights reserved.",
   "footerBrand": "Franklyn Viana dos Santos",

@@ -40,6 +40,8 @@ class ContactFormLabels {
   final String messageLabel;
   final String messageHint;
   final String submitButtonText;
+  final String successMessage;
+  final String errorMessage;
 
   ContactFormLabels({
     required this.nameLabel,
@@ -53,5 +55,7 @@ class ContactFormLabels {
     required this.messageLabel,
     required this.messageHint,
     required this.submitButtonText,
+    required this.successMessage,
+    required this.errorMessage,
   });
 }

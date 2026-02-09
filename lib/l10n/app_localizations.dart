@@ -674,6 +674,48 @@ abstract class AppLocalizations {
   /// **'Seg - Sex: 9:00 - 18:00'**
   String get contactInfoHoursValue;
 
+  /// No description provided for @contactFormSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Mensagem enviada com sucesso!'**
+  String get contactFormSuccess;
+
+  /// No description provided for @contactFormError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ocorreu um erro ao enviar. Tente novamente.'**
+  String get contactFormError;
+
+  /// No description provided for @contactEmailSubject.
+  ///
+  /// In pt, this message translates to:
+  /// **'Proposta de Projeto'**
+  String get contactEmailSubject;
+
+  /// No description provided for @contactEmailBody.
+  ///
+  /// In pt, this message translates to:
+  /// **'Olá, gostaria de conversar sobre um projeto'**
+  String get contactEmailBody;
+
+  /// No description provided for @errorRequired.
+  ///
+  /// In pt, this message translates to:
+  /// **'Campo obrigatório'**
+  String get errorRequired;
+
+  /// No description provided for @errorInvalidEmail.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite um e-mail válido'**
+  String get errorInvalidEmail;
+
+  /// No description provided for @errorInvalidPhone.
+  ///
+  /// In pt, this message translates to:
+  /// **'Telefone inválido'**
+  String get errorInvalidPhone;
+
   /// No description provided for @footerCopyright.
   ///
   /// In pt, this message translates to:

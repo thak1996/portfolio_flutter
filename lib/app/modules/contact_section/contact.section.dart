@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_flutter/app/modules/widgets/text_field.widget.dart';
+import 'package:portfolio_flutter/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -53,6 +54,7 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     final controller = context.watch<ContactController>();
     final breakpoint = ResponsiveBreakpoints.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final double horizontalPadding = ResponsiveValue<double>(
       context,
@@ -171,7 +173,7 @@ class _ContactSectionState extends State<ContactSection> {
                                   label: widget.content.formLabels.nameLabel,
                                   controller: _nameCtrl,
                                   hint: widget.content.formLabels.nameHint,
-                                  validator: AppValidators.validateRequired,
+                                  validator: (v) => AppValidators.validateRequired(v, l10n),
                                 ),
                               ),
                               ResponsiveRowColumnItem(
@@ -181,7 +183,7 @@ class _ContactSectionState extends State<ContactSection> {
                                   controller: _emailCtrl,
                                   hint: widget.content.formLabels.emailHint,
                                   keyboardType: TextInputType.emailAddress,
-                                  validator: AppValidators.validateEmail,
+                                  validator: (v) => AppValidators.validateEmail(v, l10n),
                                 ),
                               ),
                             ],
@@ -200,7 +202,8 @@ class _ContactSectionState extends State<ContactSection> {
                                   label: widget.content.formLabels.subjectLabel,
                                   controller: _subjectCtrl,
                                   hint: widget.content.formLabels.subjectHint,
-                                  validator: AppValidators.validateRequired,
+                                  validator: (v) =>
+                                      AppValidators.validateRequired(v, l10n),
                                 ),
                               ),
                               ResponsiveRowColumnItem(
@@ -211,7 +214,8 @@ class _ContactSectionState extends State<ContactSection> {
                                   hint: widget.content.formLabels.phoneHint,
                                   keyboardType: TextInputType.phone,
                                   inputFormatters: [_phoneMask],
-                                  validator: AppValidators.validatePhone,
+                                  validator: (v) =>
+                                      AppValidators.validatePhone(v, l10n),
                                 ),
                               ),
                             ],
@@ -222,7 +226,8 @@ class _ContactSectionState extends State<ContactSection> {
                             controller: _messageCtrl,
                             hint: widget.content.formLabels.messageHint,
                             maxLines: 5,
-                            validator: AppValidators.validateRequired,
+                            validator: (v) =>
+                                AppValidators.validateRequired(v, l10n),
                           ),
                           const SizedBox(height: 32),
                           SizedBox(
@@ -250,12 +255,14 @@ class _ContactSectionState extends State<ContactSection> {
 
   void _handleSend(ContactController controller) async {
     if (_formKey.currentState!.validate()) {
+      final String currentLang = Localizations.localeOf(context).languageCode;
       final ok = await controller.send(
         _nameCtrl.text,
         _emailCtrl.text,
         _phoneCtrl.text,
         _subjectCtrl.text,
         _messageCtrl.text,
+        currentLang,
       );
 
       if (mounted) {
@@ -277,8 +284,8 @@ class _ContactSectionState extends State<ContactSection> {
       SnackBar(
         content: Text(
           success
-              ? "Mensagem enviada! Entrarei em contato em breve. 🚀"
-              : "Ocorreu um erro ao enviar. Tente novamente.",
+              ? widget.content.formLabels.successMessage
+              : widget.content.formLabels.errorMessage,
         ),
         backgroundColor: success ? Colors.green.shade800 : Colors.red.shade800,
         behavior: SnackBarBehavior.floating,

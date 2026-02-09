@@ -16,8 +16,13 @@ const String _email = "dev@franklyndev.com.br";
 const String _githubUrl = "https://github.com/thak1996";
 const String _linkedinUrl = "https://www.linkedin.com/in/franklyn-v-santos/";
 const String _profilePic = "https://i.imgur.com/te69F3I.png";
-const String _mailtoUrl =
-    "mailto:$_email?subject=Proposta%20de%20Projeto&body=Olá,%20gostaria%20de%20conversar%20sobre%20um%20projeto";
+
+String? _encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((MapEntry<String, String> e) =>
+          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
+}
 
 List<SectionModel> getPortfolioSections(
   BuildContext context,
@@ -25,16 +30,25 @@ List<SectionModel> getPortfolioSections(
 ) {
   final l10n = AppLocalizations.of(context)!;
 
+  final Uri emailUri = Uri(
+    scheme: 'mailto',
+    path: _email,
+    query: _encodeQueryParameters({
+      'subject': l10n.contactEmailSubject,
+      'body': l10n.contactEmailBody,
+    }),
+  );
+
   final List<SocialIcon> heroSocials = [
     SocialIcon(Bootstrap.github, _githubUrl),
     SocialIcon(Bootstrap.linkedin, _linkedinUrl),
-    SocialIcon(Bootstrap.envelope_at, _mailtoUrl),
+    SocialIcon(Bootstrap.envelope_at, emailUri.toString()),
   ];
 
   final List<SocialLinkModel> footerSocials = [
     SocialLinkModel(icon: Bootstrap.github, url: _githubUrl),
     SocialLinkModel(icon: Bootstrap.linkedin, url: _linkedinUrl),
-    SocialLinkModel(icon: Bootstrap.envelope_at, url: _mailtoUrl),
+    SocialLinkModel(icon: Bootstrap.envelope_at, url: emailUri.toString()),
   ];
 
   return [
@@ -282,6 +296,8 @@ List<SectionModel> getPortfolioSections(
             messageLabel: l10n.contactLabelMessage,
             messageHint: l10n.contactHintMessage,
             submitButtonText: l10n.contactBtnSubmit,
+            successMessage: l10n.contactFormSuccess,
+            errorMessage: l10n.contactFormError,
           ),
         ),
       ),

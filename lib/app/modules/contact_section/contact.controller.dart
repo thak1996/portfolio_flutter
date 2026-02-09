@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../core/service/contact.service.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +13,10 @@ class ContactController extends ChangeNotifier {
     String phone,
     String subject,
     String message,
+    String currentLang,
   ) async {
     _isLoading = true;
     notifyListeners();
-
-    log("Sending contact form: name=$name, email=$email, phone=$phone, subject=$subject, message=$message");
 
     final success = await _service.postWebhook({
       "name": name,
@@ -27,6 +24,7 @@ class ContactController extends ChangeNotifier {
       "phone": phone,
       "subject": subject,
       "message": message,
+      "lang": currentLang,
     });
 
     _isLoading = false;

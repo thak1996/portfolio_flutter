@@ -316,6 +316,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactInfoHoursValue => 'Mon - Fri: 9:00 AM - 6:00 PM';
 
   @override
+  String get contactFormSuccess => 'Message sent successfully!';
+
+  @override
+  String get contactFormError =>
+      'An error occurred while sending. Please try again.';
+
+  @override
+  String get contactEmailSubject => 'Project Proposal';
+
+  @override
+  String get contactEmailBody => 'Hi, I\'d like to talk about a project';
+
+  @override
+  String get errorRequired => 'Required field';
+
+  @override
+  String get errorInvalidEmail => 'Enter a valid email';
+
+  @override
+  String get errorInvalidPhone => 'Invalid phone number';
+
+  @override
   String footerCopyright(String year) {
     return '© $year Software Engineer. All rights reserved.';
   }
