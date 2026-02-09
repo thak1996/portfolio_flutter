@@ -1,0 +1,88 @@
+{
+  "@@locale": "pt",
+  "sectionAbout": "Sobre",
+  "heroTagline": "Criando Soluções Digitais com ",
+  "heroTaglineHighlight": "Precisão.",
+  "heroDescription": "Desenvolvedor Mobile com foco em Flutter, atuando na construção de aplicações Android e iOS com uso de Dart, Firebase e arquitetura limpa.",
+  "heroCtaProjects": "Ver Projetos",
+  "heroCtaContact": "Contato",
+
+  "experienceTitle": "Experiência",
+  "expJob1Role": "Desenvolvedor Full Stack",
+  "expJob1Stack": "Modernização e Infraestrutura",
+  "expJob1Company": "FDS Logística e Terceirização",
+  "expJob1Period": "jul de 2025 - até o momento",
+  "expJob1Location": "Remoto",
+  "expJob1Points": "Reformulação completa de interface (UI/UX) visando a modernização e responsividade|Implementação e migração de sistema utilizando PHP Laravel e Filament PHP|Configuração e deploy de ambiente de produção em servidor VPS|Gestão de infraestrutura de rede e zonas DNS|Administração e migração de serviços de e-mail corporativo",
+
+  "expJob2Role": "Desenvolvedor de Software",
+  "expJob2Stack": "Automação & Integração",
+  "expJob2Company": "Autônomo",
+  "expJob2Period": "set de 2025 - dez de 2025",
+  "expJob2Points": "Desenvolvimento de integrações para captura de formulários web|Criação de automações utilizando Google Apps Script|Integração entre sistemas via Google Sheets",
+
+  "expJob3Role": "Desenvolvedor Mobile Flutter",
+  "expJob3Stack": "Projeto Pontual",
+  "expJob3Company": "Autônomo",
+  "expJob3Period": "Mai de 2025",
+  "expJob3Points": "Implementação de Clean Architecture visando escalabilidade|Sincronização de dados entre Firebase e ObjectBox",
+
+  "expJob4Role": "Desenvolvedor de Software",
+  "expJob4Company": "Eagless",
+  "expJob4Period": "nov de 2023 - nov de 2024",
+  "expJob4Points": "Desenvolvimento de aplicações mobile e web utilizando Flutter|Criação de APIs REST com PHP Laravel para integração com apps mobile|Integração eficiente entre frontend e backend|Desenvolvimento de painéis administrativos para gestão de dados|Otimização de aplicações com foco em performance e usabilidade",
+
+  "educationTitle": "Educação",
+  "eduDegree1": "Análise e Desenvolvimento de Sistemas",
+  "eduInst1": "Uninter Centro Universitário Internacional",
+  "eduDegree2": "Desenvolvimento Mobile",
+  "eduDegree3": "Flutter & Dart",
+  "eduInst3": "Raro Academy",
+
+  "skillsTitle": "Habilidades",
+  "skillSoftArchTitle": "Arquitetura Limpa",
+  "skillSoftArchDesc": "Foco em código desacoplado, testável e escalável utilizando Clean Architecture.",
+  "skillSoftProbTitle": "Resolução de Problemas",
+  "skillSoftProbDesc": "Habilidade em analisar problemas técnicos e implementar automações eficientes.",
+  "skillSoftFullTitle": "Mentalidade Full Stack",
+  "skillSoftFullDesc": "Visão holística do projeto, desde a infraestrutura VPS até a interface mobile.",
+  "strategicAreas": "Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede",
+
+  "projectsTitle": "Projetos",
+  "proj1Title": "FDS Logística Website",
+  "proj1Desc": "Sistema de gerenciamento de mudanças e logística com painel administrativo e dashboards de controle.",
+  "proj2Title": "Brincar e Conectar App",
+  "proj2Desc": "Aplicação mobile para instituições e orfanatos, focada em conexão social.",
+  "proj3Title": "RH Manager",
+  "proj3Desc": "Gerenciador de RH construído com Laravel 10, Docker e MySQL.",
+
+  "contactTitle": "Contato",
+  "contactSubtitle": "Vamos discutir seu próximo projeto",
+  "contactHeading": "Entre em Contato",
+  "contactDesc": "Estou disponível para trabalhos freelancer ou posições de tempo integral. Sinta-se livre para entrar em contato.",
+  "contactLabelName": "Seu Nome",
+  "contactHintName": "Digite seu nome completo",
+  "contactLabelEmail": "Seu Email",
+  "contactHintEmail": "Digite seu email",
+  "contactLabelSubject": "Assunto",
+  "contactHintSubject": "Digite o assunto",
+  "contactLabelPhone": "Telefone",
+  "contactHintPhone": "Digite seu telefone",
+  "contactLabelMessage": "Mensagem",
+  "contactHintMessage": "Conte-me sobre o seu projeto...",
+  "contactBtnSubmit": "Enviar Mensagem",
+  "contactInfoEmailTitle": "Envie um Email",
+  "contactInfoLocationTitle": "Localização",
+  "contactInfoLocationValue": "São Paulo, SP - Brasil",
+  "contactInfoHoursTitle": "Horário de Funcionamento",
+  "contactInfoHoursValue": "Seg - Sex: 9:00 - 18:00",
+
+  "footerCopyright": "© {year} Software Engineer. All rights reserved.",
+  "@footerCopyright": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  }
+}

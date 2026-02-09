@@ -96,7 +96,7 @@ class _ContactSectionState extends State<ContactSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Vamos discutir seu próximo projeto",
+                      widget.content.subtitle,
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.9),
                         fontSize: breakpoint.isMobile ? 20 : 24,
@@ -170,7 +170,7 @@ class _ContactSectionState extends State<ContactSection> {
                                 child: TextFieldWidget(
                                   label: widget.content.formLabels.nameLabel,
                                   controller: _nameCtrl,
-                                  hint: "João Silva",
+                                  hint: widget.content.formLabels.nameHint,
                                   validator: AppValidators.validateRequired,
                                 ),
                               ),
@@ -179,7 +179,7 @@ class _ContactSectionState extends State<ContactSection> {
                                 child: TextFieldWidget(
                                   label: widget.content.formLabels.emailLabel,
                                   controller: _emailCtrl,
-                                  hint: "joao@exemplo.com",
+                                  hint: widget.content.formLabels.emailHint,
                                   keyboardType: TextInputType.emailAddress,
                                   validator: AppValidators.validateEmail,
                                 ),
@@ -199,7 +199,7 @@ class _ContactSectionState extends State<ContactSection> {
                                 child: TextFieldWidget(
                                   label: widget.content.formLabels.subjectLabel,
                                   controller: _subjectCtrl,
-                                  hint: "Consulta de Projeto",
+                                  hint: widget.content.formLabels.subjectHint,
                                   validator: AppValidators.validateRequired,
                                 ),
                               ),
@@ -208,7 +208,7 @@ class _ContactSectionState extends State<ContactSection> {
                                 child: TextFieldWidget(
                                   label: widget.content.formLabels.phoneLabel,
                                   controller: _phoneCtrl,
-                                  hint: "(11) 9 9999-9999",
+                                  hint: widget.content.formLabels.phoneHint,
                                   keyboardType: TextInputType.phone,
                                   inputFormatters: [_phoneMask],
                                   validator: AppValidators.validatePhone,
@@ -218,9 +218,9 @@ class _ContactSectionState extends State<ContactSection> {
                           ),
                           const SizedBox(height: 24),
                           TextFieldWidget(
-                            label: "Mensagem",
+                            label: widget.content.formLabels.messageLabel,
                             controller: _messageCtrl,
-                            hint: "Conte-me sobre o seu projeto...",
+                            hint: widget.content.formLabels.messageHint,
                             maxLines: 5,
                             validator: AppValidators.validateRequired,
                           ),

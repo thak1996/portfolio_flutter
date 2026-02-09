@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:portfolio_flutter/app/core/model/section.model.dart';
 import '../../core/data/portfolio.data.dart';
+import '../../core/locale/locale.widget.dart';
 import '../../core/styles/colors.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
@@ -23,6 +24,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
     final breakpoint = ResponsiveBreakpoints.of(context);
+   final sections = getPortfolioSections(context, {});
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isAppBarHovered = true),
@@ -62,12 +64,13 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     _NavBrand(
                       onTap: () => widget.onSectionClick(SectionType.hero),
                     ),
+
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (breakpoint.isDesktop)
                           Row(
-                            children: portfolioSections
+                            children: sections
                                 .where((s) => s.title.isNotEmpty)
                                 .map(
                                   (section) => _NavBarItem(
@@ -78,7 +81,13 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                 )
                                 .toList(),
                           ),
-                        if (!breakpoint.isDesktop)
+
+                        const SizedBox(width: 16),
+
+                        LocaleToggleWidget(),
+
+                        if (!breakpoint.isDesktop) ...[
+                          const SizedBox(width: 8),
                           IconButton(
                             onPressed: () =>
                                 Scaffold.of(context).openEndDrawer(),
@@ -95,6 +104,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                               ),
                             ),
                           ),
+                        ],
                       ],
                     ),
                   ],

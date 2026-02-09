@@ -23,7 +23,8 @@ class SectionModel {
     required this.id,
     required this.title,
     required this.backgroundColor,
-    this.heightFactor = 1.0,
+    this.heightFactor = 0,
     required this.data,
-  }) : key = GlobalKey();
+    required this.key,
+  });
 }

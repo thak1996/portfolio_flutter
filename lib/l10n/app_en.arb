@@ -1,0 +1,89 @@
+{
+  "@@locale": "en",
+  "sectionAbout": "About",
+  "heroTagline": "Creating Digital Solutions with ",
+  "heroTaglineHighlight": "Precision.",
+  "heroDescription": "Mobile Developer focused on Flutter, building Android and iOS applications using Dart, Firebase, and Clean Architecture.",
+  "heroCtaProjects": "View Projects",
+  "heroCtaContact": "Contact",
+
+  "experienceTitle": "Experience",
+  "expJob1Role": "Full Stack Developer",
+  "expJob1Stack": "Modernization & Infrastructure",
+  "expJob1Company": "FDS Logística e Terceirização",
+  "expJob1Period": "Jul 2025 - Present",
+  "expJob1Location": "Remote",
+  "expJob1Points": "Complete interface overhaul (UI/UX) for modernization|Implementation of systems using PHP Laravel and Filament PHP|Configuration and deployment on VPS servers|Network infrastructure and DNS management|Corporate email service administration",
+
+  "expJob2Role": "Software Developer",
+  "expJob2Stack": "Automation & Integration",
+  "expJob2Company": "Freelance",
+  "expJob2Period": "Sep 2025 - Dec 2025",
+  "expJob2Points": "Development of integrations for web forms|Creation of automations using Google Apps Script|System integration via Google Sheets",
+
+  "expJob3Role": "Flutter Mobile Developer",
+  "expJob3Stack": "Project-based",
+  "expJob3Company": "Freelance",
+  "expJob3Period": "May 2025",
+  "expJob3Points": "Clean Architecture implementation for scalability|Data sync between Firebase and ObjectBox",
+
+  "expJob4Role": "Software Developer",
+  "expJob4Company": "Eagless",
+  "expJob4Period": "Nov 2023 - Nov 2024",
+  "expJob4Points": "Development of mobile and web applications using Flutter|Creation of REST APIs with PHP Laravel for integration with mobile apps|Efficient integration between frontend and backend|Development of administrative panels for data management|Optimization of applications focusing on performance and usability",
+
+  "educationTitle": "Education",
+  "eduDegree1": "Analysis and Systems Development",
+  "eduInst1": "Uninter International University",
+  "eduDegree2": "Mobile Development",
+  "eduDegree3": "Flutter & Dart",
+  "eduInst3": "Raro Academy",
+
+  "skillsTitle": "Skills",
+  "skillSoftArchTitle": "Clean Architecture",
+  "skillSoftArchDesc": "Focus on decoupled, testable, and scalable code using Clean Architecture.",
+  "skillSoftProbTitle": "Problem Solving",
+  "skillSoftProbDesc": "Ability to analyze technical issues and implement efficient automations.",
+  "skillSoftFullTitle": "Full Stack Mindset",
+  "skillSoftFullDesc": "Holistic project view, from VPS infrastructure to mobile interface.",
+  "strategicAreas": "REST API Integration|State Management (Cubit/Bloc)|CI/CD & Automated Deploy|Performance Optimization|Network Infrastructure Management",
+
+  "projectsTitle": "Projects",
+  "proj1Title": "FDS Logística Website",
+  "proj1Desc": "Logistics and relocation management system with administrative panel and control dashboards.",
+  "proj2Title": "Brincar e Conectar App",
+  "proj2Desc": "Mobile application for institutions and orphanages, focused on social connection.",
+  "proj3Title": "RH Manager",
+  "proj3Desc": "HR Manager built with Laravel 10, Docker, and MySQL.",
+
+  "contactTitle": "Contact",
+  "contactSubtitle": "Let's discuss your next project",
+  "contactHeading": "Get in Touch",
+  "contactDesc": "I am available for freelance work or full-time positions. Feel free to get in touch.",
+  "contactLabelName": "Your Name",
+  "contactHintName": "Enter your full name",
+  "contactLabelEmail": "Your Email",
+  "contactHintEmail": "Enter your email",
+  "contactLabelSubject": "Subject",
+  "contactHintSubject": "Enter the subject",
+  "contactLabelPhone": "Phone",
+  "contactHintPhone": "Enter your phone number",
+  "contactLabelMessage": "Message",
+  "contactHintMessage": "Tell me about your project...",
+  "contactBtnSubmit": "Send Message",
+  "contactInfoEmailTitle": "Send an Email",
+  "contactInfoLocationTitle": "Location",
+  "contactInfoLocationValue": "São Paulo, SP - Brazil",
+  "contactInfoHoursTitle": "Business Hours",
+  "contactInfoHoursValue": "Mon - Fri: 9:00 AM - 6:00 PM",
+  
+
+  "footerCopyright": "© {year} Software Engineer. All rights reserved.",
+  "@footerCopyright": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  }
+}

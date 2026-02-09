@@ -18,6 +18,10 @@ class _HomePageState extends State<HomePage> {
   final ValueNotifier<Offset> _mousePos = ValueNotifier(const Offset(0, 0));
   final ScrollController _scrollController = ScrollController();
 
+  final Map<SectionType, GlobalKey> _sectionKeys = {
+    for (var type in SectionType.values) type: GlobalKey(),
+  };
+
   @override
   void initState() {
     super.initState();
@@ -34,22 +38,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scrollToSection(SectionType id) {
-    try {
-      final section = portfolioSections.firstWhere((s) => s.id == id);
-      if (section.key.currentContext != null) {
-        Scrollable.ensureVisible(
-          section.key.currentContext!,
-          duration: const Duration(seconds: 1),
-          curve: Curves.easeInOutQuart,
-        );
-      }
-    } catch (e) {
-      debugPrint("Section $id not found");
+    final key = _sectionKeys[id];
+    if (key?.currentContext != null) {
+      Scrollable.ensureVisible(
+        key!.currentContext!,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeInOutQuart,
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final sections = getPortfolioSections(context, _sectionKeys);
+
     final breakpoint = ResponsiveBreakpoints.of(context);
     final isDesktop = breakpoint.isDesktop;
 
@@ -62,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               const SizedBox(height: 40),
-              ...portfolioSections.where((s) => s.title.isNotEmpty).map(
+              ...sections.where((s) => s.title.isNotEmpty).map(
                     (section) => ListTile(
                       title: Text(
                         section.title,
@@ -109,14 +111,13 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
-
             LayoutBuilder(
               builder: (context, constraints) {
                 final double viewportHeight = constraints.maxHeight;
                 return SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(
-                    children: portfolioSections.map((section) {
+                    children: sections.map((section) {
                       final double? sectionHeight =
                           (isDesktop && section.heightFactor > 0)
                               ? viewportHeight * section.heightFactor
