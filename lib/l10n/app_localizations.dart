@@ -176,6 +176,12 @@ abstract class AppLocalizations {
   /// **'Reformulação completa de interface (UI/UX) visando a modernização e responsividade|Implementação e migração de sistema utilizando PHP Laravel e Filament PHP|Configuração e deploy de ambiente de produção em servidor VPS|Gestão de infraestrutura de rede e zonas DNS|Administração e migração de serviços de e-mail corporativo'**
   String get expJob1Points;
 
+  /// No description provided for @expJob1Skills.
+  ///
+  /// In pt, this message translates to:
+  /// **'PHP Laravel|Filament PHP|Administração de Servidores (VPS)|DNS & Domínios|UI/UX Design'**
+  String get expJob1Skills;
+
   /// No description provided for @expJob2Role.
   ///
   /// In pt, this message translates to:
@@ -200,11 +206,23 @@ abstract class AppLocalizations {
   /// **'set de 2025 - dez de 2025'**
   String get expJob2Period;
 
+  /// No description provided for @expJob2Location.
+  ///
+  /// In pt, this message translates to:
+  /// **'Remoto'**
+  String get expJob2Location;
+
   /// No description provided for @expJob2Points.
   ///
   /// In pt, this message translates to:
   /// **'Desenvolvimento de integrações para captura de formulários web|Criação de automações utilizando Google Apps Script|Integração entre sistemas via Google Sheets'**
   String get expJob2Points;
+
+  /// No description provided for @expJob2Skills.
+  ///
+  /// In pt, this message translates to:
+  /// **'Google Apps Script|WebHooks|Google Sheets|Integrações de APIs|JavaScript|JSON|Automação de Processos'**
+  String get expJob2Skills;
 
   /// No description provided for @expJob3Role.
   ///
@@ -230,17 +248,35 @@ abstract class AppLocalizations {
   /// **'Mai de 2025'**
   String get expJob3Period;
 
+  /// No description provided for @expJob3Location.
+  ///
+  /// In pt, this message translates to:
+  /// **'Remoto'**
+  String get expJob3Location;
+
   /// No description provided for @expJob3Points.
   ///
   /// In pt, this message translates to:
   /// **'Implementação de Clean Architecture visando escalabilidade|Sincronização de dados entre Firebase e ObjectBox'**
   String get expJob3Points;
 
+  /// No description provided for @expJob3Skills.
+  ///
+  /// In pt, this message translates to:
+  /// **'Clean Architecture|ObjectBox|Firebase|Android & iOS|Dart|Flutter|Cubit'**
+  String get expJob3Skills;
+
   /// No description provided for @expJob4Role.
   ///
   /// In pt, this message translates to:
   /// **'Desenvolvedor de Software'**
   String get expJob4Role;
+
+  /// No description provided for @expJob4Stack.
+  ///
+  /// In pt, this message translates to:
+  /// **'Flutter & Backend'**
+  String get expJob4Stack;
 
   /// No description provided for @expJob4Company.
   ///
@@ -254,11 +290,23 @@ abstract class AppLocalizations {
   /// **'nov de 2023 - nov de 2024'**
   String get expJob4Period;
 
+  /// No description provided for @expJob4Location.
+  ///
+  /// In pt, this message translates to:
+  /// **'Remoto'**
+  String get expJob4Location;
+
   /// No description provided for @expJob4Points.
   ///
   /// In pt, this message translates to:
   /// **'Desenvolvimento de aplicações mobile e web utilizando Flutter|Criação de APIs REST com PHP Laravel para integração com apps mobile|Integração eficiente entre frontend e backend|Desenvolvimento de painéis administrativos para gestão de dados|Otimização de aplicações com foco em performance e usabilidade'**
   String get expJob4Points;
+
+  /// No description provided for @expJob4Skills.
+  ///
+  /// In pt, this message translates to:
+  /// **'Git/GitFlow|REST APIs|Flutter|Dart|PHP Laravel|MySQL'**
+  String get expJob4Skills;
 
   /// No description provided for @educationTitle.
   ///
@@ -278,11 +326,41 @@ abstract class AppLocalizations {
   /// **'Uninter Centro Universitário Internacional'**
   String get eduInst1;
 
+  /// No description provided for @eduLocation1.
+  ///
+  /// In pt, this message translates to:
+  /// **'São Paulo, Brasil'**
+  String get eduLocation1;
+
+  /// No description provided for @eduYear1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Jan de 2026 - Fev de 2027'**
+  String get eduYear1;
+
   /// No description provided for @eduDegree2.
   ///
   /// In pt, this message translates to:
   /// **'Desenvolvimento Mobile'**
   String get eduDegree2;
+
+  /// No description provided for @eduInst2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Raro Academy'**
+  String get eduInst2;
+
+  /// No description provided for @eduLocation2.
+  ///
+  /// In pt, this message translates to:
+  /// **'São Paulo, Brasil'**
+  String get eduLocation2;
+
+  /// No description provided for @eduYear2.
+  ///
+  /// In pt, this message translates to:
+  /// **'Jul de 2023 - Nov de 2025'**
+  String get eduYear2;
 
   /// No description provided for @eduDegree3.
   ///
@@ -295,6 +373,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Raro Academy'**
   String get eduInst3;
+
+  /// No description provided for @eduLocation3.
+  ///
+  /// In pt, this message translates to:
+  /// **'São Paulo, Brasil'**
+  String get eduLocation3;
+
+  /// No description provided for @eduYear3.
+  ///
+  /// In pt, this message translates to:
+  /// **'Jul de 2022 - Set de 2022'**
+  String get eduYear3;
 
   /// No description provided for @skillsTitle.
   ///
@@ -344,6 +434,42 @@ abstract class AppLocalizations {
   /// **'Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede'**
   String get strategicAreas;
 
+  /// No description provided for @skillTools.
+  ///
+  /// In pt, this message translates to:
+  /// **'Git / GitFlow|Docker (Sail)|VPS & Linux (SSH)|Filament PHP|Firebase (Auth/Firestore)|Figma (UI/UX)|ObjectBox|Postman'**
+  String get skillTools;
+
+  /// No description provided for @skillHard1.
+  ///
+  /// In pt, this message translates to:
+  /// **'Flutter & Dart'**
+  String get skillHard1;
+
+  /// No description provided for @skillHard2.
+  ///
+  /// In pt, this message translates to:
+  /// **'PHP (Laravel)'**
+  String get skillHard2;
+
+  /// No description provided for @skillHard3.
+  ///
+  /// In pt, this message translates to:
+  /// **'JavaScript'**
+  String get skillHard3;
+
+  /// No description provided for @skillHard4.
+  ///
+  /// In pt, this message translates to:
+  /// **'SQL (MySQL)'**
+  String get skillHard4;
+
+  /// No description provided for @skillHard5.
+  ///
+  /// In pt, this message translates to:
+  /// **'Google Apps Script'**
+  String get skillHard5;
+
   /// No description provided for @projectsTitle.
   ///
   /// In pt, this message translates to:
@@ -362,6 +488,12 @@ abstract class AppLocalizations {
   /// **'Sistema de gerenciamento de mudanças e logística com painel administrativo e dashboards de controle.'**
   String get proj1Desc;
 
+  /// No description provided for @proj1Technologies.
+  ///
+  /// In pt, this message translates to:
+  /// **'PHP Laravel|VPS|Domínios|UI/UX'**
+  String get proj1Technologies;
+
   /// No description provided for @proj2Title.
   ///
   /// In pt, this message translates to:
@@ -374,6 +506,12 @@ abstract class AppLocalizations {
   /// **'Aplicação mobile para instituições e orfanatos, focada em conexão social.'**
   String get proj2Desc;
 
+  /// No description provided for @proj2Technologies.
+  ///
+  /// In pt, this message translates to:
+  /// **'Flutter|UI/UX|Dart|Bloc'**
+  String get proj2Technologies;
+
   /// No description provided for @proj3Title.
   ///
   /// In pt, this message translates to:
@@ -385,6 +523,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Gerenciador de RH construído com Laravel 10, Docker e MySQL.'**
   String get proj3Desc;
+
+  /// No description provided for @proj3Technologies.
+  ///
+  /// In pt, this message translates to:
+  /// **'UI/UX|PHP Laravel|MySQL|Docker'**
+  String get proj3Technologies;
 
   /// No description provided for @contactTitle.
   ///
@@ -511,6 +655,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'© {year} Software Engineer. All rights reserved.'**
   String footerCopyright(String year);
+
+  /// No description provided for @footerBrand.
+  ///
+  /// In pt, this message translates to:
+  /// **'Franklyn Viana dos Santos'**
+  String get footerBrand;
 }
 
 class _AppLocalizationsDelegate

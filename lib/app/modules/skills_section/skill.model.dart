@@ -18,7 +18,10 @@ class HardSkillModel {
   final String name;
   final double level;
 
-  HardSkillModel({required this.name, required this.level});
+  HardSkillModel({
+    required this.name,
+     this.level = 0.0,
+  });
 }
 
 class SoftSkillModel {

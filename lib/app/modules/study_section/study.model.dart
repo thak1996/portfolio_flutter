@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class StudyModel {
-  StudyModel({required this.history});
+  StudyModel({
+    required this.history,
+    required this.sectionTitle,
+  });
 
   final List<EducationItemModel> history;
-  final String sectionTitle = "Formação Acadêmica";
+  final String sectionTitle;
 }
 
 class EducationItemModel {

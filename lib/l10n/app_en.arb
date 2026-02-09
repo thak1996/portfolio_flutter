@@ -14,30 +14,47 @@
   "expJob1Period": "Jul 2025 - Present",
   "expJob1Location": "Remote",
   "expJob1Points": "Complete interface overhaul (UI/UX) for modernization|Implementation of systems using PHP Laravel and Filament PHP|Configuration and deployment on VPS servers|Network infrastructure and DNS management|Corporate email service administration",
+  "expJob1Skills": "PHP Laravel|Filament PHP|VPS Server Administration|DNS & Domains|UI/UX Design",
 
   "expJob2Role": "Software Developer",
   "expJob2Stack": "Automation & Integration",
   "expJob2Company": "Freelance",
+  "expJob2Location": "Remote",
   "expJob2Period": "Sep 2025 - Dec 2025",
   "expJob2Points": "Development of integrations for web forms|Creation of automations using Google Apps Script|System integration via Google Sheets",
+  "expJob2Skills": "Google Apps Script|WebHooks|Google Sheets|API Integrations|JavaScript|JSON|Process Automation",
 
   "expJob3Role": "Flutter Mobile Developer",
   "expJob3Stack": "Project-based",
   "expJob3Company": "Freelance",
   "expJob3Period": "May 2025",
+  "expJob3Location": "Remote",
   "expJob3Points": "Clean Architecture implementation for scalability|Data sync between Firebase and ObjectBox",
+  "expJob3Skills": "Clean Architecture|ObjectBox|Firebase|Android & iOS|Dart|Flutter|Cubit",
 
   "expJob4Role": "Software Developer",
+  "expJob4Stack": "Flutter & Backend",
   "expJob4Company": "Eagless",
   "expJob4Period": "Nov 2023 - Nov 2024",
+  "expJob4Location": "Remote",
   "expJob4Points": "Development of mobile and web applications using Flutter|Creation of REST APIs with PHP Laravel for integration with mobile apps|Efficient integration between frontend and backend|Development of administrative panels for data management|Optimization of applications focusing on performance and usability",
+  "expJob4Skills": "Git/GitFlow|REST APIs|Flutter|Dart|PHP Laravel|MySQL",
 
   "educationTitle": "Education",
   "eduDegree1": "Analysis and Systems Development",
   "eduInst1": "Uninter International University",
+  "eduLocation1": "São Paulo, Brazil",
+  "eduYear1": "Jan 2026 - Feb 2027",
+
   "eduDegree2": "Mobile Development",
+  "eduInst2": "Raro Academy",
+  "eduLocation2": "São Paulo, Brazil",
+  "eduYear2": "Jul 2023 - Nov 2025",
+
   "eduDegree3": "Flutter & Dart",
   "eduInst3": "Raro Academy",
+  "eduLocation3": "São Paulo, Brazil",
+  "eduYear3": "Jul 2022 - Sep 2022",
 
   "skillsTitle": "Skills",
   "skillSoftArchTitle": "Clean Architecture",
@@ -47,14 +64,23 @@
   "skillSoftFullTitle": "Full Stack Mindset",
   "skillSoftFullDesc": "Holistic project view, from VPS infrastructure to mobile interface.",
   "strategicAreas": "REST API Integration|State Management (Cubit/Bloc)|CI/CD & Automated Deploy|Performance Optimization|Network Infrastructure Management",
+  "skillTools": "Git / GitFlow|Docker (Sail)|VPS & Linux (SSH)|Filament PHP|Firebase (Auth/Firestore)|Figma (UI/UX)|ObjectBox|Postman",
+  "skillHard1" : "Flutter & Dart",
+  "skillHard2" : "PHP (Laravel)",
+  "skillHard3" : "JavaScript",
+  "skillHard4" : "SQL (MySQL)",
+  "skillHard5" : "Google Apps Script",
 
   "projectsTitle": "Projects",
   "proj1Title": "FDS Logística Website",
   "proj1Desc": "Logistics and relocation management system with administrative panel and control dashboards.",
+  "proj1Technologies": "PHP Laravel|VPS|Domains|UI/UX",
   "proj2Title": "Brincar e Conectar App",
   "proj2Desc": "Mobile application for institutions and orphanages, focused on social connection.",
+  "proj2Technologies": "Flutter|UI/UX|Dart|Bloc",
   "proj3Title": "RH Manager",
   "proj3Desc": "HR Manager built with Laravel 10, Docker, and MySQL.",
+  "proj3Technologies": "UI/UX|PHP Laravel|MySQL|Docker",
 
   "contactTitle": "Contact",
   "contactSubtitle": "Let's discuss your next project",
@@ -76,9 +102,9 @@
   "contactInfoLocationValue": "São Paulo, SP - Brazil",
   "contactInfoHoursTitle": "Business Hours",
   "contactInfoHoursValue": "Mon - Fri: 9:00 AM - 6:00 PM",
-  
 
   "footerCopyright": "© {year} Software Engineer. All rights reserved.",
+  "footerBrand": "Franklyn Viana dos Santos",
   "@footerCopyright": {
     "placeholders": {
       "year": {

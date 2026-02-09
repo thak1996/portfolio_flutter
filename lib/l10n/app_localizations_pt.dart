@@ -50,6 +50,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Reformulação completa de interface (UI/UX) visando a modernização e responsividade|Implementação e migração de sistema utilizando PHP Laravel e Filament PHP|Configuração e deploy de ambiente de produção em servidor VPS|Gestão de infraestrutura de rede e zonas DNS|Administração e migração de serviços de e-mail corporativo';
 
   @override
+  String get expJob1Skills =>
+      'PHP Laravel|Filament PHP|Administração de Servidores (VPS)|DNS & Domínios|UI/UX Design';
+
+  @override
   String get expJob2Role => 'Desenvolvedor de Software';
 
   @override
@@ -62,8 +66,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get expJob2Period => 'set de 2025 - dez de 2025';
 
   @override
+  String get expJob2Location => 'Remoto';
+
+  @override
   String get expJob2Points =>
       'Desenvolvimento de integrações para captura de formulários web|Criação de automações utilizando Google Apps Script|Integração entre sistemas via Google Sheets';
+
+  @override
+  String get expJob2Skills =>
+      'Google Apps Script|WebHooks|Google Sheets|Integrações de APIs|JavaScript|JSON|Automação de Processos';
 
   @override
   String get expJob3Role => 'Desenvolvedor Mobile Flutter';
@@ -78,11 +89,21 @@ class AppLocalizationsPt extends AppLocalizations {
   String get expJob3Period => 'Mai de 2025';
 
   @override
+  String get expJob3Location => 'Remoto';
+
+  @override
   String get expJob3Points =>
       'Implementação de Clean Architecture visando escalabilidade|Sincronização de dados entre Firebase e ObjectBox';
 
   @override
+  String get expJob3Skills =>
+      'Clean Architecture|ObjectBox|Firebase|Android & iOS|Dart|Flutter|Cubit';
+
+  @override
   String get expJob4Role => 'Desenvolvedor de Software';
+
+  @override
+  String get expJob4Stack => 'Flutter & Backend';
 
   @override
   String get expJob4Company => 'Eagless';
@@ -91,8 +112,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get expJob4Period => 'nov de 2023 - nov de 2024';
 
   @override
+  String get expJob4Location => 'Remoto';
+
+  @override
   String get expJob4Points =>
       'Desenvolvimento de aplicações mobile e web utilizando Flutter|Criação de APIs REST com PHP Laravel para integração com apps mobile|Integração eficiente entre frontend e backend|Desenvolvimento de painéis administrativos para gestão de dados|Otimização de aplicações com foco em performance e usabilidade';
+
+  @override
+  String get expJob4Skills =>
+      'Git/GitFlow|REST APIs|Flutter|Dart|PHP Laravel|MySQL';
 
   @override
   String get educationTitle => 'Educação';
@@ -104,13 +132,34 @@ class AppLocalizationsPt extends AppLocalizations {
   String get eduInst1 => 'Uninter Centro Universitário Internacional';
 
   @override
+  String get eduLocation1 => 'São Paulo, Brasil';
+
+  @override
+  String get eduYear1 => 'Jan de 2026 - Fev de 2027';
+
+  @override
   String get eduDegree2 => 'Desenvolvimento Mobile';
+
+  @override
+  String get eduInst2 => 'Raro Academy';
+
+  @override
+  String get eduLocation2 => 'São Paulo, Brasil';
+
+  @override
+  String get eduYear2 => 'Jul de 2023 - Nov de 2025';
 
   @override
   String get eduDegree3 => 'Flutter & Dart';
 
   @override
   String get eduInst3 => 'Raro Academy';
+
+  @override
+  String get eduLocation3 => 'São Paulo, Brasil';
+
+  @override
+  String get eduYear3 => 'Jul de 2022 - Set de 2022';
 
   @override
   String get skillsTitle => 'Habilidades';
@@ -141,6 +190,25 @@ class AppLocalizationsPt extends AppLocalizations {
       'Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede';
 
   @override
+  String get skillTools =>
+      'Git / GitFlow|Docker (Sail)|VPS & Linux (SSH)|Filament PHP|Firebase (Auth/Firestore)|Figma (UI/UX)|ObjectBox|Postman';
+
+  @override
+  String get skillHard1 => 'Flutter & Dart';
+
+  @override
+  String get skillHard2 => 'PHP (Laravel)';
+
+  @override
+  String get skillHard3 => 'JavaScript';
+
+  @override
+  String get skillHard4 => 'SQL (MySQL)';
+
+  @override
+  String get skillHard5 => 'Google Apps Script';
+
+  @override
   String get projectsTitle => 'Projetos';
 
   @override
@@ -151,6 +219,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'Sistema de gerenciamento de mudanças e logística com painel administrativo e dashboards de controle.';
 
   @override
+  String get proj1Technologies => 'PHP Laravel|VPS|Domínios|UI/UX';
+
+  @override
   String get proj2Title => 'Brincar e Conectar App';
 
   @override
@@ -158,11 +229,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Aplicação mobile para instituições e orfanatos, focada em conexão social.';
 
   @override
+  String get proj2Technologies => 'Flutter|UI/UX|Dart|Bloc';
+
+  @override
   String get proj3Title => 'RH Manager';
 
   @override
   String get proj3Desc =>
       'Gerenciador de RH construído com Laravel 10, Docker e MySQL.';
+
+  @override
+  String get proj3Technologies => 'UI/UX|PHP Laravel|MySQL|Docker';
 
   @override
   String get contactTitle => 'Contato';
@@ -229,4 +306,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String footerCopyright(String year) {
     return '© $year Software Engineer. All rights reserved.';
   }
+
+  @override
+  String get footerBrand => 'Franklyn Viana dos Santos';
 }

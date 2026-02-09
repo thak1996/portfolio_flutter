@@ -12,7 +12,6 @@ import '../model/section.model.dart';
 import '../model/section.sealed.dart';
 import '../styles/colors.dart';
 
-// Constantes que não mudam entre idiomas
 const String _email = "dev@franklyndev.com.br";
 const String _githubUrl = "https://github.com/thak1996";
 const String _linkedinUrl = "https://www.linkedin.com/in/franklyn-v-santos/";
@@ -81,66 +80,37 @@ List<SectionModel> getPortfolioSections(
               location: l10n.expJob1Location,
               icon: Icons.badge,
               points: l10n.expJob1Points.split('|'),
-              skills: [
-                "PHP Laravel",
-                "Filament PHP",
-                "Administração de Servidores (VPS)",
-                "DNS & Domínios",
-                "UI/UX Design"
-              ],
+              skills: l10n.expJob1Skills.split('|'),
             ),
             ExperienceItemModel(
               role: l10n.expJob2Role,
               stack: l10n.expJob2Stack,
               company: l10n.expJob2Company,
               period: l10n.expJob2Period,
-              location: "Remoto",
+              location: l10n.expJob2Location,
               icon: Icons.laptop_mac,
               points: l10n.expJob2Points.split('|'),
-              skills: [
-                "Google Apps Script",
-                "WebHooks",
-                "Google Sheets",
-                "Integrações de APIs",
-                "JavaScript",
-                "Json",
-                "Automação de Processos"
-              ],
+              skills: l10n.expJob2Skills.split('|'),
             ),
             ExperienceItemModel(
               role: l10n.expJob3Role,
               stack: l10n.expJob3Stack,
               company: l10n.expJob3Company,
               period: l10n.expJob3Period,
-              location: "Remoto",
+              location: l10n.expJob3Location,
               icon: Icons.laptop_mac,
               points: l10n.expJob3Points.split('|'),
-              skills: [
-                "Clean Architecture",
-                "ObjectBox",
-                "Firebase",
-                "Android & IOS",
-                "Dart",
-                "Flutter",
-                "Cubit"
-              ],
+              skills: l10n.expJob3Skills.split('|'),
             ),
             ExperienceItemModel(
               role: l10n.expJob4Role,
-              stack: "Flutter & Backend",
+              stack: l10n.expJob4Stack,
               company: l10n.expJob4Company,
               period: l10n.expJob4Period,
-              location: "Remoto",
+              location: l10n.expJob4Location,
               icon: Icons.home_work,
               points: l10n.expJob4Points.split('|'),
-              skills: [
-                "Git/GitFlow",
-                "APIs REST",
-                "Flutter",
-                "Dart",
-                "PHP Laravel",
-                "MySQL"
-              ],
+              skills: l10n.expJob4Skills.split('|'),
             ),
           ],
         ),
@@ -156,27 +126,28 @@ List<SectionModel> getPortfolioSections(
       heightFactor: 0,
       data: StudyData(
         content: StudyModel(
+          sectionTitle: l10n.educationTitle,
           history: [
             EducationItemModel(
-              year: "jan de 2026 - fev de 2027",
+              year: l10n.eduYear1,
               currentEducation: true,
               degree: l10n.eduDegree1,
               institution: l10n.eduInst1,
-              location: "São Paulo, SP",
+              location: l10n.eduLocation1,
               icon: Icons.school,
             ),
             EducationItemModel(
-              year: "jul de 2023 - nov de 2025",
+              year: l10n.eduYear2,
               degree: l10n.eduDegree2,
-              institution: "Uninter Centro Universitário Internacional",
-              location: "São Paulo, SP",
+              institution: l10n.eduInst2,
+              location: l10n.eduLocation2,
               icon: Icons.school,
             ),
             EducationItemModel(
-              year: "jul de 2022 - set de 2022",
+              year: l10n.eduYear3,
               degree: l10n.eduDegree3,
               institution: l10n.eduInst3,
-              location: "Remoto",
+              location: l10n.eduLocation3,
               icon: Icons.terminal,
             ),
           ],
@@ -194,35 +165,29 @@ List<SectionModel> getPortfolioSections(
       data: SkillsData(
         content: SkillsModel(
           programmingLanguages: [
-            HardSkillModel(name: "Flutter & Dart", level: 0.85),
-            HardSkillModel(name: "PHP (Laravel)", level: 0.75),
-            HardSkillModel(name: "JavaScript", level: 0.65),
-            HardSkillModel(name: "SQL (MySQL)", level: 0.70),
-            HardSkillModel(name: "Google Apps Script", level: 0.75),
+            HardSkillModel(name: l10n.skillHard1),
+            HardSkillModel(name: l10n.skillHard2),
+            HardSkillModel(name: l10n.skillHard3),
+            HardSkillModel(name: l10n.skillHard4),
+            HardSkillModel(name: l10n.skillHard5),
           ],
-          tools: [
-            "Git / GitFlow",
-            "Docker (Sail)",
-            "VPS & Linux (SSH)",
-            "Filament PHP",
-            "Firebase (Auth/Firestore)",
-            "Figma (UI/UX)",
-            "ObjectBox",
-            "Postman"
-          ],
+          tools: l10n.skillTools.split('|'),
           softSkills: [
             SoftSkillModel(
-                title: l10n.skillSoftArchTitle,
-                description: l10n.skillSoftArchDesc,
-                icon: Icons.architecture),
+              title: l10n.skillSoftArchTitle,
+              description: l10n.skillSoftArchDesc,
+              icon: Icons.architecture,
+            ),
             SoftSkillModel(
-                title: l10n.skillSoftProbTitle,
-                description: l10n.skillSoftProbDesc,
-                icon: Icons.psychology),
+              title: l10n.skillSoftProbTitle,
+              description: l10n.skillSoftProbDesc,
+              icon: Icons.psychology,
+            ),
             SoftSkillModel(
-                title: l10n.skillSoftFullTitle,
-                description: l10n.skillSoftFullDesc,
-                icon: Icons.layers_outlined),
+              title: l10n.skillSoftFullTitle,
+              description: l10n.skillSoftFullDesc,
+              icon: Icons.layers_outlined,
+            ),
           ],
           strategicAreas: l10n.strategicAreas.split('|'),
         ),
@@ -241,21 +206,24 @@ List<SectionModel> getPortfolioSections(
           sectionTitle: l10n.projectsTitle,
           projects: [
             ProjectItemModel(
-                title: l10n.proj1Title,
-                description: l10n.proj1Desc,
-                technologies: ["PHP Laravel", "VPS", "Domínios", "UI/UX"],
-                urlProject: 'https://www.fdslogistica.com.br/'),
+              title: l10n.proj1Title,
+              description: l10n.proj1Desc,
+              technologies: l10n.proj1Technologies.split('|'),
+              urlProject: 'https://www.fdslogistica.com.br/',
+            ),
             ProjectItemModel(
-                title: l10n.proj2Title,
-                description: l10n.proj2Desc,
-                technologies: ["Flutter", "UI/UX", "Dart", "Bloc"],
-                urlProject:
-                    'https://github.com/thak1996/brincar_e_conectar_flutter'),
+              title: l10n.proj2Title,
+              description: l10n.proj2Desc,
+              technologies: l10n.proj2Technologies.split('|'),
+              urlProject:
+                  'https://github.com/thak1996/brincar_e_conectar_flutter',
+            ),
             ProjectItemModel(
-                title: l10n.proj3Title,
-                description: l10n.proj3Desc,
-                technologies: ["UI/UX", "PHP Laravel", "MySQL", "Docker"],
-                urlProject: 'https://github.com/thak1996/rh-manager'),
+              title: l10n.proj3Title,
+              description: l10n.proj3Desc,
+              technologies: l10n.proj3Technologies.split('|'),
+              urlProject: 'https://github.com/thak1996/rh-manager',
+            ),
           ],
         ),
       ),
@@ -316,7 +284,7 @@ List<SectionModel> getPortfolioSections(
       heightFactor: 0,
       data: FooterData(
         content: FooterModel(
-          brandName: "Franklyn Viana dos Santos",
+          brandName: l10n.footerBrand,
           copyright: l10n.footerCopyright(DateTime.now().year.toString()),
           socials: footerSocials,
         ),

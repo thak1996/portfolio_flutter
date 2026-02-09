@@ -14,30 +14,47 @@
   "expJob1Period": "jul de 2025 - até o momento",
   "expJob1Location": "Remoto",
   "expJob1Points": "Reformulação completa de interface (UI/UX) visando a modernização e responsividade|Implementação e migração de sistema utilizando PHP Laravel e Filament PHP|Configuração e deploy de ambiente de produção em servidor VPS|Gestão de infraestrutura de rede e zonas DNS|Administração e migração de serviços de e-mail corporativo",
+  "expJob1Skills": "PHP Laravel|Filament PHP|Administração de Servidores (VPS)|DNS & Domínios|UI/UX Design",
 
   "expJob2Role": "Desenvolvedor de Software",
   "expJob2Stack": "Automação & Integração",
   "expJob2Company": "Autônomo",
   "expJob2Period": "set de 2025 - dez de 2025",
+  "expJob2Location": "Remoto",
   "expJob2Points": "Desenvolvimento de integrações para captura de formulários web|Criação de automações utilizando Google Apps Script|Integração entre sistemas via Google Sheets",
+  "expJob2Skills": "Google Apps Script|WebHooks|Google Sheets|Integrações de APIs|JavaScript|JSON|Automação de Processos",
 
   "expJob3Role": "Desenvolvedor Mobile Flutter",
   "expJob3Stack": "Projeto Pontual",
   "expJob3Company": "Autônomo",
   "expJob3Period": "Mai de 2025",
+  "expJob3Location": "Remoto",
   "expJob3Points": "Implementação de Clean Architecture visando escalabilidade|Sincronização de dados entre Firebase e ObjectBox",
+  "expJob3Skills": "Clean Architecture|ObjectBox|Firebase|Android & iOS|Dart|Flutter|Cubit",
 
   "expJob4Role": "Desenvolvedor de Software",
+  "expJob4Stack": "Flutter & Backend",
   "expJob4Company": "Eagless",
   "expJob4Period": "nov de 2023 - nov de 2024",
+  "expJob4Location": "Remoto",
   "expJob4Points": "Desenvolvimento de aplicações mobile e web utilizando Flutter|Criação de APIs REST com PHP Laravel para integração com apps mobile|Integração eficiente entre frontend e backend|Desenvolvimento de painéis administrativos para gestão de dados|Otimização de aplicações com foco em performance e usabilidade",
+  "expJob4Skills": "Git/GitFlow|REST APIs|Flutter|Dart|PHP Laravel|MySQL",
 
   "educationTitle": "Educação",
   "eduDegree1": "Análise e Desenvolvimento de Sistemas",
   "eduInst1": "Uninter Centro Universitário Internacional",
+  "eduLocation1": "São Paulo, Brasil",
+  "eduYear1": "Jan de 2026 - Fev de 2027",
+
   "eduDegree2": "Desenvolvimento Mobile",
+  "eduInst2": "Raro Academy",
+  "eduLocation2": "São Paulo, Brasil",
+  "eduYear2": "Jul de 2023 - Nov de 2025",
+
   "eduDegree3": "Flutter & Dart",
   "eduInst3": "Raro Academy",
+  "eduLocation3": "São Paulo, Brasil",
+  "eduYear3": "Jul de 2022 - Set de 2022",
 
   "skillsTitle": "Habilidades",
   "skillSoftArchTitle": "Arquitetura Limpa",
@@ -47,14 +64,23 @@
   "skillSoftFullTitle": "Mentalidade Full Stack",
   "skillSoftFullDesc": "Visão holística do projeto, desde a infraestrutura VPS até a interface mobile.",
   "strategicAreas": "Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede",
+  "skillTools": "Git / GitFlow|Docker (Sail)|VPS & Linux (SSH)|Filament PHP|Firebase (Auth/Firestore)|Figma (UI/UX)|ObjectBox|Postman",
+  "skillHard1" : "Flutter & Dart",
+  "skillHard2" : "PHP (Laravel)", 
+  "skillHard3" : "JavaScript",
+  "skillHard4" : "SQL (MySQL)",
+  "skillHard5" : "Google Apps Script",
 
   "projectsTitle": "Projetos",
   "proj1Title": "FDS Logística Website",
   "proj1Desc": "Sistema de gerenciamento de mudanças e logística com painel administrativo e dashboards de controle.",
+  "proj1Technologies": "PHP Laravel|VPS|Domínios|UI/UX",
   "proj2Title": "Brincar e Conectar App",
   "proj2Desc": "Aplicação mobile para instituições e orfanatos, focada em conexão social.",
+  "proj2Technologies": "Flutter|UI/UX|Dart|Bloc",
   "proj3Title": "RH Manager",
   "proj3Desc": "Gerenciador de RH construído com Laravel 10, Docker e MySQL.",
+  "proj3Technologies": "UI/UX|PHP Laravel|MySQL|Docker",
 
   "contactTitle": "Contato",
   "contactSubtitle": "Vamos discutir seu próximo projeto",
@@ -78,6 +104,7 @@
   "contactInfoHoursValue": "Seg - Sex: 9:00 - 18:00",
 
   "footerCopyright": "© {year} Software Engineer. All rights reserved.",
+  "footerBrand": "Franklyn Viana dos Santos",
   "@footerCopyright": {
     "placeholders": {
       "year": {
