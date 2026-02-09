@@ -8,7 +8,7 @@ class ContactService {
   Future<bool> postWebhook(Map<String, dynamic> data) async {
     try {
       final String url = dotenv.env['WEB_HOOK'] ??
-          'https://n8n.franklyndev.com.br/webhook/contato';
+          'https://n8n.franklyndev.com.br/webhook-test/contato';
 
       final response = await http
           .post(

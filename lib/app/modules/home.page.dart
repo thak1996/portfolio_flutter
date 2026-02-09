@@ -110,7 +110,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
-            // --- CONTEÚDO ---
             LayoutBuilder(
               builder: (context, constraints) {
                 final double viewportHeight = constraints.maxHeight;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import '../../modules/contact_section/contact.model.dart';
 import '../../modules/experience_section/experience.model.dart';
 import '../../modules/footer_section/footer.model.dart';
@@ -20,15 +21,15 @@ const String _mailtoUrl =
     "mailto:$_email?subject=Proposta%20de%20Projeto&body=Olá,%20gostaria%20de%20conversar%20sobre%20um%20projeto";
 
 final List<SocialIcon> _heroSocials = [
-  SocialIcon(Icons.code, _githubUrl),
-  SocialIcon(Icons.link, _linkedinUrl),
-  SocialIcon(Icons.alternate_email, _mailtoUrl),
+  SocialIcon(Bootstrap.github, _githubUrl),
+  SocialIcon(Bootstrap.linkedin, _linkedinUrl),
+  SocialIcon(Bootstrap.envelope_at, _mailtoUrl),
 ];
 
 final List<SocialLinkModel> _footerSocials = [
-  SocialLinkModel(icon: Icons.code, url: _githubUrl),
-  SocialLinkModel(icon: Icons.link, url: _linkedinUrl),
-  SocialLinkModel(icon: Icons.alternate_email, url: _mailtoUrl),
+  SocialLinkModel(icon: Bootstrap.github, url: _githubUrl),
+  SocialLinkModel(icon: Bootstrap.linkedin, url: _linkedinUrl),
+  SocialLinkModel(icon: Bootstrap.envelope_at, url: _mailtoUrl),
 ];
 
 final List<SectionModel> portfolioSections = [
