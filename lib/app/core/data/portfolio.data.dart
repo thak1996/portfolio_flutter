@@ -70,6 +70,7 @@ List<SectionModel> getPortfolioSections(
       heightFactor: 0,
       data: ExperienceData(
         content: ExperienceModel(
+          sectionTitle: l10n.experienceTitle,
           jobs: [
             ExperienceItemModel(
               role: l10n.expJob1Role,

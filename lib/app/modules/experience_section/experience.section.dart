@@ -35,7 +35,7 @@ class ExperienceSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Trajetória Profissional",
+            content.sectionTitle,
             style: TextStyle(
               color: Colors.white,
               fontSize: breakpoint.isMobile ? 32 : 42,

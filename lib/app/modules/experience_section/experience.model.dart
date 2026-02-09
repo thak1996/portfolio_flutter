@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ExperienceModel {
-  ExperienceModel({required this.jobs});
+  ExperienceModel({required this.jobs, required this.sectionTitle});
 
   final List<ExperienceItemModel> jobs;
+  final String sectionTitle;
 }
 
 class ExperienceItemModel {
