@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SkillsModel {
+  final String sectionTitle;
   final List<HardSkillModel> programmingLanguages;
-  final List<String> tools;
   final List<SoftSkillModel> softSkills;
-  final List<String> strategicAreas;
+  final List<SkillCategoryModel> skillCategories;
 
   SkillsModel({
     required this.programmingLanguages,
-    required this.tools,
     required this.softSkills,
-    required this.strategicAreas,
+    required this.sectionTitle,
+    required this.skillCategories,
   });
 }
 
@@ -20,7 +20,17 @@ class HardSkillModel {
 
   HardSkillModel({
     required this.name,
-     this.level = 0.0,
+    this.level = 0.0,
+  });
+}
+
+class SkillCategoryModel {
+  final String title;
+  final List<String> items;
+
+  SkillCategoryModel({
+    required this.title,
+    required this.items,
   });
 }
 

@@ -36,7 +36,7 @@ class SkillsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Habilidades",
+            content.sectionTitle,
             style: TextStyle(
               color: Colors.white,
               fontSize: breakpoint.isMobile ? 32 : 42,
@@ -68,6 +68,8 @@ class SkillsSection extends StatelessWidget {
   }
 
   Widget _buildHardSkillsColumn(ResponsiveBreakpointsData breakpoint) {
+    final extraCategories = content.skillCategories.take(1).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -81,19 +83,27 @@ class SkillsSection extends StatelessWidget {
               .map((skill) => _SkillTag(label: skill.name))
               .toList(),
         ),
-        const SizedBox(height: 40),
-        _buildSubCategoryDivider("FERRAMENTAS & TECNOLOGIAS"),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children:
-              content.tools.map((tool) => _SkillTag(label: tool)).toList(),
-        ),
+
+        ...extraCategories.map((cat) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 40),
+                _buildSubCategoryDivider(cat.title.toUpperCase()),
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children:
+                      cat.items.map((item) => _SkillTag(label: item)).toList(),
+                ),
+              ],
+            )),
       ],
     );
   }
 
   Widget _buildSoftSkillsColumn(ResponsiveBreakpointsData breakpoint) {
+    final extraCategories = content.skillCategories.skip(1).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -124,15 +134,21 @@ class SkillsSection extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 48),
-        _buildSubCategoryDivider("ÁREAS ESTRATÉGICAS"),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: content.strategicAreas
-              .map((area) => _SkillTag(label: area))
-              .toList(),
-        ),
+
+        // LOOP DINÂMICO DE CATEGORIAS (Parte 2)
+        ...extraCategories.map((cat) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 48),
+                _buildSubCategoryDivider(cat.title.toUpperCase()),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children:
+                      cat.items.map((item) => _SkillTag(label: item)).toList(),
+                ),
+              ],
+            )),
       ],
     );
   }

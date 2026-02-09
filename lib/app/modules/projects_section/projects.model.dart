@@ -18,6 +18,7 @@ class ProjectItemModel {
   final String? categoryLabel;
   final List<String> technologies;
   final VoidCallback? onTap;
+  final String labelButton;
 
   ProjectItemModel({
     required this.title,
@@ -27,5 +28,6 @@ class ProjectItemModel {
     this.categoryLabel,
     required this.technologies,
     this.onTap,
+    required this.labelButton,
   });
 }

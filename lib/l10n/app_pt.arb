@@ -70,8 +70,12 @@
   "skillHard3" : "JavaScript",
   "skillHard4" : "SQL (MySQL)",
   "skillHard5" : "Google Apps Script",
+  "skillStrategic": "Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede",
+  "skillToolsTitle": "Ferramentas & Tecnologias",
+  "skillStrategicTitle": "Áreas Estratégicas",
 
   "projectsTitle": "Projetos",
+  "projLabelButtonView": "Ver Detalhes",
   "proj1Title": "FDS Logística Website",
   "proj1Desc": "Sistema de gerenciamento de mudanças e logística com painel administrativo e dashboards de controle.",
   "proj1Technologies": "PHP Laravel|VPS|Domínios|UI/UX",

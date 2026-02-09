@@ -164,14 +164,14 @@ List<SectionModel> getPortfolioSections(
       heightFactor: 0,
       data: SkillsData(
         content: SkillsModel(
+          sectionTitle: l10n.skillsTitle,
           programmingLanguages: [
-            HardSkillModel(name: l10n.skillHard1),
-            HardSkillModel(name: l10n.skillHard2),
-            HardSkillModel(name: l10n.skillHard3),
-            HardSkillModel(name: l10n.skillHard4),
-            HardSkillModel(name: l10n.skillHard5),
+            HardSkillModel(name: l10n.skillHard1, level: 0.85),
+            HardSkillModel(name: l10n.skillHard2, level: 0.75),
+            HardSkillModel(name: l10n.skillHard3, level: 0.65),
+            HardSkillModel(name: l10n.skillHard4, level: 0.70),
+            HardSkillModel(name: l10n.skillHard5, level: 0.75),
           ],
-          tools: l10n.skillTools.split('|'),
           softSkills: [
             SoftSkillModel(
               title: l10n.skillSoftArchTitle,
@@ -189,7 +189,16 @@ List<SectionModel> getPortfolioSections(
               icon: Icons.layers_outlined,
             ),
           ],
-          strategicAreas: l10n.strategicAreas.split('|'),
+          skillCategories: [
+            SkillCategoryModel(
+              title: l10n.skillToolsTitle,
+              items: l10n.skillTools.split('|'),
+            ),
+            SkillCategoryModel(
+              title: l10n.skillStrategicTitle,
+              items: l10n.strategicAreas.split('|'),
+            ),
+          ],
         ),
       ),
     ),
@@ -210,6 +219,7 @@ List<SectionModel> getPortfolioSections(
               description: l10n.proj1Desc,
               technologies: l10n.proj1Technologies.split('|'),
               urlProject: 'https://www.fdslogistica.com.br/',
+              labelButton: l10n.projLabelButtonView,
             ),
             ProjectItemModel(
               title: l10n.proj2Title,
@@ -217,12 +227,14 @@ List<SectionModel> getPortfolioSections(
               technologies: l10n.proj2Technologies.split('|'),
               urlProject:
                   'https://github.com/thak1996/brincar_e_conectar_flutter',
+              labelButton: l10n.projLabelButtonView,
             ),
             ProjectItemModel(
               title: l10n.proj3Title,
               description: l10n.proj3Desc,
               technologies: l10n.proj3Technologies.split('|'),
               urlProject: 'https://github.com/thak1996/rh-manager',
+              labelButton: l10n.projLabelButtonView,
             ),
           ],
         ),

@@ -208,10 +208,12 @@ class _ProjectCardState extends State<_ProjectCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Ver Detalhes",
+                      Text(
+                        widget.project.labelButton,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 13),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Icon(

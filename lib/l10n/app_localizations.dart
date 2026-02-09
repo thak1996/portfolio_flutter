@@ -470,11 +470,35 @@ abstract class AppLocalizations {
   /// **'Google Apps Script'**
   String get skillHard5;
 
+  /// No description provided for @skillStrategic.
+  ///
+  /// In pt, this message translates to:
+  /// **'Integração de APIs REST|Gerenciamento de Estado (Cubit/Bloc)|CI/CD & Deploy Automatizado|Otimização de Performance|Gestão de Infraestrutura de Rede'**
+  String get skillStrategic;
+
+  /// No description provided for @skillToolsTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ferramentas & Tecnologias'**
+  String get skillToolsTitle;
+
+  /// No description provided for @skillStrategicTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Áreas Estratégicas'**
+  String get skillStrategicTitle;
+
   /// No description provided for @projectsTitle.
   ///
   /// In pt, this message translates to:
   /// **'Projetos'**
   String get projectsTitle;
+
+  /// No description provided for @projLabelButtonView.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver Detalhes'**
+  String get projLabelButtonView;
 
   /// No description provided for @proj1Title.
   ///

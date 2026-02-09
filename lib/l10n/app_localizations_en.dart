@@ -209,7 +209,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skillHard5 => 'Google Apps Script';
 
   @override
+  String get skillStrategic =>
+      'REST API Integration|State Management (Cubit/Bloc)|CI/CD & Automated Deploy|Performance Optimization|Network Infrastructure Management';
+
+  @override
+  String get skillToolsTitle => 'Tools & Technologies';
+
+  @override
+  String get skillStrategicTitle => 'Strategic Areas';
+
+  @override
   String get projectsTitle => 'Projects';
+
+  @override
+  String get projLabelButtonView => 'View Details';
 
   @override
   String get proj1Title => 'FDS Logística Website';
