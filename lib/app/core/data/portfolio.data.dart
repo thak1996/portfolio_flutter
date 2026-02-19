@@ -13,8 +13,8 @@ import '../model/section.sealed.dart';
 import '../styles/colors.dart';
 
 const String _email = "dev@franklyndev.com.br";
-const String _phoneDisplay = "(11) 9 3618-7823";
-const String _whatsAppRaw = "+5511936187823";
+const String _phoneDisplay = "(11) 9 9980-9546";
+const String _whatsAppRaw = "+5511999809546";
 const String _githubUrl = "https://github.com/thak1996";
 const String _linkedinUrl = "https://www.linkedin.com/in/franklyn-v-santos/";
 const String _profilePic = "https://i.imgur.com/te69F3I.png";
