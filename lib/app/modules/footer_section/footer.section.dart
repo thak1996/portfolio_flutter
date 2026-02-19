@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:portfolio_flutter/app/core/model/section.model.dart';
+import '../../core/model/section.model.dart';
 import '../../core/styles/colors.dart';
 import '../../core/utils/url_launcher.helper.dart';
 import 'footer.model.dart';

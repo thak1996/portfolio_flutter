@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:portfolio_flutter/l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../modules/contact_section/contact.model.dart';
 import '../../modules/experience_section/experience.model.dart';
 import '../../modules/footer_section/footer.model.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
-import 'package:portfolio_flutter/app/modules/widgets/text_field.widget.dart';
-import 'package:portfolio_flutter/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../core/styles/colors.dart';
 import '../../core/utils/app_validators.dart';
+import '../../core/utils/url_launcher.helper.dart';
 import '../widgets/primary_button.widget.dart';
+import '../widgets/text_field.widget.dart';
 import 'contact.model.dart';
 import 'contact.controller.dart';
 

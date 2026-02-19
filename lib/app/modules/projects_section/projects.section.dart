@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
 import '../../core/styles/colors.dart';
+import '../../core/utils/url_launcher.helper.dart';
 import 'projects.model.dart';
 
 class ProjectsSection extends StatelessWidget {

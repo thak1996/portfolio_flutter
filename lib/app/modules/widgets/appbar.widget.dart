@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:portfolio_flutter/app/core/model/section.model.dart';
 import '../../core/data/portfolio.data.dart';
 import '../../core/locale/locale.widget.dart';
+import '../../core/model/section.model.dart';
 import '../../core/styles/colors.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {

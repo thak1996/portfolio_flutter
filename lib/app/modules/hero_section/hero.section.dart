@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:portfolio_flutter/app/core/utils/url_launcher.helper.dart';
-import 'package:portfolio_flutter/app/modules/widgets/primary_button.widget.dart';
 import '../../core/model/section.model.dart';
 import '../../core/styles/colors.dart';
+import '../../core/utils/url_launcher.helper.dart';
+import '../widgets/primary_button.widget.dart';
 import 'hero.model.dart';
 
 class HeroSection extends StatefulWidget {

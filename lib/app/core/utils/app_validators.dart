@@ -1,4 +1,4 @@
-import 'package:portfolio_flutter/l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 
 class AppValidators {
   static String? validateRequired(String? value, AppLocalizations l10n) {
