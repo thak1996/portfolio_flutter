@@ -698,6 +698,18 @@ abstract class AppLocalizations {
   /// **'Olá, gostaria de conversar sobre um projeto'**
   String get contactEmailBody;
 
+  /// No description provided for @contactInfoWhatsAppTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'WhatsApp'**
+  String get contactInfoWhatsAppTitle;
+
+  /// No description provided for @contactWhatsAppMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Olá! Vi seu portfólio e gostaria de conversar sobre um projeto.'**
+  String get contactWhatsAppMessage;
+
   /// No description provided for @errorRequired.
   ///
   /// In pt, this message translates to:

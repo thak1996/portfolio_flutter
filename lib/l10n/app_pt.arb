@@ -110,6 +110,8 @@
   "contactFormError": "Ocorreu um erro ao enviar. Tente novamente.",
   "contactEmailSubject": "Proposta de Projeto",
   "contactEmailBody": "Olá, gostaria de conversar sobre um projeto",
+  "contactInfoWhatsAppTitle": "WhatsApp",
+  "contactWhatsAppMessage": "Olá! Vi seu portfólio e gostaria de conversar sobre um projeto.",
   "errorRequired": "Campo obrigatório",
   "errorInvalidEmail": "Digite um e-mail válido",
   "errorInvalidPhone": "Telefone inválido",

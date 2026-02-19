@@ -329,6 +329,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactEmailBody => 'Hi, I\'d like to talk about a project';
 
   @override
+  String get contactInfoWhatsAppTitle => 'WhatsApp';
+
+  @override
+  String get contactWhatsAppMessage =>
+      'Hi! I saw your portfolio and I\'d like to discuss a project.';
+
+  @override
   String get errorRequired => 'Required field';
 
   @override

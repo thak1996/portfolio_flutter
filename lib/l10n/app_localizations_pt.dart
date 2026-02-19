@@ -328,6 +328,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get contactEmailBody => 'Olá, gostaria de conversar sobre um projeto';
 
   @override
+  String get contactInfoWhatsAppTitle => 'WhatsApp';
+
+  @override
+  String get contactWhatsAppMessage =>
+      'Olá! Vi seu portfólio e gostaria de conversar sobre um projeto.';
+
+  @override
   String get errorRequired => 'Campo obrigatório';
 
   @override
